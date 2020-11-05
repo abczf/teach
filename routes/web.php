@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * 后台
+ */
+Route::prefix('admin')->group(function(){
+    Route::view('','admin.admin');
+
+    # 咨询模块
+    Route::prefix('consult')->group(function(){
+	    Route::any('show','admin\ConsultController@show');
+	});
+});
