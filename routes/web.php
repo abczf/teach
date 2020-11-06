@@ -34,6 +34,31 @@ Route::prefix('admin')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
 	    Route::any('add','admin\SlideController@add');
 	});
+	 #所有课程
+	 Route::prefix('course')->group(function(){
+	    Route::any('show','admin\CourseController@show');
+	    Route::any('add','admin\CourseController@add');    
+	});
+	 #课程分类
+	 Route::prefix('category')->group(function(){
+	    Route::any('show','admin\CategoryController@show');
+	    Route::any('add','admin\CategoryController@add');    
+	});
+	 #课程目录
+	 Route::prefix('catalog')->group(function(){
+	    Route::any('show','admin\CatalogController@show');
+	    Route::any('add','admin\CatalogController@add');    
+	});
+	  #目录详情
+	 Route::prefix('cataloginfo')->group(function(){
+	    Route::any('show','admin\CatalogInfoController@show');
+	    Route::any('add','admin\CatalogInfoController@add');    
+	});
+	  #课程公告
+	 Route::prefix('notice')->group(function(){
+	    Route::any('show','admin\NoticeController@show');
+	    Route::any('add','admin\NoticeController@add');    
+	});
 });
 
 
