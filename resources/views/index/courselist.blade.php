@@ -1,6 +1,11 @@
 <!-- 头部栏位 -->
 @extends('../index/public/layout')
 @section('subject')
+    <link rel="stylesheet" href="/index/css/course.css"/>
+    <link rel="stylesheet" href="/index/css/tab.css" media="screen">
+    <script src="/index/js/jquery-1.8.0.min.js"></script>
+    <script src="/index/js/jquery.tabs.js"></script>
+    <script src="/index/js/mine.js"></script>
 
     <div class="coursecont">
         <div class="courseleft">
@@ -41,8 +46,8 @@
             <ul class="courseulr">
                 <li>
                     <div class="courselist">
-                        <a href="coursecont.html" target="_blank"><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c1.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="coursecont.html" target="_blank">会计基础</a></p>
+                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c1.jpg" title="会计基础"></a>
+                        <p class="courTit"><a href="{{url("index/coursecont")}}" >会计基础</a></p>
                         <div class="gray">
                             <span>30课时 600分钟</span>
                             <span class="sp1">1255555人学习</span>
@@ -52,8 +57,8 @@
                 </li>
                 <li>
                     <div class="courselist">
-                        <a href="coursecont.html" target="_blank"><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c2.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="coursecont.html" target="_blank">HTTP下载课程</a></p>
+                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c2.jpg" title="会计基础"></a>
+                        <p class="courTit"><a href="{{url("index/coursecont")}}" >HTTP下载课程</a></p>
                         <div class="gray">
                             <span>5课时 60分钟</span>
                             <span class="sp1">1255555人学习</span>
@@ -63,8 +68,8 @@
                 </li>
                 <li>
                     <div class="courselist">
-                        <a href="coursecont.html" target="_blank"><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c3.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="coursecont.html" target="_blank">HTTP下载课程</a></p>
+                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c3.jpg" title="会计基础"></a>
+                        <p class="courTit"><a href="{{url("index/coursecont")}}" >HTTP下载课程</a></p>
                         <div class="gray">
                             <span>5课时 60分钟</span>
                             <span class="sp1">1255555人学习</span>

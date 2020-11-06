@@ -1,6 +1,11 @@
 <!-- 头部栏位 -->
 @extends('../index/public/layout')
 @section('subject')
+    <link rel="stylesheet" href="/index/css/course.css"/>
+    <link rel="stylesheet" href="/index/css/tab.css" media="screen">
+    <script src="/index/js/jquery-1.8.0.min.js"></script>
+    <script src="/index/js/jquery.tabs.js"></script>
+    <script src="/index/js/mine.js"></script>
 
     <div class="coursecont">
         <div class="coursepic">
@@ -27,7 +32,7 @@
                         <a class="bds_count" data-cmd="count"></a>
                     </div>
                     <script>
-                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api//index/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
                 </div>
             </div>
