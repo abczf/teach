@@ -13,7 +13,7 @@
             <dt><i class="Hui-iconfont">&#xe613;</i> 轮播图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="{{url('admin/slide/slide')}}" title="轮播图管理">轮播图管理</a></li>
+                    <li><a href="{{url('admin/slide/slide')}}" title="轮播图管理">轮播图</a></li>
                 </ul>
             </dd>
         </dl>

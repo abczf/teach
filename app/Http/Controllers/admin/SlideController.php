@@ -11,7 +11,10 @@ class SlideController extends Controller
     public function slide(){
     	return view('admin.slide.show');
     }
-   
+    public function add(){
+    	return view('admin.slide.add');
+
+}
 
 
 }
