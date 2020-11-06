@@ -46,6 +46,10 @@ Route::prefix('index')->group(function(){
         Route::any('login','index\LoginController@login');
         // 注册
         Route::any('register','index\RegisterController@register');
+        // 课程列表
+        Route::any('courselist','index\CourselistController@courselist');
+        // 课程详情
+        Route::any('coursecont','index\CoursecontController@coursecont');
 
 
 });
