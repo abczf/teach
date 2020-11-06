@@ -26,5 +26,6 @@ Route::prefix('admin')->group(function(){
     # 咨询模块
     Route::prefix('consult')->group(function(){
 	    Route::any('show','admin\ConsultController@show');
+	    Route::any('create','admin\ConsultController@create');
 	});
 });

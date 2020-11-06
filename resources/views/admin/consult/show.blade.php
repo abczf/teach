@@ -34,7 +34,7 @@
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
 				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资讯','article-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
+				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资讯','{{url('admin/consult/create')}}')" href="{{url('admin/consult/create')}}"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
 				</span>
 				<span class="r">共有数据：<strong>54</strong> 条</span>
 			</div>
@@ -147,7 +147,7 @@ function article_del(obj,id){
 /*资讯-审核*/
 function article_shenhe(obj,id){
 	layer.confirm('审核文章？', {
-		btn: ['通过','不通过不通过','取消'],
+		btn: ['通过','不通过','取消'],
 		shade: false,
 		closeBtn: 0
 	},
