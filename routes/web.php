@@ -40,4 +40,21 @@ Route::prefix('admin')->group(function(){
 });
 
 
+// 前台
+Route::prefix('index')->group(function(){
+        // 首页
+        Route::any('','index\IndexController@index');
+        // 登录
+        Route::any('login','index\LoginController@login');
+        // 注册
+        Route::any('register','index\RegisterController@register');
+
+
+});
+
+
+
+
+
+
 ?>
