@@ -42,16 +42,22 @@ Route::prefix('admin')->group(function(){
 
 // 前台
 Route::prefix('index')->group(function(){
-        // 首页
-        Route::any('','index\IndexController@index');
-        // 登录
-        Route::any('login','index\LoginController@login');
-        // 注册
-        Route::any('register','index\RegisterController@register');
-        // 课程列表
-        Route::any('courselist','index\CourselistController@courselist');
-        // 课程详情
-        Route::any('coursecont','index\CoursecontController@coursecont');
+    // 首页
+    Route::any('','index\IndexController@index');
+    // 登录
+    Route::any('login','index\LoginController@login');
+    // 注册
+    Route::any('register','index\RegisterController@register');
+
+    // 课程列表
+    Route::prefix('course')->group(function(){
+        Route::any('list','index\CourselistController@courselist');
+    });
+    // 课程详情
+    Route::prefix('course')->group(function(){
+        Route::any('cont','index\CoursecontController@coursecont');
+    });
+
 
 
 });

@@ -9,6 +9,6 @@ class CoursecontController extends Controller
 {
     // 渲染课程详情页面
     public function coursecont(){
-        return view("index/coursecont");
+        return view("index/course/cont");
     }
 }
