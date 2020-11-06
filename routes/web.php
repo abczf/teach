@@ -32,7 +32,6 @@ Route::prefix('admin')->group(function(){
 	#轮播图
 	 Route::prefix('slide')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
-	    Route::any('slide','admin\SlideController@add');
 	});
 });
 
