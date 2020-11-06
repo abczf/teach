@@ -17,17 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 后台登录
-Route::get('admin/login','admin\LoginController@login');
+
 /**
  * 后台
  */
 Route::prefix('admin')->group(function(){
     Route::view('','admin.admin');
-
+    // 后台登录
+	Route::get('login','admin\LoginController@login');
     # 咨询模块
     Route::prefix('consult')->group(function(){
 	    Route::any('show','admin\ConsultController@show');
+	});
+	#轮播图
+	 Route::prefix('slide')->group(function(){
+	    Route::any('slide','admin\SlideController@slide');
+	    Route::any('slide','admin\SlideController@add');
 	});
 });
 
