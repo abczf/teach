@@ -1,3 +1,4 @@
+<!--右侧浮动-->
 <div class="rmbar">
 	<span class="barico qq" style="position:relative">
 	<div  class="showqq">
@@ -5,10 +6,10 @@
 	</div>
 	</span>
     <span class="barico em" style="position:relative">
-	  <img src="images/num.png" width="75" class="showem">
+	  <img src="/index/images/num.png" width="75" class="showem">
 	</span>
     <span class="barico wb" style="position:relative">
-	  <img src="images/wb.png" width="75" class="showwb">
+	  <img src="/index/images/wb.png" width="75" class="showwb">
 	</span>
     <span class="barico top" id="top">置顶</span>
 </div>

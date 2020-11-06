@@ -1,3 +1,7 @@
+<!-- 头部栏位 -->
+@extends('../index/public/common')
+@section('subject')
+
 <div class="content">
     <div class="fullwidthbanner-container">
         <div id="revolution-slider" style="max-height:500px !important; background:#46B0AC">
@@ -5,7 +9,6 @@
                 <li data-transition="fade" data-slotamount="10" data-masterspeed="300" data-thumb="images-slider/thumbs/thumb1.jpg">
                     <!--  BACKGROUND IMAGE -->
                     <img src="images-slider/wide2.jpg" alt="" />
-
                     <!-- THE CAPTIONS IN THIS SLIDE -->
                     <div class="tp-caption sfl"
                          data-x="-130"
@@ -255,16 +258,13 @@
                         <img src="images-slider/fresh.png" alt="">
                     </div>
                 </li>
-
-
-
             </ul>
         </div>
     </div>
 
     <div class="td1">
         <div class="tdcont">
-            <span class="tdimg"><img src="images/ico4.jpg" width="450"></span>
+            <span class="tdimg"><img src="/index/images/ico4.jpg" width="450"></span>
             <span class="tdtext">
         	<h3>完全免费课程</h3>
             <p>精心录制视频课程与讲解，全部课程完全免费。</p><br/>
@@ -275,7 +275,7 @@
     </div>
     <div class="td2">
         <div class="tdcont">
-            <span class="tdimg1"><img src="images/ico5.jpg" width="500"></span>
+            <span class="tdimg1"><img src="/index/images/ico5.jpg" width="500"></span>
             <span class="tdtext1">
         	<h3 class="co1">智能评估题库</h3>
             <p>智能能力评估，学员可以通过具体题目，匹配相
@@ -287,7 +287,7 @@
     </div>
     <div class="td1">
         <div class="tdcont np">
-            <span class="tdimg" style="margin-top:80px"><img src="images/ico6.jpg" width="550"></span>
+            <span class="tdimg" style="margin-top:80px"><img src="/index/images/ico6.jpg" width="550"></span>
             <span class="tdtext" style="margin-top:120px">
         	<h3 class="co2">智能匹配练习</h3>
             <p class="tex1">跟随视频课程同步练习，紧扣重点难
@@ -299,7 +299,7 @@
     </div>
     <div class="td2 np">
         <div class="tdcont np">
-            <span class="tdimg1 ni"><img src="images/ico7.png" width="300"></span>
+            <span class="tdimg1 ni"><img src="/index/images/ico7.png" width="300"></span>
             <span class="tdtext1" style="margin-top:100px;">
         	<h3 class="co3">全天答疑解惑</h3>
             <p class="tex1">谋刻答疑社区，老师学员共同交流，我们的讲师更是倾囊相授，有问必答。</p><br/>
@@ -327,7 +327,7 @@
                     <ul class="courseul" id="myTab3_Content0" style="display: block;">
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -338,7 +338,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -349,7 +349,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -360,7 +360,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -371,7 +371,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -382,7 +382,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -393,7 +393,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -404,7 +404,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -420,7 +420,7 @@
                     <ul class="courseul" id="myTab3_Content1" style="display: none;">
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -431,7 +431,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -442,7 +442,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -458,7 +458,7 @@
                     <ul class="courseul" id="myTab3_Content2" style="display: none;">
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -469,7 +469,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -480,7 +480,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -496,7 +496,7 @@
                     <ul class="courseul" id="myTab3_Content3" style="display: none;">
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -507,7 +507,7 @@
                         </li>
                         <li>
                             <div class="courselist">
-                                <img width="263" style="border-radius:3px 3px 0 0;" src="images/c1.jpg" >
+                                <img width="263" style="border-radius:3px 3px 0 0;" src="/index/images/c1.jpg" >
                                 <p class="courTit">HTTP下载课程</p>
                                 <div class="gray">
                                     <span>1小时前更新</span>
@@ -520,14 +520,13 @@
                     </ul>
                 </div>
             </div>
-
-
             <div class="line no"></div>
-
-
         </div>
         <span class="morecourse"><a href="courselist.html" class="btnlink">更多课程</a></span>
 
+
     </div>
-    @include("index/public/foot")
-</div>
+
+@endsection
+
+
