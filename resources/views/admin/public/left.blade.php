@@ -54,9 +54,10 @@
             <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="admin-role.html" title="角色管理">角色管理</a></li>
-                    <li><a href="admin-permission.html" title="权限管理">权限管理</a></li>
-                    <li><a href="admin-list.html" title="管理员列表">管理员列表</a></li>
+                    <li><a href="{{url('admin/role/show')}}" title="角色管理">角色管理</a></li>
+                    <li><a href="{{url('admin/right/show')}}" title="权限管理">权限管理</a></li>
+                    <li><a href="{{url('admin/admin/show')}}" title="管理员列表">管理员列表</a></li>
+                    <li><a href="{{url('admin/roleright/add')}}" title="角色权限列表">角色权限列表</a></li>
                 </ul>
             </dd>
         </dl>

@@ -35,6 +35,30 @@ Route::prefix('admin')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
 	    Route::any('add','admin\SlideController@add');
 	});
+	 #角色
+    Route::prefix('role')->group(function(){
+        Route::any('show','admin\RoleController@show');
+        Route::any('add','admin\RoleController@add');
+    });
+    #权限
+    Route::prefix('right')->group(function(){
+        Route::any('show','admin\RightController@show');
+        Route::any('add','admin\RightController@add');
+    });
+    #用户
+    Route::prefix('admin')->group(function(){
+        Route::any('show','admin\AdminController@show');
+        Route::any('add','admin\AdminController@add');
+
+    });
+    #用户角色
+    Route::prefix('adminrole')->group(function(){
+        Route::any('add','admin\AdminroleController@add');
+    });
+    #角色权限
+    Route::prefix('roleright')->group(function(){
+        Route::any('add','admin\RolerightController@add');
+    });
 });
 
 
