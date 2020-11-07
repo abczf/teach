@@ -87,6 +87,11 @@ Route::prefix('admin')->group(function(){
 	    Route::any('show','admin\NoticeController@show');
 	    Route::any('add','admin\NoticeController@add');
 	});
+	 #题库模块
+	 Route::prefix('bank')->group(function(){
+	    Route::any('show','admin\BankController@show');
+	    Route::any('add','admin\BankController@add');
+	});
 });
 
 
