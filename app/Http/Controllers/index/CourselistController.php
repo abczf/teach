@@ -9,6 +9,6 @@ class CourselistController extends Controller
 {
     // 渲染课程列表页面
     public function courselist(){
-        return view("index/courselist");
+        return view("index/course/list");
     }
 }
