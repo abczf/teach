@@ -92,22 +92,15 @@ Route::prefix('admin')->group(function(){
         Route::any('show','admin\NavController@show');
         Route::any('add','admin\NavController@add');
     });
+    #问答展示
+    Route::prefix('question')->group(function(){
+        Route::any('show','admin\QuestionController@show');
+    });
 });
 
 
 // 前台
 Route::prefix('index')->group(function(){
-
-        // 首页
-        Route::any('','index\IndexController@index');
-        // 登录
-        Route::any('login','index\LoginController@login');
-        // 注册
-        Route::any('register','index\RegisterController@register');
-        // 课程列表
-        Route::any('courselist','index\CourselistController@courselist');
-        // 课程详情
-        Route::any('coursecont','index\CoursecontController@coursecont');
         // 问答
         Route::any('question/add','index\QuestionController@add');
 

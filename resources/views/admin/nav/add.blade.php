@@ -1,110 +1,130 @@
-<!--_meta 作为公共模版分离出去-->
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="Bookmark" href="favicon.ico" >
-    <link rel="Shortcut Icon" href="favicon.ico" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="/admin/lib/html5.js"></script>
-    <script type="text/javascript" src="/admin/lib/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/admin/static/h-ui/css/H-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/css/H-ui.admin.css" />
-    <link rel="stylesheet" type="text/css" href="/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
-    <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/css/style.css" />
-    <!--[if IE 6]>
-    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
-    <!--/meta 作为公共模版分离出去-->
 
-    <title>新建网站角色 - 管理员管理 - H-ui.admin v3.0</title>
-    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
-</head>
-<body>
-<article class="cl pd-20">
-    <form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>导航栏名称：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
+
+    <link rel="stylesheet" href="css/article.css">
+    <script src="js/jquery-1.8.0.min.js"></script>
+    <script src="js/mine.js"></script>
+    @extends('../index/public/layout')
+    @section('subject')
+
+
+<!-- InstanceBeginEditable name="EditRegion1" -->
+<div class="coursecont">
+    <div class="coursepic">
+        <h3 class="righttit">全部资讯</h3>
+        <div class="clearh"></div>
+        <span class="bread nob">
+        <a class="fombtn cur" href="articlelist.html">全部资讯</a>
+        <a class="fombtn" href="articlelist.html">热门资讯</a>
+        <a class="fombtn" href="articlelist.html">考试指导</a>
+        <a class="fombtn" href="articlelist.html">精彩活动</a>
+    </span>
+
+    </div>
+    <div class="clearh"></div>
+    <div class="coursetext">
+        <div class="articlelist">
+            <h3><a class="artlink" href="article.html">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
+            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
+            <p class="artilabel">
+                <span class="ask_label">热门资讯</span>
+                <b class="labtime">2015-02-02</b>
+            </p>
+            <div class="clearh"></div>
+        </div>
+        <div class="articlelist">
+            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
+            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
+            <p class="artilabel">
+                <span class="ask_label">热门资讯</span>
+                <b class="labtime">2015-02-02</b>
+            </p>
+            <div class="clearh"></div>
+        </div>
+        <div class="articlelist">
+            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
+            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
+            <p class="artilabel">
+                <span class="ask_label">热门资讯</span>
+                <b class="labtime">2015-02-02</b>
+            </p>
+            <div class="clearh"></div>
+        </div>
+        <div class="articlelist">
+            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
+            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
+            <p class="artilabel">
+                <span class="ask_label">热门资讯</span>
+                <b class="labtime">2015-02-02</b>
+            </p>
+            <div class="clearh"></div>
+        </div>
+
+
+        <div class="clearh" style="height:20px;"></div>
+        <span class="pagejump">
+    	<p class="userpager-list">
+       	   <a href="#" class="page-number">首页</a>
+           <a href="#" class="page-number">上一页</a>
+           <a href="#" class="page-number">1</a>
+           <a href="#" class="page-number pageractive">2</a>
+           <a href="#" class="page-number">3</a>
+            <a href="#" class="page-number">...</a>
+            <a href="#" class="page-number">10</a>
+           <a href="#" class="page-number">下一页</a>
+           <a href="#" class="page-number">末页</a>
+        </p>
+    </span>
+        <div class="clearh" style="height:10px;"></div>
+    </div>
+
+    <div class="courightext">
+        <div class="ctext">
+            <div class="cr1">
+                <h3 class="righttit">热门资讯</h3>
+                <div class="gonggao">
+                    <ul class="hotask">
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">导航栏路径：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+
+        <div class="ctext">
+            <div class="cr1">
+                <h3 class="righttit">推荐课程</h3>
+                <div class="teacher">
+                    <div class="teapic">
+                        <a href="#"  target="_blank"><img src="images/c1.jpg" height="60" title="财经法规与财经职业道德"></a>
+                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
+                    </div>
+                    <div class="clearh"></div>
+                    <div class="teapic">
+                        <a href="#"  target="_blank"><img src="images/c2.jpg" height="60" title="财经法规与财经职业道德"></a>
+                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
+                    </div>
+                    <div class="clearh"></div>
+                    <div class="teapic">
+                        <a href="#"  target="_blank"><img src="images/c3.jpg" height="60" title="财经法规与财经职业道德"></a>
+                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
+                    </div>
+                    <div class="clearh"></div>
+                </div>
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
-            </div>
-        </div>
-    </form>
-</article>
-
-<!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="/admin/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="/admin/static/h-ui.admin/js/H-ui.admin.page.js"></script>
-
-<!--/_footer /作为公共模版分离出去-->
-
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<script type="text/javascript">
-    $(function(){
-        $(".permission-list dt input:checkbox").click(function(){
-            $(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
-        });
-        $(".permission-list2 dd input:checkbox").click(function(){
-            var l =$(this).parent().parent().find("input:checked").length;
-            var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
-            if($(this).prop("checked")){
-                $(this).closest("dl").find("dt input:checkbox").prop("checked",true);
-                $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
-            }
-            else{
-                if(l==0){
-                    $(this).closest("dl").find("dt input:checkbox").prop("checked",false);
-                }
-                if(l2==0){
-                    $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
-                }
-            }
-        });
-
-        $("#form-admin-role-add").validate({
-            rules:{
-                roleName:{
-                    required:true,
-                },
-            },
-            onkeyup:false,
-            focusCleanup:true,
-            success:"valid",
-            submitHandler:function(form){
-                $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
-            }
-        });
-    });
-</script>
-<!--/请在上方写此页面业务相关的脚本-->
-</body>
-</html>
+    </div>
 
 
+
+    <div class="clearh"></div>
+</div>
+<!-- InstanceEndEditable -->
+
+
+<div class="clearh"></div>
+    @endsection
