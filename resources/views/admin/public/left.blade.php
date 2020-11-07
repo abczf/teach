@@ -42,7 +42,7 @@
             <dt><i class="Hui-iconfont">&#xe62e;</i> 问答管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="{{url('admin/questions/show')}}" title="问答管理">问答管理</a></li>
+                    <li><a href="{{url('admin/question/show')}}" title="问答管理">问答管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -75,9 +75,8 @@
                 <li><a href="{{url('admin/right/show')}}" title="权限管理">权限管理</a></li>
                 <li><a href="{{url('admin/admin/show')}}" title="管理员列表">管理员列表</a></li>
                 <li><a href="{{url('admin/roleright/add')}}" title="角色权限列表">角色权限列表</a></li>
-                    <ul>
-
-            </dd>
+                </ul>
+           </dd>
         </dl>
     </div>
 </aside>

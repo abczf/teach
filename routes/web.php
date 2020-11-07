@@ -87,11 +87,23 @@ Route::prefix('admin')->group(function(){
 	    Route::any('show','admin\NoticeController@show');
 	    Route::any('add','admin\NoticeController@add');
 	});
+    #导航栏
+    Route::prefix('nav')->group(function(){
+        Route::any('show','admin\NavController@show');
+        Route::any('add','admin\NavController@add');
+    });
+    #问答展示
+    Route::prefix('question')->group(function(){
+        Route::any('show','admin\QuestionController@show');
+    });
 });
 
 
 // 前台
 Route::prefix('index')->group(function(){
+        // 问答
+        Route::any('question/add','index\QuestionController@add');
+
     // 首页
     Route::any('','index\IndexController@index');
     // 登录
