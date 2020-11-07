@@ -87,6 +87,11 @@ Route::prefix('admin')->group(function(){
 	    Route::any('show','admin\NoticeController@show');
 	    Route::any('add','admin\NoticeController@add');
 	});
+	 #题库模块
+	 Route::prefix('bank')->group(function(){
+	    Route::any('show','admin\BankController@show');
+	    Route::any('add','admin\BankController@add');
+	});
     #导航栏
     Route::prefix('nav')->group(function(){
         Route::any('show','admin\NavController@show');
@@ -101,8 +106,8 @@ Route::prefix('admin')->group(function(){
 
 // 前台
 Route::prefix('index')->group(function(){
-        // 问答
-        Route::any('question/add','index\QuestionController@add');
+    // 问答
+    Route::any('question/add','index\QuestionController@add');
 
     // 首页
     Route::any('','index\IndexController@index');
@@ -116,7 +121,7 @@ Route::prefix('index')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
     // 课程详情
-    Route::prefix('course')->group(function(){
+    Route::prefix('courseCont')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
 
@@ -150,6 +155,14 @@ Route::prefix('index')->group(function(){
      # 视频
     Route::prefix('video')->group(function(){
         Route::any('show','index\VideoController@show');
+    });
+
+    # 个人中心
+    Route::prefix('personal')->group(function(){
+        # 课程
+        Route::prefix('course')->group(function(){
+            Route::any('show','index\personal\CourseController@show');
+        });
     });
 });
 
