@@ -2,7 +2,7 @@
 
     <div class="menu_dropdown bk_2">
         <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 课程管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe72d;</i> 课程管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a href="{{url('admin/course/show')}}" title="所有课程">所有课程</a></li>
@@ -23,7 +23,7 @@
         </dl>
 
         <dl id="menu-comments">
-            <dt><i class="Hui-iconfont">&#xe622;</i> 讲师管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe62d;</i> 讲师管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a href="{{url('admin/lect/show')}}" title="讲师管理">讲师管理</a></li>
@@ -31,7 +31,7 @@
             </dd>
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 题库管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe6b6;</i> 题库管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a href="{{url('admin/bank/show')}}" title="题库管理">题库管理</a></li>
@@ -39,7 +39,7 @@
             </dd>
         </dl>
         <dl id="menu-system">
-            <dt><i class="Hui-iconfont">&#xe62e;</i> 问答管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe70c;</i> 问答管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a href="{{url('admin/question/show')}}" title="问答管理">问答管理</a></li>
@@ -48,7 +48,7 @@
         </dl>
 
         <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe61a;</i> 导航栏<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe72b;</i> 导航栏<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
 
@@ -60,7 +60,7 @@
             </dd>
         </dl>
         <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 轮播图<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe612;</i> 轮播图<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a href="{{url('admin/slide/slide')}}" title="轮播图管理">轮播图</a></li>
@@ -68,7 +68,7 @@
             </dd>
         </dl>
         <dl id="menu-admin">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe62b;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                 <li><a href="{{url('admin/role/show')}}" title="角色管理">角色管理</a></li>
