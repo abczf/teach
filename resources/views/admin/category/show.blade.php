@@ -24,7 +24,7 @@
 					 <span class="l">
 					 	<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 					 		<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
-					 	</a> <a class="btn btn-primary radius" onclick="product_add('添加产品','product-add.html')" href="{{url('admin/category/add')}}">
+					 	</a> <a class="btn btn-primary radius"  href="{{url('admin/category/add')}}">
 					 		<i class="Hui-iconfont">&#xe600;</i> 添加分类
 					 	</a>
 					 </span> 

@@ -97,6 +97,7 @@ Route::prefix('admin')->group(function(){
 
 // 前台
 Route::prefix('index')->group(function(){
+
         // 首页
         Route::any('','index\IndexController@index');
         // 登录
@@ -110,7 +111,53 @@ Route::prefix('index')->group(function(){
         // 问答
         Route::any('question/add','index\QuestionController@add');
 
+    // 首页
+    Route::any('','index\IndexController@index');
+    // 登录
+    Route::any('login','index\LoginController@login');
+    // 注册
+    Route::any('register','index\RegisterController@register');
 
+    // 课程列表
+    Route::prefix('course')->group(function(){
+        Route::any('list','index\CourselistController@courselist');
+    });
+    // 课程详情
+    Route::prefix('course')->group(function(){
+        Route::any('cont','index\CoursecontController@coursecont');
+    });
+
+
+
+    # 资讯
+    Route::prefix('consult')->group(function(){
+        Route::any('show','index\ConsultController@show');
+    });
+
+    # 资讯详情
+    Route::prefix('consultInfo')->group(function(){
+        Route::any('show','index\ConsultInfoController@show');
+    });
+
+    # 讲师
+    Route::prefix('teacher')->group(function(){
+        Route::any('show','index\TeacherController@show');
+    });
+
+    # 讲师详情
+    Route::prefix('teacherInfo')->group(function(){
+        Route::any('show','index\TeacherInfoController@show');
+    });
+
+    # 目录详情
+    Route::prefix('detail')->group(function(){
+        Route::any('info','index\DetailController@info');
+    });
+
+     # 视频
+    Route::prefix('video')->group(function(){
+        Route::any('show','index\VideoController@show');
+    });
 });
 
 
