@@ -28,7 +28,7 @@
 <h3 class="righttit" style="padding-left:50px;">在教课程</h3>
 <ul class="tcourseul">
 	<li>
-	    <span class="courseimg tcourseimg"><a href="coursecont.html" target="_blank"><img width="230" src="/index/images/c8.jpg"></a></span>
+	    <span class="courseimg tcourseimg"><a href="{{url('index/courseCont/cont')}}" target="_blank"><img width="230" src="/index/images/c8.jpg"></a></span>
 	    <span class="tcoursetext">
 	       <h4><a href="coursecont.html" target="_blank" class="teatt">会计从业资格会计基础</a><a class="state">更新中</a></h4>
 	       <p class="teadec">会计从业资格会计基础会计从业资格会计基础会计础会计从业资格会计基础会计从业资格会计基础会计础会计从业资格会计基础会计从业资格会计基础会计础</p>

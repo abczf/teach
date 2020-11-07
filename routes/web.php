@@ -104,7 +104,7 @@ Route::prefix('index')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
     // 课程详情
-    Route::prefix('course')->group(function(){
+    Route::prefix('courseCont')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
 
@@ -138,6 +138,14 @@ Route::prefix('index')->group(function(){
      # 视频
     Route::prefix('video')->group(function(){
         Route::any('show','index\VideoController@show');
+    });
+
+    # 个人中心
+    Route::prefix('personal')->group(function(){
+        # 课程
+        Route::prefix('course')->group(function(){
+            Route::any('show','index\personal\CourseController@show');
+        });
     });
 });
 
