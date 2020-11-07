@@ -101,8 +101,8 @@ Route::prefix('admin')->group(function(){
 
 // 前台
 Route::prefix('index')->group(function(){
-        // 问答
-        Route::any('question/add','index\QuestionController@add');
+    // 问答
+    Route::any('question/add','index\QuestionController@add');
 
     // 首页
     Route::any('','index\IndexController@index');
