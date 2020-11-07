@@ -87,6 +87,11 @@ Route::prefix('admin')->group(function(){
 	    Route::any('show','admin\NoticeController@show');
 	    Route::any('add','admin\NoticeController@add');
 	});
+    #导航栏
+    Route::prefix('nav')->group(function(){
+        Route::any('show','admin\NavController@show');
+        Route::any('add','admin\NavController@add');
+    });
 });
 
 
@@ -102,6 +107,8 @@ Route::prefix('index')->group(function(){
         Route::any('courselist','index\CourselistController@courselist');
         // 课程详情
         Route::any('coursecont','index\CoursecontController@coursecont');
+        // 问答
+        Route::any('question/add','index\QuestionController@add');
 
 
 });

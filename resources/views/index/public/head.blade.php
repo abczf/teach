@@ -7,7 +7,7 @@
             <li><a href="articlelist.html" class="link1">资讯</a></li>
             <li><a href="teacherlist.html" class="link1">讲师</a></li>
             <li><a href="exam_index.html" class="link1" target="_blank">题库</a></li>
-            <li><a href="askarea.html" class="link1" target="_blank">问答</a></li>
+            <li><a href="{{url('index/question/add')}}" class="link1" target="_blank">问答</a></li>
 
         </ul>
         <span class="massage">
