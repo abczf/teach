@@ -58,9 +58,19 @@ Route::prefix('admin')->group(function(){
 	    Route::any('add','admin\CatalogInfoController@add');    
 	});
 	  #课程公告
-	 Route::prefix('notice')->group(function(){
-	    Route::any('show','admin\NoticeController@show');
-	    Route::any('add','admin\NoticeController@add');    
+	Route::prefix('notice')->group(function(){
+		Route::any('show','admin\NoticeController@show');
+		Route::any('add','admin\NoticeController@add');
+	});
+	#讲师管理
+	Route::prefix('lect')->group(function(){
+		Route::any('show','admin\LectController@show');//讲师展示
+		Route::any('add','admin\LectController@add');//讲师渲染
+		Route::any('img','admin\LectController@img');//图片处理
+		Route::any('addDo','admin\LectController@addDo');//讲师添加
+		Route::any('del/{id}','admin\LectController@del');//讲师删除
+		Route::any('upd/{id}','admin\LectController@upd');//讲师编辑
+		Route::any('updDo/{id}','admin\LectController@updDo');//讲师修改
 	});
 });
 
