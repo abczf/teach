@@ -14,6 +14,8 @@ class NavController extends Controller
         return view ('admin.nav.show',['data'=>$data]);
     }
     public function add(){
-        return view('admin.nav.add');
+        $model = new NavModel();
+        $data = $model->all();
+        return view('admin.nav.add',['data'=>$data]);
     }
 }
