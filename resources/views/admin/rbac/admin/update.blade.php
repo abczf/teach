@@ -5,22 +5,23 @@
 <body>
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <input type="hidden" name="admin_id" value="{{$res->admin_id}}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员名字：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="admin_name">
+                <input type="text" class="input-text" value="{{$res->admin_name}}" placeholder="" id="adminName" name="admin_name">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
+                <input type="password" class="input-text" autocomplete="off" value="{{$res->password}}" placeholder="密码" id="password" name="password">
             </div>
         </div>
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;修改&nbsp;&nbsp;">
             </div>
         </div>
     </form>
@@ -94,31 +95,27 @@
 <script>
     $(document).ready(function(){
         //提交事件
-        // alert(123);
-        // return false;
         $(document).on('click','.btn',function(){
-            // alert(123);
             //获取角色名称值
-            var admin_name=$('#adminName').val()
-            var password=$('#password').val()
+            var data = {};
+            data.admin_id = $("input[name='admin_id']").val();
+            data.admin_name = $("input[name='admin_name']").val();
             //通过ajax传送值
             $.ajax({
                 //请求路径
-                url:"/admin/admin/add_do",
+                url:"/admin/admin/upddo",
                 //请求方式
                 type:"post",
                 //请求数据
-                data:{admin_name:admin_name,password:password},
+                data:data,
                 //预期返回数据类型
                 dataType:'json',
                 //回调函数
                 success:function(res){
                     //判断返回结果
-                    if(res.success==true){
-                        alert('OK')
-                        location.href='/admin/admin/show'
-                    }else{
-                        alert(res.msg);
+                    if(res.status=='success'){
+                        alert(res.msg)
+                        location.href='/admin/admin/update'
                     }
                 }
             })
