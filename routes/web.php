@@ -42,6 +42,10 @@ Route::prefix('admin')->group(function(){
     Route::prefix('role')->group(function(){
         Route::any('show','admin\RoleController@show');
         Route::any('add','admin\RoleController@add');
+        Route::any('add_do','admin\RoleController@add_do');
+        Route::any('del','admin\RoleController@del');
+        Route::any('upd','admin\RoleController@upd');
+        Route::any('upd_do','admin\RoleController@upd_do');
     });
     #权限
     Route::prefix('right')->group(function(){
@@ -52,11 +56,15 @@ Route::prefix('admin')->group(function(){
     Route::prefix('admin')->group(function(){
         Route::any('show','admin\AdminController@show');
         Route::any('add','admin\AdminController@add');
-
+        Route::any('add_do','admin\AdminController@add_do');
+        Route::any('del','admin\AdminController@del');
+        Route::any('upd','admin\AdminController@upd');
+        Route::any('upddo','admin\AdminController@upddo');
     });
     #用户角色
     Route::prefix('adminrole')->group(function(){
         Route::any('add','admin\AdminroleController@add');
+
     });
     #角色权限
     Route::prefix('roleright')->group(function(){
