@@ -24,7 +24,7 @@
 					<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 						<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
 					</a> 
-					<a href="{{url('admin/course/add')}}" onclick="admin_add('添加管理员','admin-add.html','800','500')" class="btn btn-primary radius">
+					<a href="{{url('admin/course/add')}}"  class="btn btn-primary radius">
 						<i class="Hui-iconfont">&#xe600;</i> 添加课程
 					</a>
 				</span>
