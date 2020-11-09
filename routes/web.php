@@ -24,7 +24,12 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function(){
     Route::view('','admin.admin');
     // 后台登录
-	Route::get('login','admin\LoginController@login');
+    Route::prefix('login')->group(function(){
+        // 登录视图
+        Route::any('','admin\LoginController@login');
+        // 执行登录
+        Route::any('Do','admin\LoginController@Do');
+    });
 
     # 咨询模块
     Route::prefix('consult')->group(function(){
@@ -112,7 +117,9 @@ Route::prefix('index')->group(function(){
     // 首页
     Route::any('','index\IndexController@index');
     // 登录
-    Route::any('login','index\LoginController@login');
+    Route::prefix('login')->group(function(){
+        Route::any('','index\LoginController@login');
+    });
     // 注册
     Route::any('register','index\RegisterController@register');
 
@@ -121,7 +128,7 @@ Route::prefix('index')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
     // 课程详情
-    Route::prefix('courseCont')->group(function(){
+    Route::prefix('course')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
 
