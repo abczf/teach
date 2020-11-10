@@ -139,7 +139,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 		Route::any('show','admin\NoticeController@show');
 		Route::any('add','admin\NoticeController@add');
 	});
-    
+
 	#讲师管理
 	Route::prefix('lect')->group(function(){
 		Route::any('show','admin\LectController@show');//讲师展示
@@ -250,9 +250,7 @@ Route::prefix('index')->group(function(){
     });
     });
 });
-<<<<<<< HEAD
 ?>
-=======
 
 
 
