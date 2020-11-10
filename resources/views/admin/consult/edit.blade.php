@@ -5,15 +5,16 @@
         <span class="c-gray en">&gt;</span>
         资讯管理
         <span class="c-gray en">&gt;</span>
-        资讯添加
+        资讯修改
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
     <article class="page-container">
     <form class="form form-horizontal" action='javascript:;'>
+        <input type="hidden" id="infor_id" value="{{$consult->infor_id}}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>资讯标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="" id="infor_title" name="infor_title">
+                <input type="text" class="input-text" placeholder="" id="infor_title" name="infor_title" value="{{$consult->infor_title}}">
             </div>
         </div>
 
@@ -21,11 +22,11 @@
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否热门：</label>
             <div class="formControls col-xs-8 col-sm-9 skin-minimal">
                 <div class="radio-box">
-                    <input name="is_hot" type="radio" id="is_hot" checked value="1">是
+                    <input name="is_hot" type="radio" {{$consult->is_hot==1?'checked':''}} id="is_hot" checked value="1">是
                    
                 </div>
                 <div class="radio-box">
-                    <input type="radio" id="is_hot" name="is_hot" value="2">否
+                    <input type="radio" id="is_hot" {{$consult->is_hot==2?'checked':''}} name="is_hot" value="2">否
                    
                 </div>
             </div>
@@ -33,12 +34,12 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="infor_content" id="infor_content" cols="30" rows="10"></textarea>
+                <textarea name="infor_content" id="infor_content" cols="30" rows="10">{{$consult->infor_content}}</textarea>
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button class="btn btn-primary radius" type="sutton" id="sub"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                <button class="btn btn-primary radius" type="sutton" id="sub"><i class="Hui-iconfont">&#xe632;</i> 保存并修改</button>
                 <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
             </div>
         </div>
@@ -63,8 +64,9 @@
                 alert('资讯标题必填')
                 return false;
             }
-            var url = "/admin/consult/store";
+            var url = "/admin/consult/update/{{$consult->infor_id}}";
             var data={};
+            data.infor_id={{$consult->infor_id}}
             data.infor_title = infor_title;
             data.is_hot =is_hot;
             data.infor_content=infor_content;
@@ -76,8 +78,8 @@
                 success: function(res){
                   if(res.success == 200){
                         // alert(res.msg);
+                        layer.msg('修改成功',{icon:1,time:1000});
                         var url = res.url;
-                        layer.msg('添加成功',{icon:1,time:1000});
                         window.location.href = url;
                   }
                 }

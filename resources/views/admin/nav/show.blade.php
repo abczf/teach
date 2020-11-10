@@ -42,7 +42,7 @@
                         <td>{{$v['nav_id']}}</td>
                         <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v['nav_name']}}</u></td>
                         <td>{{$v['nav_url']}}</td>
-                        <td>{{$v['add_time']}}</td>
+                        <td>{{date("Y-m-d H:i:s",$v['add_time'])}}</td>
                         <td class="f-14 td-manage">
                             <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
                             <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
