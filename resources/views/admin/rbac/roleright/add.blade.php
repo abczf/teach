@@ -35,16 +35,21 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <select class="input-text">
+                <select class="input-text" name="role_id">
                     <option>--请选择--</option>
+                    @foreach($arr as $v)
+                        <option value="{{$v->role_id}}">{{$v->role_name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">权限名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="checkbox">
-                <input type ="checkbox">
+                添加权限：
+                @foreach($all as $v)
+                    <input type="checkbox" class="right_id" name="right_id" value="{{$v->right_id}}" >{{$v->right_name}}
+                @endforeach
             </div>
         </div>
 
@@ -110,5 +115,31 @@
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        $(".btn").click(function () {
+            // alert(123);
+            var role_id = $("select[name = 'role_id']").val();
+            var right_id = [];
+            $("input[name='right_id']:checked").each(function () {
+                right_id.push($(this).val());
+            });
+
+            var url = "/admin/roleright/add_do";
+            $.ajax({
+                type: "post",
+                data: {role_id: role_id, right_id: right_id},
+                url: url,
+                dataType: "json",
+                success: function (msg) {
+                    if(msg.success == true){
+                        alert('OK')
+                        window.location.href = "/admin/roleright/show";
+                    }
+                }
+            })
+        });
+    });
+</script>
 
 

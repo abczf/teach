@@ -1,130 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>导航栏</title>
 
-
-    <link rel="stylesheet" href="css/article.css">
-    <script src="js/jquery-1.8.0.min.js"></script>
-    <script src="js/mine.js"></script>
-    @extends('../index/public/layout')
-    @section('subject')
-
-
-<!-- InstanceBeginEditable name="EditRegion1" -->
-<div class="coursecont">
-    <div class="coursepic">
-        <h3 class="righttit">全部资讯</h3>
-        <div class="clearh"></div>
-        <span class="bread nob">
-        <a class="fombtn cur" href="articlelist.html">全部资讯</a>
-        <a class="fombtn" href="articlelist.html">热门资讯</a>
-        <a class="fombtn" href="articlelist.html">考试指导</a>
-        <a class="fombtn" href="articlelist.html">精彩活动</a>
-    </span>
-
+</head>
+<body>
+<center>
+        <h1>导航栏添加</h1>
+</center>
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">导航栏名</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="nav_name" name="nav_name" type="text"  placeholder="请输入导航栏名...">
+        </div>
     </div>
-    <div class="clearh"></div>
-    <div class="coursetext">
-        <div class="articlelist">
-            <h3><a class="artlink" href="article.html">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-            <p class="artilabel">
-                <span class="ask_label">热门资讯</span>
-                <b class="labtime">2015-02-02</b>
-            </p>
-            <div class="clearh"></div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">导航栏地址</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="nav_url" name="nav_url" type="text"  placeholder="请输入导航栏地址...">
         </div>
-        <div class="articlelist">
-            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-            <p class="artilabel">
-                <span class="ask_label">热门资讯</span>
-                <b class="labtime">2015-02-02</b>
-            </p>
-            <div class="clearh"></div>
-        </div>
-        <div class="articlelist">
-            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-            <p class="artilabel">
-                <span class="ask_label">热门资讯</span>
-                <b class="labtime">2015-02-02</b>
-            </p>
-            <div class="clearh"></div>
-        </div>
-        <div class="articlelist">
-            <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-            <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-            <p class="artilabel">
-                <span class="ask_label">热门资讯</span>
-                <b class="labtime">2015-02-02</b>
-            </p>
-            <div class="clearh"></div>
-        </div>
+    </div>
 
-
-        <div class="clearh" style="height:20px;"></div>
-        <span class="pagejump">
-    	<p class="userpager-list">
-       	   <a href="#" class="page-number">首页</a>
-           <a href="#" class="page-number">上一页</a>
-           <a href="#" class="page-number">1</a>
-           <a href="#" class="page-number pageractive">2</a>
-           <a href="#" class="page-number">3</a>
-            <a href="#" class="page-number">...</a>
-            <a href="#" class="page-number">10</a>
-           <a href="#" class="page-number">下一页</a>
-           <a href="#" class="page-number">末页</a>
+    <div>
+        <center>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg">添加展示</button>
+            <button type="button" class="btn-default btn-lg"><a href="/admin/nav/show">导航栏列表</a></button>
         </p>
-    </span>
-        <div class="clearh" style="height:10px;"></div>
+        </center>
     </div>
-
-    <div class="courightext">
-        <div class="ctext">
-            <div class="cr1">
-                <h3 class="righttit">热门资讯</h3>
-                <div class="gonggao">
-                    <ul class="hotask">
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                        <li><a class="ask_link" href="#"><strong>●</strong>请问女子监狱人民狱人民警察?</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="ctext">
-            <div class="cr1">
-                <h3 class="righttit">推荐课程</h3>
-                <div class="teacher">
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c1.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
-                    <div class="clearh"></div>
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c2.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
-                    <div class="clearh"></div>
-                    <div class="teapic">
-                        <a href="#"  target="_blank"><img src="images/c3.jpg" height="60" title="财经法规与财经职业道德"></a>
-                        <h3 class="courh3"><a href="#" class="ask_link" target="_blank">财经法规与财经职业道德</a></h3>
-                    </div>
-                    <div class="clearh"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-
-    <div class="clearh"></div>
 </div>
-<!-- InstanceEndEditable -->
 
 
-<div class="clearh"></div>
-    @endsection
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/jquery.js"></script>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".btn").click(function(){
+            var data = {};
+            data.name = $("input[name = 'nav_name']").val();
+            data.url = $("input[name = 'nav_url']").val();
+            var url = "create";
+            $.ajax({
+                url  : url,
+                type : "post",
+                data : data,
+                dataType : "json",
+                success:function(res){
+                    if(res.status == 200){
+                        alert(res.msg)
+                        location.href = "show"
+                    }else{
+                        alert(res.msg)
+                    }
+                }
+            })
+
+        });
+    });
+</script>
