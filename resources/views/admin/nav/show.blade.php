@@ -28,37 +28,26 @@
                     <thead>
                     <tr class="text-c">
                         <th width="25"><input type="checkbox" name="" value=""></th>
-                        <th width="80">ID</th>
-                        <th>标题</th>
-                        <th width="80">来源</th>·
+                        <th width="80">导航栏ID</th>
+                        <th width="80">导航栏标题</th>
+                        <th width="80">导航栏url</th>·
                         <th width="120">更新时间</th>
-                        <th width="75">浏览次数</th>
                         <th width="120">操作</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($data as $k=>$v)
                     <tr class="text-c">
                         <td><input type="checkbox" value="" name=""></td>
-                        <td>10001</td>
-                        <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">导航栏路径</u></td>
-                        <td>H-ui</td>
-                        <td>2014-6-11 11:11:42</td>
-                        <td>21212</td>
+                        <td>{{$v['nav_id']}}</td>
+                        <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v['nav_name']}}</u></td>
+                        <td>{{$v['nav_url']}}</td>
+                        <td>{{date("Y-m-d H:i:s",$v['add_time'])}}</td>
                         <td class="f-14 td-manage">
                             <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
                             <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                     </tr>
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="" name=""></td>
-                        <td>10002</td>
-                        <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">导航</u></td>
-                        <td>H-ui</td>
-                        <td>2014-6-11 11:11:42</td>
-                        <td>21212</td>
-                        <td class="f-14 td-manage">
-                            <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-                            <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

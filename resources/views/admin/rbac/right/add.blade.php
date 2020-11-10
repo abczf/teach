@@ -34,13 +34,13 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
+                <input type="text" class="input-text" value="" placeholder="" id="rightName" name="right_name" datatype="*4-16" nullmsg="用户账户不能为空">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">路径：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+                <input type="text" class="input-text" value="" placeholder="" id="rightUrl" name="right_url">
             </div>
         </div>
 
@@ -106,4 +106,35 @@
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','#admin-role-save',function(){
+            // alert(123);
+            //获取权限名称值
+            var right_name=$('#rightName').val();
+            var right_url=$('#rightUrl').val();
+            //通过ajax传送值
+            $.ajax({
+                //请求路径
+                url: "/admin/right/add_do",
+                //请求方式
+                type: "post",
+                //请求数据
+                data: {right_name: right_name,right_url:right_url},
+                //预期返回数据类型
+                dataType: 'json',
+                //回调函数
+                success: function (res) {
+                    //判断返回结果
+                    if (res.success == true) {
+                        alert('OK');
+                        location.href = '/admin/right/show';
+                    } else {
+                        alert(res.msg);
+                    }
+                }
 
+            })
+        });
+    });
+</script>

@@ -5,7 +5,31 @@
 <!--_menu 作为公共模版分离出去-->
 @include('admin.public.left')
 <!--/_menu 作为公共模版分离出去-->
+<style>
+    ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
+    ul.pagination li {display: inline;}
+
+    ul.pagination li {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .1s;
+        border: 1px solid #ddd;
+    }
+
+    ul.pagination li.active {
+        background-color: #4CAF50;
+        color: black;
+        border: 1px solid #4CAF50;
+    }
+    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
 		<span class="c-gray en">&gt;</span>
@@ -17,19 +41,8 @@
 	<div class="Hui-article">
 		<article class="cl pd-20">
 			<div class="text-c">
-				<span class="select-box inline">
-				<select name="" class="select">
-					<option value="0">全部分类</option>
-					<option value="1">分类一</option>
-					<option value="2">分类二</option>
-				</select>
-				</span>
-				日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-				<input type="text" name="" id="" placeholder=" 资讯名称" style="width:250px" class="input-text">
-				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜资讯</button>
+				<input type="text" name="" id="infor_title" placeholder=" 资讯名称" style="width:250px" class="input-text">
+				<button name="" id="" class="btn btn-success ss" ><i class="Hui-iconfont">&#xe665;</i> 搜资讯</button>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
@@ -44,44 +57,41 @@
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
 							<th width="80">ID</th>
-							<th>标题</th>
-							<th width="80">分类</th>
-							<th width="80">来源</th>
-							<th width="120">更新时间</th>
-							<th width="75">浏览次数</th>
+							<th width="80">资讯标题</th>
+							<th width="80">资讯内容</th>
+							<th width="80">添加时间</th>
 							<th width="60">发布状态</th>
 							<th width="120">操作</th>
 						</tr>
 					</thead>
-					<tbody>
+
+					<tbody id='consult_info'>
+						 @foreach($consult as $k=>$v)
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""></td>
-							<td>10001</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
+							<td>{{$v['infor_id']}}</td>
+							<td class="text-l">{{$v['infor_title']}}</td>
+							<td>{{$v['infor_content']}}</td>
+							<td> {{date('Y-m-d H:i:s',$v['add_time'])}}</td>
 							<td class="td-status"><span class="label label-success radius">已发布</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架">
+									<i class="Hui-iconfont">&#xe6de;</i>
+								</a>
+								<a style="text-decoration:none" class="ml-5"  href="{{url('/admin/consult/edit/'.$v->infor_id)}}" title="编辑">
+									<i class="Hui-iconfont">&#xe6df;</i>
+								</a>
+								<a style="text-decoration:none" class="ml-5 del" infor_id="{{$v->infor_id}}" title="删除">
+									<i class="Hui-iconfont">&#xe6e2;</i>
+								</a>
+							</td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
-							<td>10002</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">资讯标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">草稿</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_shenhe(this,'10001')" href="javascript:;" title="审核">审核</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-						</tr>
+						 @endforeach
+						 <tr><td colspan=17 align="center">{{$consult->appends(['infor_title'=>$infor_title])->links()}}</td></tr>
 					</tbody>
+					
 				</table>
+
 			</div>
 		</article>
 	</div>
@@ -95,18 +105,70 @@
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="/admin/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/admin/lib/laypage/1.2/laypage.js"></script>
+
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-		//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		{"orderable":false,"aTargets":[0,8]}// 不参与排序的列
-	]
+$(function(){
+	 // 搜索
+    $(document).on("click",".ss",function(){
+        var infor_title = $("#infor_title").val();
+        // alert(infor_title);
+         var url = "/admin/consult/show";
+         var data={};
+         data.infor_title = infor_title;
+          $.ajax({
+            url:url,
+            data:data,
+            type:"get",
+            success: function(res){
+                $('#consult_info').html(res)
+        }
+    });
+
+          // 查看资讯内容
+    function showOptions(infor_content){
+    	layer.alert(infor_content);
+    }
 });
+
+    
+
+	$(document).on('click','.del',function(){
+		 var infor_id = $(this).attr("infor_id");
+		 // alert(infor_id);
+		 var data = {infor_id:infor_id};
+         var url = "{{url('/admin/consult/Fdel')}}";
+		 if(layer.confirm("确定要删除吗")){
+                $.ajax({
+                    type:"post",
+                    data:data,
+                    url:url,
+                    dateType:"json",
+                    success:function(res){
+                        if(res.success==true){
+                            // alert(res.message);
+                            //页面刷新
+                            // history.go(0);
+                            layer.msg('已删除!',{icon:1,time:1000});
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+	})
+	 //无刷新分页
+        $(document).on('click','.page-item a',function(){
+            var url = $(this).attr('href');
+            //alert(url);
+            $.get(url,function(res){
+            $('tbody').html(res);
+        });
+         return false;
+    })
+})
+
+
+
+
 
 /*资讯-添加*/
 function article_add(title,url,w,h){
@@ -126,44 +188,8 @@ function article_edit(title,url,id,w,h){
 	});
 	layer.full(index);
 }
-/*资讯-删除*/
-function article_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});
-	});
-}
 
-/*资讯-审核*/
-function article_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'],
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});
-}
+
 /*资讯-下架*/
 function article_stop(obj,id){
 	layer.confirm('确认要下架吗？',function(index){
@@ -189,7 +215,15 @@ function article_shenqing(obj,id){
 	$(obj).parents("tr").find(".td-manage").html("");
 	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
 }
+
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+
+<!-- /*<style>
+    page-item {
+        border-radius: 5px;
+    }
+    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>*/ -->
