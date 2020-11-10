@@ -35,12 +35,17 @@ Route::prefix('admin')->group(function(){
     Route::prefix('consult')->group(function(){
 	    Route::any('show','admin\ConsultController@show');
 	    Route::any('create','admin\ConsultController@create');
+        Route::any('store','admin\ConsultController@store');
+        Route::any('Fdel','admin\ConsultController@Fdel');
+        Route::any('edit/{infor_id}','admin\ConsultController@edit');
+        Route::any('update/{infor_id}','admin\ConsultController@update');
 	});
 
 	#轮播图
 	 Route::prefix('slide')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
 	    Route::any('add','admin\SlideController@add');
+        Route::any('store','admin\SlideController@store');
 	});
 
 	 #角色
@@ -96,9 +101,19 @@ Route::prefix('admin')->group(function(){
 	    Route::any('add','admin\CatalogInfoController@add');
 	});
 	  #课程公告
-	 Route::prefix('notice')->group(function(){
-	    Route::any('show','admin\NoticeController@show');
-	    Route::any('add','admin\NoticeController@add');
+	Route::prefix('notice')->group(function(){
+		Route::any('show','admin\NoticeController@show');
+		Route::any('add','admin\NoticeController@add');
+	});
+	#讲师管理
+	Route::prefix('lect')->group(function(){
+		Route::any('show','admin\LectController@show');//讲师展示
+		Route::any('add','admin\LectController@add');//讲师渲染
+		Route::any('img','admin\LectController@img');//图片处理
+		Route::any('addDo','admin\LectController@addDo');//讲师添加
+		Route::any('del/{id}','admin\LectController@del');//讲师删除
+		Route::any('upd/{id}','admin\LectController@upd');//讲师编辑
+		Route::any('updDo/{id}','admin\LectController@updDo');//讲师修改
 	});
 	 #题库模块
 	 Route::prefix('bank')->group(function(){
@@ -140,9 +155,6 @@ Route::prefix('index')->group(function(){
     Route::prefix('course')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
-
-
-
     # 资讯
     Route::prefix('consult')->group(function(){
         Route::any('show','index\ConsultController@show');
@@ -151,6 +163,7 @@ Route::prefix('index')->group(function(){
     # 资讯详情
     Route::prefix('consultInfo')->group(function(){
         Route::any('show','index\ConsultInfoController@show');
+
     });
 
     # 讲师
@@ -175,10 +188,10 @@ Route::prefix('index')->group(function(){
 
     # 个人中心
     Route::prefix('personal')->group(function(){
-        # 课程
-        Route::prefix('course')->group(function(){
-            Route::any('show','index\personal\CourseController@show');
-        });
+    # 课程
+    Route::prefix('course')->group(function(){
+         Route::any('show','index\personal\CourseController@show');
+    });
     });
 });
 
