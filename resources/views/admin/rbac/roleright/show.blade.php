@@ -34,13 +34,8 @@
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="Hui-article">
         <article class="cl pd-20">
-            <div class="text-c">
-                <form class="Huiform" method="post" action="" target="_self">
-                    <input type="text" class="input-text" style="width:250px" placeholder="权限名称" id="" name="">
-                    <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
-                </form>
-            </div>
-            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('/admin/right/add')}}"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+
+            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('/admin/roleright/add')}}"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加角色权限</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
             <table class="table table-border table-bordered table-bg">
                 <thead>
                 <tr>
@@ -49,25 +44,28 @@
                 <tr class="text-c">
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
-                    <th width="200">权限名称</th>
-                    <th width="200">权限路径</th>
+                    <th width="200">角色</th>
+                    <th width="200">权限</th>
                     <th width="100">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $k=>$v)
+                @foreach($role_data as $k=>$v)
                 <tr class="text-c">
                     <td><input type="checkbox" value="1" name=""></td>
-                    <td>{{$v->right_id}}</td>
-                    <td>{{$v->right_name}}</td>
-                    <td>{{$v->right_url}}</td>
+                    <td>{{$v->role_right_id}}</td>
+                    <td>{{$v->role_id}}</td>
+                    <td>
+                        @foreach($v->right_id as $vv)
+                            {{$vv->right_name}}
+                        @endforeach
+                    </td>
                     <td><a title="编辑" href="{{url('/admin/right/upd')}}?right_id={{$v->right_id}}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                         <a title="删除" href="javascript:;" onclick="admin_permission_del(this,right_id={{$v->right_id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{$data->links()}}
         </article>
     </div>
 </section>

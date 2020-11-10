@@ -115,7 +115,7 @@
                     //判断返回结果
                     if(res.status=='success'){
                         alert(res.msg)
-                        location.href='/admin/admin/update'
+                        location.href='/admin/admin/show'
                     }
                 }
             })

@@ -31,16 +31,17 @@
 <body>
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+        <input type="hidden" value="{{$res->right_id}}" name="right_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="rightName" name="right_name" datatype="*4-16" nullmsg="用户账户不能为空">
+                <input type="text" class="input-text" value="{{$res->right_name}}" placeholder="" id="rightName" name="right_name" datatype="*4-16" nullmsg="用户账户不能为空">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">路径：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="rightUrl" name="right_url">
+                <input type="text" class="input-text" value="{{$res->right_url}}" placeholder="" id="rightUrl" name="right_url">
             </div>
         </div>
 
@@ -111,16 +112,17 @@
         $(document).on('click','#admin-role-save',function(){
             // alert(123);
             //获取权限名称值
+            var right_id=$("input[name='right_id']").val();
             var right_name=$('#rightName').val();
             var right_url=$('#rightUrl').val();
             //通过ajax传送值
             $.ajax({
                 //请求路径
-                url: "/admin/right/add_do",
+                url: "/admin/right/upd_do",
                 //请求方式
                 type: "post",
                 //请求数据
-                data: {right_name: right_name,right_url:right_url},
+                data: {right_name: right_name,right_url:right_url,right_id:right_id},
                 //预期返回数据类型
                 dataType: 'json',
                 //回调函数

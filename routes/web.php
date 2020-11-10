@@ -21,16 +21,15 @@ Route::get('/', function () {
 /**
  * 后台
  */
-Route::prefix('admin')->group(function(){
-    Route::view('','admin.admin');
-    // 后台登录
-    Route::prefix('login')->group(function(){
-        // 登录视图
-        Route::any('','admin\LoginController@login');
-        // 执行登录
-        Route::any('Do','admin\LoginController@Do');
-    });
+// 后台登录
+    // 登录视图
+    Route::any('admin/login','admin\LoginController@login');
+    // 执行登录
+    Route::any('admin/login/Do','admin\LoginController@Do');
 
+Route::prefix('admin')->middleware('checklogin')->group(function(){
+    # 首页
+    Route::view('','admin.admin');
     # 咨询模块
     Route::prefix('consult')->group(function(){
 	    Route::any('show','admin\ConsultController@show');
@@ -56,6 +55,10 @@ Route::prefix('admin')->group(function(){
     Route::prefix('right')->group(function(){
         Route::any('show','admin\RightController@show');
         Route::any('add','admin\RightController@add');
+        Route::any('add_do','admin\RightController@add_do');
+        Route::any('del','admin\RightController@del');
+        Route::any('upd','admin\RightController@upd');
+        Route::any('upd_do','admin\RightController@upd_do');
     });
     #用户
     Route::prefix('admin')->group(function(){
@@ -68,12 +71,14 @@ Route::prefix('admin')->group(function(){
     });
     #用户角色
     Route::prefix('adminrole')->group(function(){
-        Route::any('add','admin\AdminroleController@add');
-
+        Route::any('add/{id}','admin\AdminroleController@add');
+        Route::any('add_do','admin\AdminroleController@add_do');
     });
     #角色权限
     Route::prefix('roleright')->group(function(){
         Route::any('add','admin\RolerightController@add');
+        Route::any('add_do','admin\RolerightController@add_do');
+        Route::any('show','admin\RolerightController@show');
     });
 	 #所有课程
 	 Route::prefix('course')->group(function(){
@@ -115,6 +120,10 @@ Route::prefix('admin')->group(function(){
         Route::any('show','admin\QuestionController@show');
     });
 });
+
+
+
+
 
 
 // 前台

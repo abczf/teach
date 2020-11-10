@@ -74,7 +74,7 @@
                 <li><a href="{{url('admin/role/show')}}" title="角色管理">角色管理</a></li>
                 <li><a href="{{url('admin/right/show')}}" title="权限管理">权限管理</a></li>
                 <li><a href="{{url('admin/admin/show')}}" title="管理员列表">管理员列表</a></li>
-                <li><a href="{{url('admin/roleright/add')}}" title="角色权限列表">角色权限列表</a></li>
+                <li><a href="{{url('admin/roleright/show')}}" title="角色权限列表">角色权限列表</a></li>
                 </ul>
            </dd>
         </dl>
