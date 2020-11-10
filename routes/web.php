@@ -30,12 +30,17 @@ Route::prefix('admin')->group(function(){
     Route::prefix('consult')->group(function(){
 	    Route::any('show','admin\ConsultController@show');
 	    Route::any('create','admin\ConsultController@create');
+        Route::any('store','admin\ConsultController@store');
+        Route::any('Fdel','admin\ConsultController@Fdel');
+        Route::any('edit/{infor_id}','admin\ConsultController@edit');
+        Route::any('update/{infor_id}','admin\ConsultController@update');
 	});
 
 	#轮播图
 	 Route::prefix('slide')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
 	    Route::any('add','admin\SlideController@add');
+        Route::any('store','admin\SlideController@store');
 	});
 
 	 #角色
@@ -106,8 +111,8 @@ Route::prefix('admin')->group(function(){
 
 // 前台
 Route::prefix('index')->group(function(){
-        // 问答
-        Route::any('question/add','index\QuestionController@add');
+    // 问答
+    Route::any('question/add','index\QuestionController@add');
 
     // 首页
     Route::any('','index\IndexController@index');
@@ -124,9 +129,6 @@ Route::prefix('index')->group(function(){
     Route::prefix('course')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
-
-
-
     # 资讯
     Route::prefix('consult')->group(function(){
         Route::any('show','index\ConsultController@show');
@@ -135,6 +137,7 @@ Route::prefix('index')->group(function(){
     # 资讯详情
     Route::prefix('consultInfo')->group(function(){
         Route::any('show','index\ConsultInfoController@show');
+
     });
 
     # 讲师

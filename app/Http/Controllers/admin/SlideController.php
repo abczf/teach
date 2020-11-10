@@ -14,7 +14,10 @@ class SlideController extends Controller
     public function add(){
     	return view('admin.slide.add');
 
-}
+	}
+	public function store(Request $Request){
+		echo 123;
+	}
 
 
 }
