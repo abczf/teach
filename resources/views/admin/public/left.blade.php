@@ -18,6 +18,7 @@
             <dd>
                 <ul>
                     <li><a href="{{url('admin/consult/show')}}" title="资讯管理">资讯管理</a></li>
+                    <li><a href="{{url('admin/active/show')}}" title="精彩活动">精彩活动</a></li>
                 </ul>
             </dd>
         </dl>
@@ -35,6 +36,7 @@
             <dd>
                 <ul>
                     <li><a href="{{url('admin/bank/show')}}" title="题库管理">题库管理</a></li>
+                    <li><a href="{{url('admin/anwsercate/show')}}" title="题库分类">题库分类</a></li>
                 </ul>
             </dd>
         </dl>
@@ -51,8 +53,6 @@
             <dt><i class="Hui-iconfont">&#xe72b;</i> 导航栏<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-
-
 
                     <li><a href="{{url('admin/nav/show')}}" title="导航栏">导航栏</a></li>
 

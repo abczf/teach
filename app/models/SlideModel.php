@@ -4,13 +4,11 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/*
-资讯的model
-*/ 
-class ConsultModel extends Model
+class SlideModel extends Model
 {
-    protected $table="teach_information";
-	protected $primarykey='infor_id';
+    //
+    protected $table="teach_slide";
+	protected $primarykey='slide_id';
     public $timestamps=false;
 
      //黑名单

@@ -33,19 +33,27 @@ Route::prefix('admin')->group(function(){
 
     # 咨询模块
     Route::prefix('consult')->group(function(){
-	    Route::any('show','admin\ConsultController@show');
-	    Route::any('create','admin\ConsultController@create');
-        Route::any('store','admin\ConsultController@store');
-        Route::any('Fdel','admin\ConsultController@Fdel');
-        Route::any('edit/{infor_id}','admin\ConsultController@edit');
-        Route::any('update/{infor_id}','admin\ConsultController@update');
+	    Route::any('show','admin\ConsultController@show');//资讯展示
+	    Route::any('create','admin\ConsultController@create');//资讯添加
+        Route::any('store','admin\ConsultController@store');//添加执行
+        Route::any('Fdel','admin\ConsultController@Fdel');//资讯删除
+        Route::any('edit/{infor_id}','admin\ConsultController@edit');//资讯修改
+        Route::any('update/{infor_id}','admin\ConsultController@update');//修改执行
 	});
+    #精彩活动
+     Route::prefix('active')->group(function(){
+        Route::any('show','admin\ActiveController@show');//活动展示
+        Route::any('add','admin\ActiveController@add');//活动添加
+        Route::any('store','admin\ActiveController@store');//添加执行
+        Route::any('Fdel','admin\ActiveController@Fdel');//活动删除
+        Route::any('edit/{act_id}','admin\ActiveController@edit');//活动修改
+        Route::any('update/{act_id}','admin\ActiveController@update');//修改执行
+    });
 
 	#轮播图
 	 Route::prefix('slide')->group(function(){
 	    Route::any('slide','admin\SlideController@slide');
 	    Route::any('add','admin\SlideController@add');
-        Route::any('store','admin\SlideController@store');
 	});
 
 	 #角色
@@ -117,9 +125,22 @@ Route::prefix('admin')->group(function(){
 	});
 	 #题库模块
 	 Route::prefix('bank')->group(function(){
-	    Route::any('show','admin\BankController@show');
-	    Route::any('add','admin\BankController@add');
+	    Route::any('show','admin\BankController@show');//题库展示
+	    Route::any('add','admin\BankController@add');//题库添加
+        Route::any('store','admin\BankController@store');//添加执行
+        Route::any('Fdel','admin\BankController@Fdel');//题库分类删除
+
 	});
+      #题库分类
+     Route::prefix('anwsercate')->group(function(){
+        Route::any('show','admin\AnwserCateController@show');//题库分类展示
+        Route::any('add','admin\AnwserCateController@add');//题库分类添加
+        Route::any('store','admin\AnwserCateController@store');//添加执行
+        Route::any('Fdel','admin\AnwserCateController@Fdel');//题库分类删除
+        Route::any('edit/{bank_cate_id}','admin\AnwserCateController@edit');//修改
+        Route::any('update/{bank_cate_id}','admin\AnwserCateController@update');//修改执行
+      
+    });
     #导航栏
     Route::prefix('nav')->group(function(){
         Route::any('show','admin\NavController@show');
