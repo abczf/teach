@@ -120,6 +120,7 @@ $(function(){
             data:data,
             type:"get",
             success: function(res){
+            	console.log(res)
                 $('#consult_info').html(res)
         }
     });

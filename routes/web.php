@@ -134,6 +134,9 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 	    Route::any('add','admin\BankController@add');//题库添加
         Route::any('store','admin\BankController@store');//添加执行
         Route::any('Fdel','admin\BankController@Fdel');//题库分类删除
+        Route::any('edit/{bank_id}','admin\BankController@edit');//题库修改
+        Route::any('update/{bank_id}','admin\BankController@update');//修改执行
+
 
 	});
       #题库分类

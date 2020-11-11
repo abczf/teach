@@ -4,14 +4,13 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 /*
-题库model
+课程model
 */
-class BankModel extends Model
+class CourseModel extends Model
 {
     //
-     //
-    protected $table="teach_bank";
-	protected $primarykey='bank_id';
+     protected $table="teach_course";
+	protected $primarykey='cou_id';
     public $timestamps=false;
 
      //黑名单
