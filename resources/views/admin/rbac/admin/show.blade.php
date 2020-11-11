@@ -40,7 +40,7 @@
         <article class="cl pd-20">
 
             <div class="cl pd-5 bg-1 bk-gray mt-20">
-                <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('admin/admin/add')}}" onclick="admin_add('添加管理员','admin-add.html','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
+                <span class="l"> <a href="javascript:;"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('admin/admin/add')}}" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
                 <span class="r">共有数据：<strong>54</strong> 条</span>
             </div>
             <table class="table table-border table-bordered table-bg">
@@ -64,10 +64,10 @@
                     <td>{{$v->admin_id}}</td>
                     <td>{{$v->admin_name}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->create_time)}}</td>
-                    <td class="td-manage"><a title="编辑" href="{{url('admin/admin/upd')}}?admin_id={{$v->admin_id}}" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="upd" style="text-decoration:none">
+                    <td class="td-manage"><a title="编辑" href="{{url('admin/admin/upd')}}?admin_id={{$v->admin_id}}"  class="upd" style="text-decoration:none">
                             <i class="Hui-iconfont">&#xe6df;</i></a>
                         <a title="删除" href="javascript:;" onclick="admin_del(this,admin_id={{$v->admin_id}})" class="ml-5" style="text-decoration:none" admin_id = {{$v->admin_id}}><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    <td><a href="{{url('admin/adminrole/add')}}"class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 角色操作</a></td>
+                    <td><a href="{{url('admin/adminrole/add/'.$v->admin_id)}}"class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 角色操作</a></td>
                 </tr>
                 @endforeach
                 </tbody>

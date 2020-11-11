@@ -23,48 +23,32 @@
 <script>DD_belatedPNG.fix('*');</script><![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加目录详情 - 目录详情管理 - H-ui.admin v3.0</title>
+<title>添加分类- 分类管理 - H-ui.admin v3.0</title>
 <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <input type="hidden" name="cate_id" value="{{$data->cate_id}}">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>详情名称：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入详情名称..." id="adminName" name="info_name">
+                <input type="text" class="input-text" placeholder="请输入分类名称" value="{{$data->cate_name}}" id="adminName" name="cate_name">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">目录名称：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="catalog_id" size="1">
-                    <option value="0">--请选择--</option>
-                    @foreach($catelog as $v)
-                        <option value="{{$v->catalog_id}}">{{$v->catalog_name}}</option>
-                    @endforeach
-                </select>
-                </span> </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">父级id：</label>
+            <label class="form-label col-xs-4 col-sm-3">分类等级：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
                 <select class="select" name="pid" size="1">
                     <option value="0">--顶级分类--</option>
-                    @foreach($info as $v)
-                        <option value="{{$v->info_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->info_name}}</option>
+                    @foreach($cate as $v)
+                        <option value="{{$v->cate_id}}" {{$v->cate_id==$data->pid?'selected':''}}><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
                     @endforeach
                 </select>
                 </span> </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">目录详情：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="info_desc" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
-                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
-            </div>
-        </div>
+        
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -138,25 +122,22 @@ $(function(){
 </body>
 </html>
 <script>
-    $(document).ready(function(){
-        $(document).on('click','.btn',function(){
-            var info_name = $("input[name='info_name']").val();
-            var catalog_id = $("select[name='catalog_id']").val();
-            var pid = $("select[name='pid']").val();
-            var info_desc = $("textarea[name='info_desc']").val();
-
-            $.ajax({
-                url:"{{url('admin/cataloginfo/save')}}",
-                data:{info_name:info_name,catalog_id:catalog_id,pid:pid,info_desc:info_desc},
-                dataType:"json",
-                type:"post",
-                success:function(res){
-                    if(res.status == 200){
-                        alert(res.msg);
-                        window.location.href="{{url('admin/cataloginfo/show')}}";
-                    }
+    $(document).on('click','.btn',function(){
+        var cate_id = $("input[name='cate_id']").val();
+        var cate_name = $("input[name='cate_name']").val();
+        var pid = $("select[name='pid']").val();
+        $.ajax({
+            url:"{{url('/admin/category/update')}}",
+            dataType:"json",
+            data:{cate_id:cate_id,cate_name:cate_name,pid:pid},
+            type:"post",
+            success:function(res){
+//                    console.log(res)
+                if(res.status == 200){
+                    alert(res.msg);
+                    window.location.href="{{'show'}}";
                 }
-            })
+            }
         })
-    })
+    });
 </script>

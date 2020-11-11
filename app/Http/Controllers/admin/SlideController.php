@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\models\SlideModel;
 class SlideController extends Controller
 {
     //
@@ -15,9 +15,7 @@ class SlideController extends Controller
     	return view('admin.slide.add');
 
 	}
-	public function store(Request $Request){
-		echo 123;
-	}
+
 
 
 }
