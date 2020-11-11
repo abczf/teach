@@ -202,11 +202,14 @@ Route::prefix('index')->group(function(){
     });
     // 注册
     Route::any('register','index\RegisterController@register');
+    Route::any('save','index\RegisterController@save');
+    Route::any('sendSmsCode','index\RegisterController@sendSmsCode');
 
     // 课程列表
     Route::prefix('course')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
+
     // 课程详情
     Route::prefix('course')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
@@ -244,10 +247,10 @@ Route::prefix('index')->group(function(){
 
     # 个人中心
     Route::prefix('personal')->group(function(){
-    # 课程
-    Route::prefix('course')->group(function(){
-         Route::any('show','index\personal\CourseController@show');
-    });
+        # 课程
+        Route::prefix('course')->group(function(){
+             Route::any('show','index\personal\CourseController@show');
+        });
     });
 });
 ?>

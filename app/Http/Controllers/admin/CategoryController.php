@@ -23,9 +23,8 @@ class CategoryController extends Controller
                 ];
             }
             $cateinfo = CateGoryModel::where($where) -> get();
-            $info = $this -> getCateInfo($cateinfo);
             $count = CateGoryModel::where($where)->count();
-            return view('admin.category.ajaxshow',['info'=>$info,'count'=>$count]);
+            return view('admin.category.ajaxshow',['info'=>$cateinfo,'count'=>$count]);
         }
         $cateinfo = CateGoryModel::where($where) -> get();
         $info = $this -> getCateInfo($cateinfo);
