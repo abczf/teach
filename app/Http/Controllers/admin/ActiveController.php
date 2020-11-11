@@ -21,9 +21,6 @@ class ActiveController extends Controller
         if(!empty($act_title)){
           $where[]=['act_title','like',"%$act_title%"];
         }
-		$where =[
-			['is_del','=',1]
-		];
 		$active = ActiveModel::where($where)->paginate(3);
         // ajax分页
         if(request()->ajax()){

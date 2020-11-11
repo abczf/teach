@@ -17,7 +17,7 @@
 	<div class="Hui-article">
 		<article class="cl pd-20">
 			<div class="text-c">
-				<input type="text" name="" id="" placeholder=" 目录详情名称" style="width:250px" class="input-text">
+				<input type="text" name="info_name" placeholder="目录详情名称" style="width:250px" class="input-text">
 				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜目录详情</button>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
@@ -37,7 +37,7 @@
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
 							<th width="80">详情ID</th>
-							<th>详情标题</th>
+							<th width="80">详情标题</th>
 							<th width="80">目录名称</th>
 							<th width="80">父级id</th>
 							<th width="80">描述</th>
@@ -45,7 +45,7 @@
 							<th width="120">操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="cate_info">
 					@foreach($info as $v)
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""></td>
@@ -158,6 +158,7 @@ function article_shenqing(obj,id){
 </html>
 <script>
 	$(document).ready(function(){
+		// 删除
 		$(document).on('click','.del',function(){
 			var _this=$(this);
 			var info_id = $(this).attr('info_id');
@@ -170,6 +171,23 @@ function article_shenqing(obj,id){
 					if(res.status == 200){
 						_this.parents('tr').remove();
 					}
+				}
+			});
+		});
+
+		// 搜索
+		$(document).on("click",".btn",function(){
+			var info_name = $("input[name='info_name']").val();
+			// alert(infor_title);
+			var url = "/admin/cataloginfo/show";
+			var data={};
+			data.info_name = info_name;
+			$.ajax({
+				url:url,
+				data:data,
+				type:"get",
+				success: function(res){
+					$('#cate_info').html(res)
 				}
 			});
 		});

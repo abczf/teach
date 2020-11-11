@@ -15,6 +15,22 @@ class CataLogInfoController extends Controller
      * 列表
      */
     public function show(Request $request){
+        $where = [];
+        $info_name = request()->info_name ? request()->info_name : '';
+        if($request->ajax()) {
+            if (!empty($info_name)) {
+                $where[] = ['teach_cataloginfo.is_del', '=', '1'];
+                $where[] = [
+                    'info_name', 'like', "%$info_name%"
+                ];
+            }
+            $cate = CateLogModel::where(['is_del'=>1])->get();
+            $cateinfo = CateLogInfoModel::leftjoin('teach_catalog','teach_cataloginfo.catalog_id','=','teach_catalog.catalog_id')
+                ->where($where)
+                ->get();
+            $count = CateLogInfoModel::where(['is_del'=>1])->count();
+            return view('admin.cataloginfo.ajaxshow',['info'=>$cateinfo,'cate'=>$cate,'count'=>$count]);
+        }
         $cate = CateLogModel::where(['is_del'=>1])->get();
         $cateinfo = CateLogInfoModel::leftjoin('teach_catalog','teach_cataloginfo.catalog_id','=','teach_catalog.catalog_id')
             ->where(['teach_cataloginfo.is_del'=>1])

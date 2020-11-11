@@ -60,8 +60,8 @@
                             {{$vv->right_name}}
                         @endforeach
                     </td>
-                    <td><a title="编辑" href="{{url('/admin/right/upd')}}?right_id={{$v->right_id}}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-                        <a title="删除" href="javascript:;" onclick="admin_permission_del(this,right_id={{$v->right_id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <td><a title="编辑" href="{{url('/admin/roleright/edit')}}?role_right_id={{$v->role_right_id}}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                        <a title="删除" href="javascript:;" onclick="admin_roleright_del(this,role_right_id={{$v->role_right_id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
                     @endforeach
                 </tbody>
@@ -101,11 +101,11 @@
     }
 
     /*管理员-删除*/
-    function admin_permission_del(obj,id){
-        layer.confirm('确认要删除    吗？',function(index){
+    function admin_roleright_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
             var data = {};
-            data.right_id = id;
-            var url = "{{url('/admin/right/del')}}";
+            data.role_right_id = id;
+            var url = "{{url('/admin/roleright/del')}}";
             // if(window.confirm("是否删除")){
             $.ajax({
                 type:"post",
@@ -113,7 +113,7 @@
                 url:url,
                 dateType:"json",
                 success:function(res){
-                    if(res.success==true){
+                    if(res.code==200){
                         $(obj).parents("tr").remove();
                         layer.msg('已删除!',{icon:1,time:1000});
                         // alert(res.message);
@@ -122,12 +122,8 @@
                         // layer.msg('已删除!',{icon:1,time:1000});
                         window.location.reload();
                     }
-
-
                 }
-
             })
-
             //此处请求后台程序，下方是成功后的前台处理……
             // })
 

@@ -35,50 +35,47 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>题干：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+                <input type="text" class="input-text" value="" placeholder="" id="bank_title" name="bank_title">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">所属课程：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
-                    <option value="0">课程</option>
-                    <option value="1">php</option>
-                    <option value="2">Java</option>
-                    <option value="3">python</option>
+                <select class="select" name="cou_id" id="cou_id" size="1">
+                    <option value="0">请选择课程课程</option>
+                    @foreach($course as $k=>$v)
+                    <option value="{{$v->cou_id}}">{{$v->cou_name}}</option>
+                    @endforeach
                 </select>
                 </span> </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">题干分类：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
-                    <option value="0">题型</option>
-                    <option value="1">选择题</option>
-                    <option value="2">填空题</option>
+                <select class="select" name="bank_cate_id" id="bank_cate_id" size="1">
+                    <option value="0">请选择提醒</option>
+                    @foreach($anwsercate as $k=>$v)
+                    <option value="{{$v->bank_cate_id}}">{{$v->bank_cate_name}}</option>
+                    @endforeach     
                 </select>
                 </span> </div>
         </div>
           <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">选项:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="" cols="" rows="" class="textarea"  placeholder="选择题选项" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <textarea name="bank_content" id="bank_content" cols="" rows="" class="textarea"  placeholder="选择题选项" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>答案：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off"  placeholder="正确答案" id="" name="">
+                <input type="text" class="input-text" autocomplete="off"  placeholder="正确答案" id="bank_anwser" name="bank_anwser">
             </div>
         </div>
-        
-      
-        
-      
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" id="sub" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
     </form>
@@ -98,51 +95,82 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
 <script type="text/javascript">
 $(function(){
-    $('.skin-minimal input').iCheck({
-        checkboxClass: 'icheckbox-blue',
-        radioClass: 'iradio-blue',
-        increaseArea: '20%'
-    });
+    $(document).on('click','#sub',function(){
+        var bank_title = $("#bank_title").val();
+        var cou_id = $("#cou_id").val();
+        var bank_cate_id  = $("#bank_cate_id").val();
+        var bank_content = $("#bank_content").val();
+        var bank_anwser = $("#bank_anwser").val();
+        var url = "/admin/bank/store";
+        var data={};
+        data.bank_title = bank_title;
+        data.cou_id = cou_id;
+        data.bank_cate_id = bank_cate_id;
+        data.bank_content = bank_content;
+        data.bank_anwser = bank_anwser;
+        $.ajax({
+            url:url,
+            data,data,
+            type:"post",
+            dataType:"json",
+                success: function(res){
+                  if(res.success == 200){
+                        // alert(res.msg);
+                        var url = res.url;
+                        layer.msg('添加成功',{icon:1,time:1000});
+                        window.location.href = url;
+                }
+            }
+        });
+    })
+
+
+// 模板自带
+$('.skin-minimal input').iCheck({
+    checkboxClass: 'icheckbox-blue',
+    radioClass: 'iradio-blue',
+    increaseArea: '20%'
+});
     
-    $("#form-admin-add").validate({
-        rules:{
-            adminName:{
-                required:true,
-                minlength:4,
-                maxlength:16
-            },
-            password:{
-                required:true,
-            },
-            password2:{
-                required:true,
-                equalTo: "#password"
-            },
-            sex:{
-                required:true,
-            },
-            phone:{
-                required:true,
-                isPhone:true,
-            },
-            email:{
-                required:true,
-                email:true,
-            },
-            adminRole:{
-                required:true,
-            },
-        },
-        onkeyup:false,
-        focusCleanup:true,
-        success:"valid",
-        submitHandler:function(form){
-            $(form).ajaxSubmit();
-            var index = parent.layer.getFrameIndex(window.name);
-            parent.$('.btn-refresh').click();
-            parent.layer.close(index);
-        }
-    });
+$("#form-admin-add").validate({
+    rules:{
+    adminName:{
+    required:true,
+    minlength:4,
+    maxlength:16
+},
+    password:{
+    required:true,
+},
+    password2:{
+    required:true,
+    equalTo: "#password"
+},
+    sex:{
+        required:true,
+},
+    phone:{
+        required:true,
+        isPhone:true,
+},
+    email:{
+        required:true,
+        email:true,
+},
+    adminRole:{
+        required:true,
+    },
+},
+    onkeyup:false,
+    focusCleanup:true,
+    success:"valid",
+    submitHandler:function(form){
+    $(form).ajaxSubmit();
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.$('.btn-refresh').click();
+    parent.layer.close(index);
+    }
+});
 });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
