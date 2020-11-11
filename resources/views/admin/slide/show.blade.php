@@ -5,17 +5,35 @@
 <!--_menu 作为公共模版分离出去-->
 @include('admin.public.left')
 <!--/_menu 作为公共模版分离出去-->
+<style>
+	ul.pagination {
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+	}
+
+	ul.pagination li {display: inline;}
+
+	ul.pagination li {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+		border: 1px solid #ddd;
+	}
+
+	ul.pagination li.active {
+		background-color: #4CAF50;
+		color: black;
+		border: 1px solid #4CAF50;
+	}
+	ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 <section class="Hui-article-box">
-	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 图片管理 <span class="c-gray en">&gt;</span> 图片列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 轮播图管理 <span class="c-gray en">&gt;</span> 轮播图列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 	<div class="Hui-article">
 		<article class="cl pd-20">
-			<div class="text-c"> 日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-				<input type="text" name="" id="" placeholder=" 图片名称" style="width:250px" class="input-text">
-				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>
-			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
 					<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
@@ -24,8 +42,7 @@
 					<a class="btn btn-primary radius" href="{{url('admin/slide/add')}}">
 						<i class="Hui-iconfont">&#xe600;</i> 添加轮播图
 					</a>
-				</span> 
-				<span class="r">共有数据：<strong>54</strong> 条</span> 
+				</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -33,33 +50,59 @@
 						<tr class="text-c">
 							<th width="40"><input name="" type="checkbox" value=""></th>
 							<th width="80">ID</th>
-							<th width="100">分类</th>
-							<th width="100">封面</th>
-							<th>图片名称</th>
-							<th width="150">Tags</th>
-							<th width="150">更新时间</th>
-							<th width="60">发布状态</th>
+							<th >地址</th>
+							<th width="300">轮播图</th>
+							<th width="150">权重</th>
+							<th width="150">添加时间</th>
 							<th width="100">操作</th>
 						</tr>
 					</thead>
 					<tbody>
+					@foreach($slide as $v)
 						<tr class="text-c">
 							<td><input name="" type="checkbox" value=""></td>
-							<td>001</td>
-							<td>分类名称</td>
-							<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="100" class="picture-thumb" src="pic/200x150.jpg"></a></td>
-							<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
-							<td class="text-c">标签</td>
-							<td>2014-6-11 11:11:42</td>
-							<td class="td-status"><span class="label label-success radius">已发布</span></td>
-							<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td>{{$v->slide_id}}</td>
+							<td>{{$v->slide_url}}</td>
+							<td><img src="/{{$v->slide_img}}" width="200px"></td>
+							<td>{{$v->slide_weight}}</td>
+							<td>{{date("Y-m-d H:i:s",$v->add_time)}}</td>
+							<td class="td-manage">
+								<a style="text-decoration:none" class="ml-5" id="upd" href="{{url('/admin/slide/upd/'.$v->slide_id)}}" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" id="del" slide_id="{{$v->slide_id}}" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
+					@endforeach
 					</tbody>
+					<tr>
+						<td colspan="7" align="center">{{$slide->links()}}</td>
+					</tr>
 				</table>
 			</div>
 		</article>
 	</div>
 </section>
+
+<script src="/jquery.js"></script>
+<script>
+	$(function(){
+		//删除
+		$("#del").click(function(){
+			var _this = $(this);
+			var slide_id = _this.attr("slide_id");
+			if(window.confirm("确定删除吗？")){
+				var url = "/admin/slide/del/"+slide_id;
+				location.href=url;
+			}
+		});
+	});
+	//ajax 分页
+	$(document).on("click",'.page-item a',function(){
+		var url = $(this).attr('href');
+		$.get(url,function(res){
+			$('table').html(res);
+		});
+		return false;
+	});
+</script>
 
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 

@@ -65,7 +65,6 @@ class LectController extends Controller
     //修改
     public function updDo($id){
         $name = request()->post();
-//        dd($name);
         $data=[
             "lect_name" => $name["lect_name"],
             "lect_style" => $name["lect_style"],

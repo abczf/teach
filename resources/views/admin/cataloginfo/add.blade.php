@@ -31,40 +31,37 @@
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>目录详情：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>详情名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+                <input type="text" class="input-text" value="" placeholder="请输入详情名称..." id="adminName" name="info_name">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>目录名称：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="password2">
-            </div>
-        </div>
-        
-      
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">课程：</label>
+            <label class="form-label col-xs-4 col-sm-3">目录名称：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
-                    <option value="0">目录详情</option>
-                    <option value="1"></option>
-                    <option value="2"></option>
-                    <option value="3"></option>
+                <select class="select" name="catalog_id" size="1">
+                    <option value="0">--请选择--</option>
+                    @foreach($catelog as $v)
+                        <option value="{{$v->catalog_id}}">{{$v->catalog_name}}</option>
+                    @endforeach
                 </select>
                 </span> </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">备注：</label>
+            <label class="form-label col-xs-4 col-sm-3">父级id：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+                <select class="select" name="pid" size="1">
+                    <option value="0">--顶级分类--</option>
+                    @foreach($info as $v)
+                        <option value="{{$v->info_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->info_name}}</option>
+                    @endforeach
+                </select>
+                </span> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">目录详情：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <textarea name="info_desc" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
@@ -140,3 +137,26 @@ $(function(){
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','.btn',function(){
+            var info_name = $("input[name='info_name']").val();
+            var catalog_id = $("select[name='catalog_id']").val();
+            var pid = $("select[name='pid']").val();
+            var info_desc = $("textarea[name='info_desc']").val();
+
+            $.ajax({
+                url:"{{url('admin/cataloginfo/save')}}",
+                data:{info_name:info_name,catalog_id:catalog_id,pid:pid,info_desc:info_desc},
+                dataType:"json",
+                type:"post",
+                success:function(res){
+                    if(res.status == 200){
+                        alert(res.msg);
+                        window.location.href="{{url('admin/cataloginfo/show')}}";
+                    }
+                }
+            })
+        })
+    })
+</script>

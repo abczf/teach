@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 资讯的model
-
 */ 
 class ConsultModel extends Model
 {
