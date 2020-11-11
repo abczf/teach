@@ -31,40 +31,15 @@
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程目录：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
-            </div>
-        </div>
-        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>目录名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="password2">
+                <input type="text" class="input-text" autocomplete="off"  placeholder="请输入目录名称" id="password2" name="catalog_name">
             </div>
         </div>
-        
-      
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">课程：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
-                    <option value="0">课程目录</option>
-                    <option value="1"></option>
-                    <option value="2"></option>
-                    <option value="3"></option>
-                </select>
-                </span> </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">备注：</label>
+            <label class="form-label col-xs-4 col-sm-3">描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <textarea name="catalog_desc" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
@@ -140,3 +115,38 @@ $(function(){
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $(document).on('click','.btn',function(){
+            var catalog_name = $("input[name='catalog_name']").val();
+            var catalog_desc = $("textarea[name='catalog_desc']").val();
+
+            if(catalog_name==''){
+                alert('目录名称不能为空');
+                return false;
+            }
+
+            if(catalog_desc==''){
+                alert('目录描述不能为空');
+                return false;
+            }
+
+            $.ajax({
+                url:"{{url('/admin/catalog/save')}}",
+                dataType:"json",
+                data:{catalog_name:catalog_name,catalog_desc:catalog_desc},
+                type:"post",
+                success:function(res){
+//                    console.log(res)
+                    if(res.status == 200){
+                        alert(res.msg);
+                        window.location.href="{{'show'}}";
+                    }else{
+                        alert(res.msg);
+                    }
+                }
+            })
+
+        })
+    })
+</script>

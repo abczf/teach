@@ -11,4 +11,7 @@ class SlideModel extends Model
     protected  $primaryKey = 'slide_id';
 
     public $timestamps = false;
+
+     //黑名单
+    protected $guarded=[];
 }

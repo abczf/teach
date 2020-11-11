@@ -40,7 +40,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">路径：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="right_url">
+                <input type="text" class="input-text" value="" placeholder="" id="rightUrl" name="right_url">
             </div>
         </div>
 
@@ -107,32 +107,34 @@
 </body>
 </html>
 <script>
-    $(document.ready(function(){
-        $(document.on('click','.btn',function(){
+    $(document).ready(function(){
+        $(document).on('click','#admin-role-save',function(){
             // alert(123);
             //获取权限名称值
-            var right_name=$('#rightName').val()
+            var right_name=$('#rightName').val();
+            var right_url=$('#rightUrl').val();
             //通过ajax传送值
             $.ajax({
                 //请求路径
-                url:"/admin/role/add_do",
+                url: "/admin/right/add_do",
                 //请求方式
-                type:"post",
+                type: "post",
                 //请求数据
-                data:{right_name:right_name},
+                data: {right_name: right_name,right_url:right_url},
                 //预期返回数据类型
-                dataType:'json',
+                dataType: 'json',
                 //回调函数
-                success:function(res){
+                success: function (res) {
                     //判断返回结果
-                    if(res.success==true){
+                    if (res.success == true) {
                         alert('OK');
-                        location.href='/admin/right/show'
-                    }else{
+                        location.href = '/admin/right/show';
+                    } else {
                         alert(res.msg);
                     }
                 }
+
             })
-        })
-    })
+        });
+    });
 </script>

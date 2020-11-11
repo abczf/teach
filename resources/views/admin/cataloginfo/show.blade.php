@@ -17,12 +17,7 @@
 	<div class="Hui-article">
 		<article class="cl pd-20">
 			<div class="text-c">
-				
-				日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-				<input type="text" name="" id="" placeholder=" 目录详情名称" style="width:250px" class="input-text">
+				<input type="text" name="info_name" placeholder="目录详情名称" style="width:250px" class="input-text">
 				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜目录详情</button>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
@@ -34,50 +29,37 @@
 					<i class="Hui-iconfont">&#xe600;</i> 添加目录详情
 				</a>
 				</span>
-				<span class="r">共有数据：<strong>54</strong> 条</span>
+				<span class="r">共有数据：<strong>{{$count}}</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
-							<th width="80">ID</th>
-							<th>标题</th>
-							<th width="80">分类</th>
-							<th width="80">来源</th>
-							<th width="120">更新时间</th>
-							<th width="75">浏览次数</th>
-							<th width="60">发布状态</th>
+							<th width="80">详情ID</th>
+							<th width="80">详情标题</th>
+							<th width="80">目录名称</th>
+							<th width="80">父级id</th>
+							<th width="80">描述</th>
+							<th width="120">添加时间</th>
 							<th width="120">操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="cate_info">
+					@foreach($info as $v)
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""></td>
-							<td>10001</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">目录详情标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">已发布</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('目录详情编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td>{{$v->info_id}}</td>
+							<td class="text-l"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->info_name}}</td>
+							<td>{{$v->catalog_name}}</td>
+							<td>{{$v->pid}}</td>
+							<td>{{$v->info_desc}}</td>
+							<td>{{date('Y-m-d H:i:s'),$v->add_time}}</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" href="{{url('admin/cataloginfo/edit')}}?info_id={{$v->info_id}}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="del" info_id="{{$v->info_id}}" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
-							<td>10002</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">目录详情标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">草稿</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_shenhe(this,'10001')" href="javascript:;" title="审核">审核</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('目录详情编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
@@ -123,23 +105,6 @@ function article_edit(title,url,id,w,h){
 		content: url
 	});
 	layer.full(index);
-}
-/*目录详情-删除*/
-function article_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});
-	});
 }
 
 /*目录详情-审核*/
@@ -191,3 +156,40 @@ function article_shenqing(obj,id){
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+	$(document).ready(function(){
+		// 删除
+		$(document).on('click','.del',function(){
+			var _this=$(this);
+			var info_id = $(this).attr('info_id');
+			$.ajax({
+				url:"{{url('admin/cataloginfo/del')}}",
+				data:{info_id:info_id},
+				dataType:"json",
+				type:"post",
+				success:function(res){
+					if(res.status == 200){
+						_this.parents('tr').remove();
+					}
+				}
+			});
+		});
+
+		// 搜索
+		$(document).on("click",".btn",function(){
+			var info_name = $("input[name='info_name']").val();
+			// alert(infor_title);
+			var url = "/admin/cataloginfo/show";
+			var data={};
+			data.info_name = info_name;
+			$.ajax({
+				url:url,
+				data:data,
+				type:"get",
+				success: function(res){
+					$('#cate_info').html(res)
+				}
+			});
+		});
+	})
+</script>

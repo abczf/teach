@@ -35,14 +35,18 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
+                <select class="input-text" value="" placeholder="" id="admin_name" name="admin_id" datatype="*4-16">
+                    <option value="{{$arr->admin_id}}">{{$arr->admin_name}}</option>
+                </select>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">添加角色：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="checkbox" >
-                <input type="checkbox" >
+                添加角色：
+                @foreach($all as $v)
+                    <input type="checkbox" {{in_array($v->role_id,$role)?'checked':''}} class="role_id" name="role_id" value="{{$v->role_id}}" >{{$v->role_name}}
+                @endforeach
             </div>
         </div>
 
@@ -108,4 +112,28 @@
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        $(document).on("click",".btn",function(){
+            var admin_id = $("select[name = 'admin_id']").val();
+            var role_id = [];
+            $("input[name='role_id']:checked").each(function () {
+                role_id.push($(this).val());
+            });
+            var url = "/admin/adminrole/add_do";
+            $.ajax({
+                type:"post",
+                data:{admin_id:admin_id,role_id:role_id},
+                url:url,
+                dataType:"json",
+                success:function (msg) {
+                    // console.log(msg)
+                    if(msg.success == true){
+                        window.location.href = '/admin/admin/show';
+                    }
+                }
+            })
+        });
+    });
+</script>
 

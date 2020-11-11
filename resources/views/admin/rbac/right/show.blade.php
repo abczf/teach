@@ -1,3 +1,28 @@
+<style>
+    ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {display: inline;}
+
+    ul.pagination li {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+    }
+
+    ul.pagination li.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
@@ -15,7 +40,7 @@
                     <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
                 </form>
             </div>
-            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('/admin/right/add')}}" onclick="admin_permission_add('添加权限节点','admin-permission-add.html','','310')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="{{url('/admin/right/add')}}"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
             <table class="table table-border table-bordered table-bg">
                 <thead>
                 <tr>
@@ -25,20 +50,24 @@
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th width="200">权限名称</th>
-                    <th>字段名</th>
+                    <th width="200">权限路径</th>
                     <th width="100">操作</th>
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $k=>$v)
                 <tr class="text-c">
                     <td><input type="checkbox" value="1" name=""></td>
-                    <td>1</td>
-                    <td>栏目添加</td>
-                    <td></td>
-                    <td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','admin-permission-add.html','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <td>{{$v->right_id}}</td>
+                    <td>{{$v->right_name}}</td>
+                    <td>{{$v->right_url}}</td>
+                    <td><a title="编辑" href="{{url('/admin/right/upd')}}?right_id={{$v->right_id}}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                        <a title="删除" href="javascript:;" onclick="admin_permission_del(this,right_id={{$v->right_id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
+                    @endforeach
                 </tbody>
             </table>
+            {{$data->links()}}
         </article>
     </div>
 </section>
@@ -73,14 +102,47 @@
         layer_show(title,url,w,h);
     }
 
-    /*管理员-权限-删除*/
+    /*管理员-删除*/
     function admin_permission_del(obj,id){
-        layer.confirm('角色删除须谨慎，确认要删除吗？',function(index){
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
+        layer.confirm('确认要删除    吗？',function(index){
+            var data = {};
+            data.right_id = id;
+            var url = "{{url('/admin/right/del')}}";
+            // if(window.confirm("是否删除")){
+            $.ajax({
+                type:"post",
+                data:data,
+                url:url,
+                dateType:"json",
+                success:function(res){
+                    if(res.success==true){
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                        // alert(res.message);
+                        //页面刷新
+                        // history.go(0);
+                        // layer.msg('已删除!',{icon:1,time:1000});
+                        window.location.reload();
+                    }
+
+
+                }
+
+            })
+
+            //此处请求后台程序，下方是成功后的前台处理……
+            // })
+
         });
     }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<style>
+    page-item {
+        border-radius: 5px;
+    }
+    /*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
+</style>
+
