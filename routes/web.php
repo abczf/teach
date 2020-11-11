@@ -168,7 +168,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('Fdel','admin\AnwserCateController@Fdel');//题库分类删除
         Route::any('edit/{bank_cate_id}','admin\AnwserCateController@edit');//修改
         Route::any('update/{bank_cate_id}','admin\AnwserCateController@update');//修改执行
-      
+
     });
 
     #导航栏
@@ -176,6 +176,9 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('show','admin\NavController@show');
         Route::any('add','admin\NavController@add');
         Route::any('create','admin\NavController@create');
+        Route::any('edit','admin\NavController@edit');
+        Route::any('update','admin\NavController@update');
+        Route::any('upd','admin\NavController@upd');
     });
 
     #问答展示
@@ -255,3 +258,10 @@ Route::prefix('index')->group(function(){
 });
 ?>
 
+
+
+
+
+
+
+?>
