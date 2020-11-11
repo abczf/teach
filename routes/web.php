@@ -39,9 +39,14 @@ Route::prefix('admin')->group(function(){
 
 	#轮播图
 	 Route::prefix('slide')->group(function(){
-	    Route::any('slide','admin\SlideController@slide');
-	    Route::any('add','admin\SlideController@add');
-	});
+	     Route::any('slide','admin\SlideController@slide');//轮播图展示
+	     Route::any('add','admin\SlideController@add');//轮播图渲染
+         Route::any('addDo','admin\SlideController@addDo');//轮播图添加
+         Route::any('img','admin\SlideController@img');//图片处理
+         Route::any('del/{id}','admin\SlideController@del');//轮播图删除
+         Route::any('upd/{id}','admin\SlideController@upd');//轮播图编辑
+         Route::any('updDo/{id}','admin\SlideController@updDo');//轮播图修改
+     });
 
 	 #角色
     Route::prefix('role')->group(function(){
@@ -77,9 +82,15 @@ Route::prefix('admin')->group(function(){
     });
 	 #所有课程
 	 Route::prefix('course')->group(function(){
-	    Route::any('show','admin\CourseController@show');
-	    Route::any('add','admin\CourseController@add');
-	});
+	     Route::any('show','admin\CourseController@show');//课程展示
+	     Route::any('add','admin\CourseController@add');//课程渲染
+         Route::any('img','admin\CourseController@img');//图片处理
+         Route::any('video','admin\CourseController@video');//视频处理
+         Route::any('addDo','admin\CourseController@addDo');//课程添加
+         Route::any('del/{id}','admin\CourseController@del');//课程删除
+         Route::any('upd/{id}','admin\CourseController@upd');//课程编辑
+         Route::any('updDo/{id}','admin\CourseController@updDo');//课程修改
+     });
 	 #课程分类
 	 Route::prefix('category')->group(function(){
 	    Route::any('show','admin\CategoryController@show');
@@ -190,10 +201,4 @@ Route::prefix('index')->group(function(){
     });
     });
 });
-
-
-
-
-
-
 ?>

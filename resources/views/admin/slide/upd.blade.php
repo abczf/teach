@@ -9,16 +9,17 @@
 </nav>
 <article class="page-container">
     <form class="form form-horizontal" id="form-article-add" action="javascript:;">
+        <input type="hidden" name="slide_id" value="{{$slide->slide_id}}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>轮播图地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="slide_url">
+                <input type="text" class="input-text" value="{{$slide->slide_url}}" placeholder="" id="" name="slide_url">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>轮播图权重：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="slide_weight">
+                <input type="text" class="input-text" value="{{$slide->slide_weight}}" placeholder="" id="" name="slide_weight">
             </div>
         </div>
         <div class="row cl">
@@ -26,12 +27,14 @@
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="file" name="slide_imgs" id="slide_img">
                 <input type="hidden" name="slide_img" value="" id="img_paths">
-                <div  class="input-group" id="imgs_desc"></div>
+                <div id="imgesap">
+                    <img src='/{{$slide->slide_img}}' id="hide" width='200px'>
+                </div>
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button class="btn btn-primary radius" type="button" id="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                <button class="btn btn-primary radius" type="button" id="submit"><i class="Hui-iconfont">&#xe632;</i> 修改</button>
                 <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
             </div>
         </div>
@@ -50,20 +53,22 @@
                 var imgPsth = data;
                 $("#img_paths").val(imgPsth);
                 var imgstr = "<img src='/"+imgPsth+"' width='200px'>";
-                $("#imgs_desc").append(imgstr);
+                $("#hide").hide();
+                $("#imgesap").append(imgstr);
             }
         });
     })
     $("#submit").click(function(){
         var _this = $(this);
+        var slide_id=$("input[name='slide_id']").val();
         var slide_url = $("input[name='slide_url']").val();
         var slide_weight = $("input[name='slide_weight']").val();
         var slide_img = $("input[name='slide_img']").val();
-//        if(window.confirm("数据不能为空")){
-//            slide_url == ""||slide_weight==""||slide_img=="";
+//        if(slide_url == ""||slide_weight==""||slide_img==""){
+//            alert("数据不能为空");
 //            return false;
 //        }
-        var	url = "/admin/slide/addDo";
+        var	url = "/admin/slide/updDo/"+slide_id;
         $.ajax({
             //提交地址
             url:url,
