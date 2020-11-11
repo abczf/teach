@@ -84,6 +84,9 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('add','admin\RolerightController@add');
         Route::any('add_do','admin\RolerightController@add_do');
         Route::any('show','admin\RolerightController@show');
+        Route::any('del','admin\RolerightController@del');
+        Route::any('edit','admin\RolerightController@edit');
+        Route::any('edit2','admin\RolerightController@edit2');
     });
 	 #所有课程
 	 Route::prefix('course')->group(function(){
