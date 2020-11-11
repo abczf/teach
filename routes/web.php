@@ -252,10 +252,3 @@ Route::prefix('index')->group(function(){
 });
 ?>
 
-
-
-
-
-
-?>
->>>>>>> 603b9a96b13348e245a959b772240b9d4315e3fa
