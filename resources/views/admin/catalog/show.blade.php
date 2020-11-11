@@ -5,7 +5,32 @@
 <!--_menu 作为公共模版分离出去-->
 @include('admin.public.left')
 <!--/_menu 作为公共模版分离出去-->
+<!-- 分页样式 -->
+<style>
+    ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
+    ul.pagination li {display: inline;}
+
+    ul.pagination li {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+    }
+
+/*    ul.pagination li.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }*/
+    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
 		<span class="c-gray en">&gt;</span>
@@ -17,13 +42,8 @@
 	<div class="Hui-article">
 		<article class="cl pd-20">
 			<div class="text-c">
-				
-				日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-				<input type="text" name="" id="" placeholder=" 课程目录名称" style="width:250px" class="input-text">
-				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜课程目录</button>
+				<input type="text" name="" id="infor_title" placeholder="请输入课程目录名称" style="width:250px" class="input-text">
+				<button name="" id="" class="btn btn-success ss" ><i class="Hui-iconfont">&#xe665;</i> 搜目录</button>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
@@ -34,57 +54,40 @@
 					<i class="Hui-iconfont">&#xe600;</i> 添加课程目录
 				</a>
 				</span>
-				<span class="r">共有数据：<strong>54</strong> 条</span>
+				<span class="r">共有数据：<strong>{{$count}}</strong> 条</span>
 			</div>
-			<div class="mt-20">
+			<div class="mt-20" id='catalog_info'>
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
 							<th width="80">ID</th>
-							<th>标题</th>
-							<th width="80">分类</th>
-							<th width="80">来源</th>
-							<th width="120">更新时间</th>
-							<th width="75">浏览次数</th>
-							<th width="60">发布状态</th>
+							<th>目录名称</th>
+							<th width="80">描述</th>
+							<th width="80">添加时间</th>
 							<th width="120">操作</th>
 						</tr>
 					</thead>
 					<tbody>
+						@foreach($data as $v)
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""></td>
-							<td>10001</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">课程目录标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">已发布</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('课程目录编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td>{{$v->catalog_id}}</td>
+							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v->catalog_name}}</u></td>
+							<td>{{$v->catalog_desc}}</td>
+							<td>{{date('Y-m-d H:i:s'),$v->add_time}}</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="edit" href="{{url('admin/catalog/edit')}}?catalog_id={{$v->catalog_id}}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="del" catalog_id="{{$v->catalog_id}}" onclick="admin_del(this,catalog_id={{$v->catalog_id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
-							<td>10002</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">课程目录标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">草稿</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_shenhe(this,'10001')" href="javascript:;" title="审核">审核</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('课程目录编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-						</tr>
+						@endforeach
 					</tbody>
 				</table>
+				{{$data->appends(['infor_title'=>$infor_title])->links()}}
 			</div>
 		</article>
 	</div>
 </section>
-
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
@@ -106,88 +109,67 @@ $('.table-sort').dataTable({
 	]
 });
 
-/*课程目录-添加*/
-function article_add(title,url,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*课程目录-编辑*/
-function article_edit(title,url,id,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*课程目录-删除*/
-function article_del(obj,id){
+/*管理员-删除*/
+function admin_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
+		var catalog_id = $(this).attr('catalog_id');
+
+		// if(window.confirm("是否删除")){
 		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});
+			url:"{{url('admin/catalog/del')}}",
+			dataType:'json',
+			data:{catalog_id:id},
+			type:"post",
+			success:function(res){
+				if(res.status == 200){
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!',{icon:1,time:1000});
+					// alert(res.message);
+					//页面刷新
+					// history.go(0);
+					// layer.msg('已删除!',{icon:1,time:1000});
+					window.location.href="{{'show'}}";
+				}
+			}
+		})
+
+		//此处请求后台程序，下方是成功后的前台处理……
+		// })
+
 	});
 }
 
-/*课程目录-审核*/
-function article_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过不通过','取消'],
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});
-}
-/*课程目录-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
-}
-
-/*课程目录-发布*/
-function article_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
-	});
-}
-/*课程目录-申请上线*/
-function article_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+	$(document).ready(function(){
+		// 搜索
+	    $(document).on("click",".ss",function(){
+		    var infor_title = $("#infor_title").val();
+		        // alert(infor_title);
+		    var url = "/admin/catalog/show";
+		    var data={};
+		    data.infor_title = infor_title;
+		    $.ajax({
+		        url:url,
+		        data:data,
+		        type:"get",
+		        success: function(res){
+		            $('#catalog_info').html(res)
+		        }
+		    });
+		});
+
+	    // 分页
+	    $(document).on('click','.page-item a',function(){
+            var url = $(this).attr('href');
+            //alert(url);
+            $.get(url,function(res){
+            	$('#catalog_info').html(res);
+        	});
+         	return false;
+    	})
+    });
+</script>

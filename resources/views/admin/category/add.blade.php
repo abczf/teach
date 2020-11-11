@@ -33,19 +33,17 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+                <input type="text" class="input-text" placeholder="请输入分类名称" id="adminName" name="cate_name">
             </div>
         </div>
-       
-       
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">层级：</label>
+            <label class="form-label col-xs-4 col-sm-3">分类等级：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
-                    <option value="0">顶级</option>
-                    <option value="1">二级</option>
-                    <option value="2">三级</option>
-                    <option value="3">四级</option>
+                <select class="select" name="pid" size="1">
+                    <option value="0">--顶级分类--</option>
+                    @foreach($info as $v)
+                        <option value="{{$v->cate_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
+                    @endforeach
                 </select>
                 </span> </div>
         </div>
@@ -122,3 +120,26 @@ $(function(){
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).on('click','.btn',function(){
+        var cate_name = $("input[name='cate_name']").val();
+        if(cate_name == ''){
+            alert('分类名称不能为空');
+            return false;
+        }
+        var pid = $("select[name='pid']").val();
+        $.ajax({
+            url:"{{url('/admin/category/save')}}",
+            dataType:"json",
+            data:{cate_name:cate_name,pid:pid},
+            type:"post",
+            success:function(res){
+//                    console.log(res)
+                if(res.status == 200){
+                    alert(res.msg);
+                    window.location.href="{{'show'}}";
+                }
+            }
+        })
+    });
+</script>

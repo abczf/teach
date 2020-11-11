@@ -51,9 +51,14 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 
 	#轮播图
 	 Route::prefix('slide')->group(function(){
-	    Route::any('slide','admin\SlideController@slide');
-	    Route::any('add','admin\SlideController@add');
-	});
+	     Route::any('slide','admin\SlideController@slide');//轮播图展示
+	     Route::any('add','admin\SlideController@add');//轮播图渲染
+         Route::any('addDo','admin\SlideController@addDo');//轮播图添加
+         Route::any('img','admin\SlideController@img');//图片处理
+         Route::any('del/{id}','admin\SlideController@del');//轮播图删除
+         Route::any('upd/{id}','admin\SlideController@upd');//轮播图编辑
+         Route::any('updDo/{id}','admin\SlideController@updDo');//轮播图修改
+     });
 
 	 #角色
     Route::prefix('role')->group(function(){
@@ -64,6 +69,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('upd','admin\RoleController@upd');
         Route::any('upd_do','admin\RoleController@upd_do');
     });
+
     #权限
     Route::prefix('right')->group(function(){
         Route::any('show','admin\RightController@show');
@@ -73,6 +79,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('upd','admin\RightController@upd');
         Route::any('upd_do','admin\RightController@upd_do');
     });
+
     #用户
     Route::prefix('admin')->group(function(){
         Route::any('show','admin\AdminController@show');
@@ -82,42 +89,73 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('upd','admin\AdminController@upd');
         Route::any('upddo','admin\AdminController@upddo');
     });
+
     #用户角色
     Route::prefix('adminrole')->group(function(){
         Route::any('add/{id}','admin\AdminroleController@add');
         Route::any('add_do','admin\AdminroleController@add_do');
     });
+
     #角色权限
     Route::prefix('roleright')->group(function(){
         Route::any('add','admin\RolerightController@add');
         Route::any('add_do','admin\RolerightController@add_do');
         Route::any('show','admin\RolerightController@show');
+        Route::any('del','admin\RolerightController@del');
+        Route::any('edit','admin\RolerightController@edit');
+        Route::any('edit2','admin\RolerightController@edit2');
     });
+
 	 #所有课程
 	 Route::prefix('course')->group(function(){
+	     Route::any('show','admin\CourseController@show');//课程展示
+	     Route::any('add','admin\CourseController@add');//课程渲染
+         Route::any('img','admin\CourseController@img');//图片处理
+         Route::any('video','admin\CourseController@video');//视频处理
+         Route::any('addDo','admin\CourseController@addDo');//课程添加
+         Route::any('del/{id}','admin\CourseController@del');//课程删除
+         Route::any('upd/{id}','admin\CourseController@upd');//课程编辑
+         Route::any('updDo/{id}','admin\CourseController@updDo');//课程修改
 	    Route::any('show','admin\CourseController@show');
 	    Route::any('add','admin\CourseController@add');
 	});
+
 	 #课程分类
 	 Route::prefix('category')->group(function(){
 	    Route::any('show','admin\CategoryController@show');
 	    Route::any('add','admin\CategoryController@add');
+	    Route::any('save','admin\CategoryController@save');
+	    Route::any('del','admin\CategoryController@del');
+	    Route::any('edit','admin\CategoryController@edit');
+	    Route::any('update','admin\CategoryController@update');
 	});
+
 	 #课程目录
 	 Route::prefix('catalog')->group(function(){
-	    Route::any('show','admin\CatalogController@show');
-	    Route::any('add','admin\CatalogController@add');
-	});
+	     Route::any('show','admin\CatalogController@show');
+	     Route::any('add','admin\CatalogController@add');
+         Route::any('save','admin\CatalogController@save');
+         Route::any('del','admin\CatalogController@del');
+         Route::any('edit','admin\CatalogController@edit');
+         Route::any('update','admin\CatalogController@update');
+     });
+
 	  #目录详情
 	 Route::prefix('cataloginfo')->group(function(){
 	    Route::any('show','admin\CatalogInfoController@show');
 	    Route::any('add','admin\CatalogInfoController@add');
+	    Route::any('save','admin\CatalogInfoController@save');
+	    Route::any('del','admin\CatalogInfoController@del');
+	    Route::any('edit','admin\CatalogInfoController@edit');
+	    Route::any('update','admin\CatalogInfoController@update');
 	});
+
 	  #课程公告
 	Route::prefix('notice')->group(function(){
 		Route::any('show','admin\NoticeController@show');
 		Route::any('add','admin\NoticeController@add');
 	});
+
 	#讲师管理
 	Route::prefix('lect')->group(function(){
 		Route::any('show','admin\LectController@show');//讲师展示
@@ -128,6 +166,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 		Route::any('upd/{id}','admin\LectController@upd');//讲师编辑
 		Route::any('updDo/{id}','admin\LectController@updDo');//讲师修改
 	});
+
 	 #题库模块
 	 Route::prefix('bank')->group(function(){
 	    Route::any('show','admin\BankController@show');//题库展示
@@ -139,6 +178,7 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 
 
 	});
+
       #题库分类
      Route::prefix('anwsercate')->group(function(){
         Route::any('show','admin\AnwserCateController@show');//题库分类展示
@@ -147,14 +187,19 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('Fdel','admin\AnwserCateController@Fdel');//题库分类删除
         Route::any('edit/{bank_cate_id}','admin\AnwserCateController@edit');//修改
         Route::any('update/{bank_cate_id}','admin\AnwserCateController@update');//修改执行
-      
+
     });
+
     #导航栏
     Route::prefix('nav')->group(function(){
         Route::any('show','admin\NavController@show');
         Route::any('add','admin\NavController@add');
         Route::any('create','admin\NavController@create');
+        Route::any('edit','admin\NavController@edit');
+        Route::any('update','admin\NavController@update');
+        Route::any('upd','admin\NavController@upd');
     });
+
     #问答展示
     Route::prefix('question')->group(function(){
         Route::any('show','admin\QuestionController@show');
@@ -179,11 +224,14 @@ Route::prefix('index')->group(function(){
     });
     // 注册
     Route::any('register','index\RegisterController@register');
+    Route::any('save','index\RegisterController@save');
+    Route::any('sendSmsCode','index\RegisterController@sendSmsCode');
 
     // 课程列表
     Route::prefix('course')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
+
     // 课程详情
     Route::prefix('course')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
@@ -221,16 +269,11 @@ Route::prefix('index')->group(function(){
 
     # 个人中心
     Route::prefix('personal')->group(function(){
-    # 课程
-    Route::prefix('course')->group(function(){
-         Route::any('show','index\personal\CourseController@show');
-    });
+        # 课程
+        Route::prefix('course')->group(function(){
+             Route::any('show','index\personal\CourseController@show');
+        });
     });
 });
-
-
-
-
-
 
 ?>
