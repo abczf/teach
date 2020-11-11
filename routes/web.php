@@ -257,11 +257,3 @@ Route::prefix('index')->group(function(){
     });
 });
 ?>
-
-
-
-
-
-
-
-?>
