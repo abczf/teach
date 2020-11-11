@@ -125,6 +125,9 @@ Route::prefix('admin')->group(function(){
         Route::any('show','admin\NavController@show');
         Route::any('add','admin\NavController@add');
         Route::any('create','admin\NavController@create');
+        Route::any('edit','admin\NavController@edit');
+        Route::any('update','admin\NavController@update');
+        Route::any('upd','admin\NavController@upd');
     });
     #问答展示
     Route::prefix('question')->group(function(){

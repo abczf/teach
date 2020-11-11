@@ -46,6 +46,10 @@
             var data = {};
             data.name = $("input[name = 'nav_name']").val();
             data.url = $("input[name = 'nav_url']").val();
+            if(data.name == '' || data.url == ''){
+                alert("请输入内容");
+                return false;
+            }
             var url = "create";
             $.ajax({
                 url  : url,
