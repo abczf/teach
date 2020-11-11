@@ -138,6 +138,10 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 	Route::prefix('notice')->group(function(){
 		Route::any('show','admin\NoticeController@show');
 		Route::any('add','admin\NoticeController@add');
+        Route::any('create','admin\NoticeController@create');
+        Route::any('del','admin\NoticeController@del');
+        Route::any('upd','admin\NoticeController@upd');
+        Route::any('update','admin\NoticeController@update');
 	});
 
 	#讲师管理
@@ -211,7 +215,7 @@ Route::prefix('index')->group(function(){
         Route::any('list','index\CourselistController@courselist');
     });
     // 课程详情
-    Route::prefix('course')->group(function(){
+    Route::prefix('courseinfo')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
     # 资讯
@@ -253,12 +257,4 @@ Route::prefix('index')->group(function(){
     });
     });
 });
-?>
-
-
-
-
-
-
-
 ?>
