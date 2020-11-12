@@ -3,9 +3,7 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
-/*
-课程model
-*/
+
 class CourseModel extends Model
 {
     //
