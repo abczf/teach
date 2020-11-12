@@ -152,6 +152,10 @@ Route::get('/', function () {
 	Route::prefix('notice')->group(function(){
 		Route::any('show','admin\NoticeController@show');
 		Route::any('add','admin\NoticeController@add');
+        Route::any('create','admin\NoticeController@create');
+        Route::any('del','admin\NoticeController@del');
+        Route::any('upd','admin\NoticeController@upd');
+        Route::any('update','admin\NoticeController@update');
 	});
 
 	#讲师管理
@@ -170,6 +174,9 @@ Route::get('/', function () {
 	    Route::any('add','admin\BankController@add');//题库添加
         Route::any('store','admin\BankController@store');//添加执行
         Route::any('Fdel','admin\BankController@Fdel');//题库分类删除
+        Route::any('edit/{bank_id}','admin\BankController@edit');//题库修改
+        Route::any('update/{bank_id}','admin\BankController@update');//修改执行
+
 
 	});
 
@@ -235,7 +242,7 @@ Route::prefix('index')->group(function(){
     });
 
     // 课程详情
-    Route::prefix('course')->group(function(){
+    Route::prefix('courseinfo')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
     });
     # 资讯
@@ -278,4 +285,3 @@ Route::prefix('index')->group(function(){
     });
 });
 
-?>

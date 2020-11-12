@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseModel extends Model
 {
-    // 表名
-    public $table = 'teach_course';
+    //
+     protected $table="teach_course";
+	protected $primarykey='cou_id';
+    public $timestamps=false;
 
-    // 主键
-    public  $primaryKey = 'cou_id';
-
-    // 关闭时间补全
-    public  $timestamps = false;
+     //黑名单
+    protected $guarded=[];
 }
