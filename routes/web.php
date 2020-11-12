@@ -26,8 +26,8 @@ Route::get('/', function () {
     Route::any('admin/login','admin\LoginController@login');
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
-
-Route::prefix('admin')->middleware('checklogin')->group(function(){
+    Route::any('/admin/lect/img','admin\LectController@img');//图片处理
+    Route::prefix('admin')->middleware('checklogin')->group(function(){
     # 首页
     Route::view('','admin.admin');
     # 咨询模块
@@ -116,8 +116,6 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
          Route::any('del/{id}','admin\CourseController@del');//课程删除
          Route::any('upd/{id}','admin\CourseController@upd');//课程编辑
          Route::any('updDo/{id}','admin\CourseController@updDo');//课程修改
-	    Route::any('show','admin\CourseController@show');
-	    Route::any('add','admin\CourseController@add');
 	});
 
 	 #课程分类
@@ -160,7 +158,6 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
 	Route::prefix('lect')->group(function(){
 		Route::any('show','admin\LectController@show');//讲师展示
 		Route::any('add','admin\LectController@add');//讲师渲染
-		Route::any('img','admin\LectController@img');//图片处理
 		Route::any('addDo','admin\LectController@addDo');//讲师添加
 		Route::any('del/{id}','admin\LectController@del');//讲师删除
 		Route::any('upd/{id}','admin\LectController@upd');//讲师编辑
@@ -186,6 +183,14 @@ Route::prefix('admin')->middleware('checklogin')->group(function(){
         Route::any('update/{bank_cate_id}','admin\AnwserCateController@update');//修改执行
 
     });
+        #考试模块
+        Route::prefix('exam')->group(function(){
+            Route::any('show','admin\PaperController@show');//考卷展示
+            Route::any('add','admin\PaperController@add');//考卷添加
+            Route::any('add_do','admin\PaperController@add_do');//添加执行
+            Route::any('del','admin\BankController@del');//题库分类删除
+
+        });
 
     #导航栏
     Route::prefix('nav')->group(function(){
