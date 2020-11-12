@@ -25,7 +25,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>活动结束时间：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="date" class="input-text" placeholder="" id="act_title" name="act_title">
+                <input type="datetime" class="input-text" placeholder="" id="act_title" name="act_title">
             </div>
         </div>
         <div class="row cl">

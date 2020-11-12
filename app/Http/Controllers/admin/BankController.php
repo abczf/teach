@@ -23,13 +23,13 @@ class BankController extends Controller
           $where[]=['bank_title','like',"%$bank_title%"];
         }
         // dd($bank_title);
-        $bank = BankModel::where($where)->paginate(3);
+        $bank = BankModel::where($where)->paginate(8);
          foreach ($bank as $v) {
             $bank = BankModel::select('teach_bank.*', 'cou_name', 'bank_cate_name')
                 ->leftjoin('teach_course', 'teach_bank.cou_id', '=', 'teach_course.cou_id')
                 ->leftjoin('teach_bank_category', 'teach_bank.bank_cate_id', '=', 'teach_bank_category.bank_cate_id')
                 ->where($where)
-                ->paginate(3);
+                ->paginate(8);
             foreach ($bank as $v) {
                 $v->goods_img = explode(',', $v->goods_img);
             }
