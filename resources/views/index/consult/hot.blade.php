@@ -36,8 +36,7 @@
     <h3 class="righttit">全部资讯</h3>
     <div class="clearh"></div>
     <span class="bread nob">
-
-            <a class="fombtn cur" href="{{url('index/consult/show')}}">全部资讯</a>
+       <a class="fombtn cur" href="{{url('index/consult/show')}}">全部资讯</a>
         @foreach($cate as $v)
             <a class="fombtn" href="{{$v->cate_url}}">{{$v->cate_name}}</a>
         @endforeach
@@ -49,7 +48,7 @@
     @foreach($consult as $v)
     <div class="articlelist">
         <h3><a class="artlink" href="{{url('index/consultInfo/show')}}?infor_id={{$v->infor_id}}">{{$v->infor_title}}</a></h3>
-        <p style="margin-top: 30px">{{$v->infor_content}}</p>
+        <p>{{$v->infor_content}}</p>
         <p class="artilabel">
         <span class="ask_label">{{$v->cate_name}}</span>
         <b class="labtime">{{date('Y-m-d H:i:s'),$v->add_time}}</b>
@@ -60,7 +59,7 @@
     <div class="clearh" style="height:20px;"></div>
     <span class="pagejump">
         <p class="userpager-list">
-          {{$consult->links()}}
+            {{$consult->links()}}
         </p>
     </span>
     <div class="clearh" style="height:10px;"></div>
@@ -84,11 +83,14 @@
     <div class="cr1">
     <h3 class="righttit">推荐课程</h3>
     <div class="teacher">
+
+
         @foreach($desc as $v)
             <div class="teapic">
                 <a href="{{url('index/course/cont')}}?cou_id={{$v->cou_id}}"  target="_blank"><img src="/{{$v->cou_img}}" width="150px"></a>
                 <h3 class="courh3"><a href="#" class="ask_link" target="_blank">{{$v->cou_name}}</a></h3>
             </div>
+            <div class="clearh"></div>
         @endforeach
     </div>
     </div>

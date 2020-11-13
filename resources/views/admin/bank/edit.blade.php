@@ -32,19 +32,20 @@
 <body>
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+         <input type="hidden" id="bank_id" value="{{$bank->bank_id}}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>题干：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="bank_title" name="bank_title">
+                <input type="text" class="input-text" value="{{$bank->bank_title}}" placeholder="" id="bank_title" name="bank_title">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">所属课程：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
                 <select class="select" name="cou_id" id="cou_id" size="1">
-                    <option value="0">请选择课程课程</option>
+                    <option value="0">请选择课程</option>
                     @foreach($course as $k=>$v)
-                    <option value="{{$v->cou_id}}">{{$v->cou_name}}</option>
+                    <option value="{{$v->cou_id}}" {{$bank->cou_id==$v->cou_id ? 'selected' : ''}}>{{$v->cou_name}}</option>
                     @endforeach
                 </select>
                 </span> </div>
@@ -55,7 +56,7 @@
                 <select class="select" name="bank_cate_id" id="bank_cate_id" size="1">
                     <option value="0">请选择提醒</option>
                     @foreach($anwsercate as $k=>$v)
-                    <option value="{{$v->bank_cate_id}}">{{$v->bank_cate_name}}</option>
+                    <option value="{{$v->bank_cate_id}}" {{$bank->bank_cate_id==$v->bank_cate_id ? 'selected' : ''}}>{{$v->bank_cate_name}}</option>
                     @endforeach     
                 </select>
                 </span> </div>
@@ -63,14 +64,14 @@
           <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">选项:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="bank_content" id="bank_content" cols="" rows="" class="textarea"  placeholder="选择题选项" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <textarea name="bank_content" id="bank_content" cols="" rows="" class="textarea"  placeholder="选择题选项" dragonfly="true" onKeyUp="textarealength(this,100)">{{$bank->bank_content}}</textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>答案：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off"  placeholder="正确答案" id="bank_anwser" name="bank_anwser">
+                <input type="text" class="input-text" autocomplete="off"  placeholder="正确答案" id="bank_anwser" name="bank_anwser" value="{{$bank->bank_anwser}}">
             </div>
         </div>
         <div class="row cl">
@@ -101,15 +102,7 @@ $(function(){
         var bank_cate_id  = $("#bank_cate_id").val();
         var bank_content = $("#bank_content").val();
         var bank_anwser = $("#bank_anwser").val();
-        if(bank_title==''){
-            layer.alert("<font color='red'>题目不能为空</font>");
-            return false;
-        }
-        if(bank_anwser==''){
-            layer.alert("<font color='red'>请填写答案</font>");
-            return false;
-        }
-        var url = "/admin/bank/store";
+        var url = "/admin/bank/update/{{$bank->bank_id}}";
         var data={};
         data.bank_title = bank_title;
         data.cou_id = cou_id;
@@ -125,7 +118,7 @@ $(function(){
                   if(res.success == 200){
                         // alert(res.msg);
                         var url = res.url;
-                        layer.msg('添加成功',{icon:1,time:1000});
+                        layer.msg('修改成功',{icon:1,time:1000});
                         window.location.href = url;
                 }
             }

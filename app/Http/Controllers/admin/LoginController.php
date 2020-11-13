@@ -20,8 +20,6 @@ class LoginController extends Controller
         ];
         $model = new LoginModel();
         $data  = $model->where($where)->first();
-//        var_dup($data->password);
-//        var_dump($data);die;
         if(empty($data)){
             return $this->json_en(100,"登录失败---");
         } else if(md5($pwd) != $data['password']){

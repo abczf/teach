@@ -60,9 +60,13 @@
             var is_hot = $("#is_hot").val();
             var infor_content = $("#infor_content").val();
             if(infor_title==''){
-                alert('资讯标题必填')
+                layer.alert("<font color='red'>资讯标题必填</font>");
                 return false;
             }
+            if(infor_content==''){
+            layer.alert("<font color='red'>内容不能为空</font>");
+            return false;
+        }
             var url = "/admin/consult/store";
             var data={};
             data.infor_title = infor_title;

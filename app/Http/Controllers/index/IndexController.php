@@ -13,4 +13,7 @@ class IndexController extends Controller
         $nav=NavModel::where("is_del",1)->get();
         return view("index/index");
     }
+    public function show(){
+
+    }
 }

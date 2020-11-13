@@ -3,7 +3,9 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
-
+/*
+题库model
+*/
 class BankModel extends Model
 {
     // 表名
@@ -14,4 +16,7 @@ class BankModel extends Model
 
     // 关闭时间补全
     public  $timestamps = false;
+
+     //黑名单
+    protected $guarded=[];
 }

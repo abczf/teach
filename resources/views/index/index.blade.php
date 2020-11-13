@@ -111,8 +111,7 @@
                          data-speed="1000"
                          data-start="2000"
                          data-easing="easeOutExpo"
-                         data-endeasing="fade" style="left:700px"
-                    >
+                         data-endeasing="fade" style="left:700px">
                         <img src="images-slider/guy-shadow.png" alt="">
                     </div>
 
