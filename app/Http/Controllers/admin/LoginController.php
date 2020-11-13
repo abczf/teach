@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\models\LoginModel;
+use App\models\LoginModel; 
 
 class LoginController extends Controller
 {
@@ -20,6 +20,7 @@ class LoginController extends Controller
         ];
         $model = new LoginModel();
         $data  = $model->where($where)->first();
+
         if(empty($data)){
             return $this->json_en(100,"登录失败---");
         } else if(md5($pwd) != $data['password']){

@@ -84,7 +84,7 @@
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
 							<th width="70">公告ID</th>
-{{--							<th width="80">排序</th>--}}
+							<th width="80">排序</th>
 							<th width="200">课程ID</th>
                             <th width="400">公告内容</th>
                             <th width="120">添加时间</th>
@@ -96,9 +96,10 @@
 						<tr class="text-c">
 							<td><input name="" type="checkbox" value=""></td>
 							<td>{{$v->notice_id}}</td>
-{{--							<td><input type="text" class="input-text text-c" value="1"></td>--}}
+            				<td><input type="text" class="input-text text-c" value="1"></td>
 							<td>{{$v['cou_id']}}</td>
-							<td>{{$v->notice_desc}}</td>
+							<!-- <td>{{$v->notice_desc}}</td> -->
+                            <td><a href="javascript:;" onclick="showContent('{{$v->notice_desc}} ')">查看资讯内容</a></td>
 							<td>{{date("Y-m-d H:i:s",$v['add_time'])}}</td>
 							<td class="f-14 product-brand-manage">
                                 <a style="text-decoration:none" href="{{url('/admin/notice/upd')}}?id={{$v['notice_id']}}" title="编辑">
@@ -187,7 +188,11 @@
         })
         return;
     })
-
+//查看资讯内容方法
+function showContent(notice_desc){
+    
+    layer.alert(notice_desc);
+ }
 </script>
 
 

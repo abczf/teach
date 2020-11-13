@@ -225,6 +225,7 @@ Route::prefix('index')->group(function(){
     // 登录
     Route::prefix('login')->group(function(){
         Route::any('','index\LoginController@login');
+        Route::any('Do','index\LoginController@LoginDo');
     });
     // 注册
     Route::any('register','index\RegisterController@register');
