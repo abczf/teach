@@ -220,6 +220,9 @@ Route::prefix('index')->group(function(){
     # 资讯
     Route::prefix('consult')->group(function(){
         Route::any('show','index\ConsultController@show');
+        Route::any('hot','index\ConsultController@hot');
+        Route::any('move','index\ConsultController@move');
+        Route::any('exam','index\ConsultController@exam');
     });
 
     # 资讯详情
