@@ -27,7 +27,7 @@ Route::get('/', function () {
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
 
-Route::prefix('admin')->middleware('checklogin')->group(function(){
+Route::prefix('admin')->group(function(){
     # 首页
     Route::view('','admin.admin');
     # 咨询模块

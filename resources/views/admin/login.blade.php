@@ -84,7 +84,7 @@
                 return false;
             }
             var data = {name:name,pwd:pwd};
-            var url = "login/Do";
+            var url = "{{url('admin/login/Do')}}";
             $.ajax({
                 url  : url,
                 type : "post",
@@ -111,7 +111,6 @@
                     location.href=va
                     clearInterval(aa)
                 }else{
-
                     $("#zzl").show()
                     s=s+10
                     $("#tx").remove()
