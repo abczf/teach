@@ -3,7 +3,8 @@
 							<td><input type="checkbox" value="" name=""></td>
 							<td>{{$v['infor_id']}}</td>
 							<td class="text-l">{{$v['infor_title']}}</td>
-							<td>{{$v['infor_content']}}</td>
+							<!-- <td>{{$v['infor_content']}}</td> -->
+							<td><a href="javascript:;" onclick="showContent('{{$v->infor_content}} ')">查看资讯内容</a></td>
 							<td> {{date('Y-m-d H:i:s',$v['add_time'])}}</td>
 							<td class="td-status"><span class="label label-success radius">已发布</span></td>
 							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>

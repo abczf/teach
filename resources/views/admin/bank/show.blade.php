@@ -88,8 +88,8 @@
 						<td>{{$v['bank_title']}}</td>
 						<td>{{$v['cou_name']}}</td>
 						<th width="50">{{$v['bank_cate_name']}}</th>
-						 <td>{{$v['bank_content']}}</td>
-						<!-- <td><a href="javascript:;" onclick="showOptions()">查看选项</a></td> -->
+						 <!-- <td>{{$v['bank_content']}}</td> -->
+						<td><a href="javascript:;" onclick="showContent('{{$v->bank_content}} ')">查看选项</a></td>
 						<td>{{$v['bank_anwser']}}</td>
 						<td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
 						<td class="td-status">
@@ -145,7 +145,6 @@ $(function(){
           // 查看资讯内容
 });
 
-
     //删除
 	$(document).on('click','.del',function(){
 		 var bank_id = $(this).attr("bank_id");
@@ -181,6 +180,17 @@ $(function(){
 })
 
 
+//查看选项方法
+function showContent(bank_content){
+	//按照~进行
+	var arr = bank_content.split('~');
+	// 循环
+	var content = '';
+	for(var i = 0;i < arr.length;i++){
+		content += arr[i] + '</br>';
+	}
+    layer.alert(content);
+ }
 
 
 
@@ -202,6 +212,7 @@ function article_edit(title,url,id,w,h){
 	});
 	layer.full(index);
 }
+
 
 
 /*资讯-下架*/

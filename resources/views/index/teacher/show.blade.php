@@ -11,13 +11,17 @@
 <!-- InstanceBeginEditable name="EditRegion1" -->
 <div class="coursecont" style="background: none repeat scroll 0 0 #fff;border-radius: 3px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);" >
     <h3 class="righttit" style="padding-left:50px;">优秀讲师</h3>
-	@foreach($teacher as $v)
+	@foreach($course as $v)
 	<div class="coursepic tecti">
 		<div class="teaimg">
-		<a href="{{url('index/teacherInfo/show')}}?lect_id={{$v->lect_id}}" target="_blank"><img src="/{{$v->lect_img}}" width="200px"></a>
+		<a href="{{url('index/teacherInfo/show')}}?lect_id={{$v->lect_id}}" target="_blank"><img src="/{{$v->lect_img}}" width="150px"></a>
 		</div>
 		<div class="teachtext">
-			<h3><a href="{{url('index/teacherInfo/show')}}?lect_id={{$v->lect_id}}" target="_blank" class="teatt">{{$v->lect_name}}</a>&nbsp;&nbsp;<strong>会计基础、会计电算化讲师</strong></h3>
+
+			<h3><a href="{{url('index/teacherInfo/show')}}?lect_id={{$v->lect_id}}" target="_blank" class="teatt">{{$v->lect_name}}</a>
+				&nbsp;&nbsp;
+					<strong>{{$v->cou_name}}</strong>
+			</h3>
 			<h4>个人简介</h4>
 			<p>{{$v->lect_resume}}</p>
 			<h4>授课风格</h4>

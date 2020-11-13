@@ -71,7 +71,8 @@
 							<td><input type="checkbox" value="" name=""></td>
 							<td>{{$v['infor_id']}}</td>
 							<td class="text-l">{{$v['infor_title']}}</td>
-							<td>{{$v['infor_content']}}</td>
+							<!-- <td>{{$v['infor_content']}}</td> -->
+							<td><a href="javascript:;" onclick="showContent('{{$v->infor_content}} ')">查看资讯内容</a></td>
 							<td> {{date('Y-m-d H:i:s',$v['add_time'])}}</td>
 							<td class="td-status"><span class="label label-success radius">已发布</span></td>
 							<td class="f-14 td-manage">
@@ -125,10 +126,7 @@ $(function(){
         }
     });
 
-          // 查看资讯内容
-    function showOptions(infor_content){
-    	layer.alert(infor_content);
-    }
+  
 });
 
     
@@ -167,6 +165,11 @@ $(function(){
     })
 })
 
+//查看资讯内容方法
+function showContent(infor_content){
+	
+    layer.alert(infor_content);
+ }
 
 
 

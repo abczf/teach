@@ -101,6 +101,14 @@ $(function(){
         var bank_cate_id  = $("#bank_cate_id").val();
         var bank_content = $("#bank_content").val();
         var bank_anwser = $("#bank_anwser").val();
+        if(bank_title==''){
+            layer.alert("<font color='red'>题目不能为空</font>");
+            return false;
+        }
+        if(bank_anwser==''){
+            layer.alert("<font color='red'>请填写答案</font>");
+            return false;
+        }
         var url = "/admin/bank/store";
         var data={};
         data.bank_title = bank_title;

@@ -25,6 +25,7 @@ class BankController extends Controller
             $where[] = ['bank_title', 'like', "%$bank_title%"];
         }
         // dd($bank_title);
+
         $bank = BankModel::where($where)->paginate(10);
         foreach ($bank as $v) {
             $bank = BankModel::select('teach_bank.*', 'cou_name', 'bank_cate_name')
