@@ -18,89 +18,165 @@
 <link rel="stylesheet" type="text/css" href="/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/css/style.css" />
+
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script><![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加管理员 - 管理员管理 - H-ui.admin v3.0</title>
+<title>添加课程 - 课程管理 - H-ui.admin v3.0</title>
 <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="cl pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
+	<form action="javascript:;" class="form form-horizontal" id="form-admin-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+				<input type="text" class="input-text" value="" placeholder="" id="cou_name" name="cou_name">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="password2">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学习状态：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box">
-					<input name="sex" type="radio" id="sex-1" checked>
-					<label for="sex-1">男</label>
+					<input name="cou_status" type="radio" value="1" id="" checked>
+					<label for="sex-1">未学习</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-2" name="sex">
-					<label for="sex-2">女</label>
+					<input type="radio"  id="" value="2" name="cou_status">
+					<label for="sex-2">学习中</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio"  id="" value="3" name="cou_status">
+					<label for="sex-2">已学完</label>
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="@" name="email" id="email">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">角色：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程讲师：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-				<select class="select" name="adminRole" size="1">
-					<option value="0">超级管理员</option>
-					<option value="1">总编</option>
-					<option value="2">栏目主辑</option>
-					<option value="3">栏目编辑</option>
+				<select class="select" name="lect_id" size="1">
+					<option value="">选择讲师</option>
+					@foreach($lect as $v)
+						<option value='{{$v->lect_id}}'>{{$v->lect_name}}</option>
+					@endforeach
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程分类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+				<select class="select" name="cate_id" size="1">
+					<option value="">选择分类</option>
+					@foreach($cate as $v)
+						<option value="{{$v->cate_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">备注：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程目录：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+				<select class="select" name="catalog_id" size="1">
+					<option value="">选择目录</option>
+					@foreach($cata as $v)
+						<option value='{{$v->catalog_id}}'>{{$v->catalog_name}}</option>
+					@endforeach
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+				<input type="file" name="cou_imgs" id="cou_img">
+				<input type="hidden" name="cou_img" value="" id="img_paths">
+				<div  class="input-group" id="imgs_desc"></div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程视频：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" name="cou_videos" id="cou_video">
+				<input type="hidden" name="cou_video" value="" id="video_paths">
+				<div  class="input-group" id="videos_desc"></div>
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+				<input class="btn btn-primary radius" type="submit" id="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
 			</div>
 		</div>
 	</form>
 </article>
 
+<link rel="stylesheet" href="/uploadify/uploadify.css">
+<script src="/uploadify/jquery.js"></script>
+<script src="/uploadify/jquery.uploadify.js"></script>
+<script>
+	$(document).ready(function() {
+		//alert(111);
+		//封面
+		$("#cou_img").uploadify({
+			uploader: "/admin/course/img",
+			swf: "/uploadify/uploadify.swf",
+			onUploadSuccess: function (res, data, msg) {
+				var imgPsth = data;
+				$("#img_paths").val(imgPsth);
+				var imgstr = "<img src='/"+imgPsth+"' width='200px'>";
+				$("#imgs_desc").append(imgstr);
+			}
+		});
+		//视频
+		$("#cou_video").uploadify({
+			uploader: "/admin/course/video",
+			swf: "/uploadify/uploadify.swf",
+			onUploadSuccess: function (res, data, msg) {
+				var videoPsth = data;
+				$("#video_paths").val(videoPsth);
+				var videostr = "<video src='/"+videoPsth+"' controls='controls' width='200px'></video>";
+				$("#videos_desc").append(videostr);
+			}
+		});
+	})
+	//添加
+	$("#submit").click(function(){
+		var _this = $(this);
+		var cou_name = $("input[name='cou_name']").val();
+		var cou_status = $("input[name='cou_status']:checked").val();
+		var lect_id = $("select[name='lect_id']").val();
+		var cate_id = $("select[name='cate_id']").val();
+		var catalog_id = $("select[name='catalog_id']").val();
+		var cou_img = $("input[name='cou_img']").val();
+		var cou_video = $("input[name='cou_video']").val();
+		if("cou_name"==""||cou_status==""||lect_id==""||cate_id==""||catalog_id==""||cou_img==""||cou_video==""){
+			alert("数据不能为空");
+		}
+		var	url = "/admin/course/addDo";
+		$.ajax({
+			//提交地址
+			url:url,
+			//提交方式
+			type:"post",
+			//提交数据
+			data:{cou_name:cou_name,cou_status:cou_status,lect_id:lect_id,cate_id:cate_id,catalog_id:catalog_id,cou_img:cou_img,cou_video:cou_video},
+			//是否为同步
+			adync:true,
+			//回调函数
+			success:function(res){
+				location.href=res;
+			}
+		})
+	});
+</script>
+
+
+
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script> 
 <script type="text/javascript" src="/admin/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="/admin/static/h-ui.admin/js/H-ui.admin.page.js"></script> 

@@ -22,7 +22,7 @@ class NavController extends Controller
         if(request()->ajax()){
             return view("admin.nav.showajax",["data"=>$res,"name"=>$name]);
         }
-        return view ('admin.nav.show',['data'=>$res,"name"=>$name]);
+        return view('admin.nav.show',['data'=>$res,"name"=>$name]);
     }
     public function add(){
         return view('admin.nav.add');

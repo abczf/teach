@@ -17,6 +17,18 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>活动开始时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="" id="act_title" name="act_title">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>活动结束时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="datetime" class="input-text" placeholder="" id="act_title" name="act_title">
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="act_content" id="act_content" cols="30" rows="10"></textarea>
