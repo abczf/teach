@@ -4,7 +4,7 @@
 
 <div class="content">
     <div class="fullwidthbanner-container">
-        <div id="revolution-slider" style="max-height:900px !important; background:#46B0AC">
+        <div id="revolution-slider" style="max-height:575px !important; background:#46B0AC">
             <ul>
                 @foreach($slide as $k=>$v)
                 <li data-transition="fade" data-slotamount="10" data-masterspeed="300" data-thumb="images-slider/thumbs/thumb1.jpg">

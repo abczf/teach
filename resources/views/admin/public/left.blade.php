@@ -48,7 +48,15 @@
                 </ul>
             </dd>
         </dl>
-
+        <dl id="menu-system">
+            <dt><i class="Hui-iconfont">&#xe70c;</i> 考试管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a href="{{url('admin/exam/show')}}" title="问答管理">考试管理</a></li>
+                    <li><a href="{{url('admin/exam/exam_add')}}" title="问答管理">考试添加</a></li>
+                </ul>
+            </dd>
+        </dl>
         <dl id="menu-tongji">
             <dt><i class="Hui-iconfont">&#xe72b;</i> 导航栏<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>

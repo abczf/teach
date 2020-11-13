@@ -12,9 +12,9 @@
         margin: 0;
     }
 
-    ul.pagination li {display: inline;}
+    ul.pagination li.page-item{display: inline;}
 
-    ul.pagination li {
+    ul.pagination li.page-item{
         color: black;
         float: left;
         padding: 8px 16px;
@@ -23,12 +23,12 @@
         border: 1px solid #ddd;
     }
 
-    ul.pagination li.active {
+    ul.pagination li.active span.page-link{
         background-color: #4CAF50;
         color: black;
         border: 1px solid #4CAF50;
     }
-    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+    ul.pagination li.page-item:hover:not(.active) {background-color: #ddd;}
 </style>
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
@@ -48,7 +48,9 @@
 				<span class="l">
 				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 				<a class="btn btn-primary radius" data-title="添加题库" _href="article-add.html" onclick="article_add('添加题库','{{url('admin/bank/add')}}')" href="{{url('admin/bank/add')}}"><i class="Hui-iconfont">&#xe600;</i> 添加题库</a>
-				</span>
+				<span class="btn btn-primary radius" id="but" data-title="存入考卷" _href="article-add.html"><i class="Hui-iconfont">&#xe600;</i> 存入考卷</span>
+
+				</span><input type="hidden" value="{{$_GET['paper_id']}}" id="paper_id">
 				<span class="r">共有数据：<strong>54</strong> 条</span>
 			</div>
 			<div class="mt-20">
@@ -76,14 +78,18 @@
 					 @foreach($bank as $k=>$v)
 					<tr class="text-c">
 						<td>
-							<input type="checkbox" value="1" name="">
+                            @if(in_array($v['bank_id'],$bank_ids))
+                            <input type="checkbox" value="{{$v['bank_id']}}" class="box" name=""  checked>
+                            @else
+							<input type="checkbox" value="{{$v['bank_id']}}" class="box" name="" >
+                                @endif
 						</td>
 						<td>{{$v['bank_id']}}</td>
 						<td>{{$v['bank_title']}}</td>
 						<td>{{$v['cou_name']}}</td>
 						<th width="50">{{$v['bank_cate_name']}}</th>
-						 <td>{{$v['bank_content']}}</td>
-						<!-- <td><a href="javascript:;" onclick="showOptions()">查看选项</a></td> -->
+						 <!-- <td>{{$v['bank_content']}}</td> -->
+						<td><a href="javascript:;" onclick="showContent('{{$v->bank_content}} ')">查看选项</a></td>
 						<td>{{$v['bank_anwser']}}</td>
 						<td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
 						<td class="td-status">
@@ -92,9 +98,9 @@
 						<td class="td-manage">
 							<a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="停用">
 								<i class="Hui-iconfont">&#xe631;</i>
-							</a> 
+							</a>
 							<a title="编辑" href="{{url('admin/bank/edit/'.$v->bank_id)}}" class="ml-5" style="text-decoration:none">
-								<i class="Hui-iconfont">&#xe6df;</i></a> 
+								<i class="Hui-iconfont">&#xe6df;</i></a>
 								<a title="删除"  class="ml-5 del" style="text-decoration:none" bank_id="{{$v->bank_id}}">
 									<i class="Hui-iconfont">&#xe6e2;</i>
 								</a>
@@ -139,7 +145,6 @@ $(function(){
           // 查看资讯内容
 });
 
-    
     //删除
 	$(document).on('click','.del',function(){
 		 var bank_id = $(this).attr("bank_id");
@@ -164,7 +169,7 @@ $(function(){
             }
 	})
 	 //无刷新分页
-        $(document).on('click','.page-item a',function(){
+        $(document).on('click','.pagination a',function(){
             var url = $(this).attr('href');
             //alert(url);
             $.get(url,function(res){
@@ -175,6 +180,17 @@ $(function(){
 })
 
 
+//查看选项方法
+function showContent(bank_content){
+	//按照~进行
+	var arr = bank_content.split('~');
+	// 循环
+	var content = '';
+	for(var i = 0;i < arr.length;i++){
+		content += arr[i] + '</br>';
+	}
+    layer.alert(content);
+ }
 
 
 
@@ -196,6 +212,7 @@ function article_edit(title,url,id,w,h){
 	});
 	layer.full(index);
 }
+
 
 
 /*资讯-下架*/
@@ -235,3 +252,37 @@ function article_shenqing(obj,id){
     }
     ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 </style>*/ -->
+<script>
+    $(function(){
+        $('#but').bind('click',function(){
+            var paper_id=$("#paper_id").val();
+            var str='';
+            $(".box").each(function(){
+                if($(this).prop("checked")==true){
+                    str=str+$(this).val()+",";
+                }
+            })
+            var bank_id=str.substr(0,str.length-1);
+               alert(bank_id);
+            if(bank_id=='')
+                return false;
+
+            $.ajax({
+                url:"/admin/bank/exam_add",
+                type:'post',
+                dataType:'json',
+                data:{'paper_id':paper_id,'bank_id':bank_id},
+                success:function(res){
+                    if(res.error==200){
+                        alert(res.msg);
+                        location.href="/admin/exam/show";
+                    }else{
+                        alert(res.msg);
+                    }
+
+                }
+            })
+            return false;
+        });
+    })
+</script>
