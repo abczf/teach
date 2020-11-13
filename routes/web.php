@@ -289,6 +289,9 @@ Route::prefix('index')->group(function(){
         Route::prefix('course')->group(function(){
              Route::any('show','index\personal\CourseController@show');
         });
+        Route::prefix('personalinfo')->group(function(){
+            Route::any('show','index\PersonalinfoController@show');
+        });
     });
 
     # 题库
