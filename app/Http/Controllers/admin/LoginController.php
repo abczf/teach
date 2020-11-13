@@ -9,6 +9,7 @@ use App\models\LoginModel;
 class LoginController extends Controller
 {
     public function login(){
+//        dd(session("login")["admin_name"]);
     	return view('admin.login');
     }
 
@@ -25,9 +26,12 @@ class LoginController extends Controller
         } else if(md5($pwd) != $data['password']){
            return $this->json_en(100,"登录失败---");
         }else {
-            session(['admin_id' => $data->admin_id]);
-            session(['admin_name' => $data->admin_name]);
-            $request->session()->save();
+            $data = [
+                'admin_id' => $data->admin_id,
+                'admin_name' => $data->admin_name
+            ];
+            session(["login"=>$data]);
+            session()->save();
            return $this->json_en(200,"登录成功---");
         }
 
