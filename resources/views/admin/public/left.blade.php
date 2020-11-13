@@ -53,6 +53,7 @@
             <dd>
                 <ul>
                     <li><a href="{{url('admin/exam/show')}}" title="问答管理">考试管理</a></li>
+                    <li><a href="{{url('admin/exam/exam_add')}}" title="问答管理">考试添加</a></li>
                 </ul>
             </dd>
         </dl>

@@ -9,7 +9,7 @@
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 考卷管理 <span class="c-gray en">&gt;</span> 考卷管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="Hui-article">
         <article class="cl pd-20">
-
+            <div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/exam/add')}}" ><i class="Hui-iconfont">&#xe600;</i> 添加考卷</a> </span></div>
             <div class="mt-10">
                 <table class="table table-border table-bordered table-hover table-bg">
                     <thead>
@@ -19,26 +19,28 @@
                     <tr class="text-c">
                         <th width="25"><input type="checkbox" value="" name=""></th>
                         <th width="40">ID</th>
-                        <th width="200">考试id</th>
-                        <th width="300">题库id</th>
+                        <th width="200">考试名称</th>
+                        <th width="200">题库名称</th>
                         <th width="70">编号</th>
                         <th width="70">添加时间</th>
                         <th width="70">操作</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($exam as $k=>$v)
                     <tr class="text-c">
                         <td><input type="checkbox" value="" name=""></td>
-                        <td>1</td>
-                        <td><a href="#">admin</a></td>
-                        <td>拥有至高无上的权利</td>
-                        <td>拥有至高无上的权利</td>
-                        <td>拥有至高无上的权利</td>
-                        <td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.html','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                        <td>{{$v->paper_id}}</td>
+                        <td>{{$v->exam_name}}</td>
+                        <td>{{$v->bank_id}}</td>
+                        <td>{{$v->parper_num}}</td>
+                        <td>{{date('Y-m-d H:i:s'),$v->add_time}}</td>
+                        <td class="f-14">
+                            <a title="编辑" href="{{url('admin/exam/edit/')}}?paper_id={{$v->paper_id}}"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                            <a title="删除" href="javascript:;" paper_id="{{$v->paper_id}}" class="del" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                            <a href="{{url('/admin/bank/show')}}?paper_id={{$v->paper_id}}">题库</a></td>
                     </tr>
-
-
-
+                @endforeach
                     </tbody>
                 </table>
             </div>、
@@ -81,3 +83,23 @@
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $(document).on('click','.del',function () {
+            var _this = $(this);
+            var paper_id = $(this).attr('paper_id');
+
+            $.ajax({
+                url:"{{url('admin/exam/del')}}",
+                data:{paper_id:paper_id},
+                dataType:"json",
+                type:"post",
+                success:function (res) {
+                    if(res.status == 200){
+                        _this.parents('tr').remove();
+                    }
+                }
+            });
+        });
+    });
+</script>

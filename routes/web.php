@@ -176,7 +176,7 @@ Route::get('/', function () {
         Route::any('Fdel','admin\BankController@Fdel');//题库分类删除
         Route::any('edit/{bank_id}','admin\BankController@edit');//题库修改
         Route::any('update/{bank_id}','admin\BankController@update');//修改执行
-
+         Route::any('exam_add','admin\BankController@exam_add');//修改执行
 
 	});
 
@@ -193,9 +193,13 @@ Route::get('/', function () {
         #考试模块
         Route::prefix('exam')->group(function(){
             Route::any('show','admin\PaperController@show');//考卷展示
+            Route::any('exam_add','admin\PaperController@exam_add');//考试的添加
+            Route::any('exam_add_do','admin\PaperController@exam_add_do');//考试的执行添加
             Route::any('add','admin\PaperController@add');//考卷添加
             Route::any('add_do','admin\PaperController@add_do');//添加执行
-            Route::any('del','admin\BankController@del');//题库分类删除
+            Route::any('del','admin\PaperController@del');//题库分类删除
+            Route::any('edit','admin\PaperController@edit');//考卷修改
+            Route::any('update','admin\PaperController@update');//考卷执行修改
 
         });
 
