@@ -50,7 +50,8 @@
 				<a class="btn btn-primary radius" data-title="添加题库" _href="article-add.html" onclick="article_add('添加题库','{{url('admin/bank/add')}}')" href="{{url('admin/bank/add')}}"><i class="Hui-iconfont">&#xe600;</i> 添加题库</a>
 				<span class="btn btn-primary radius" id="but" data-title="存入考卷" _href="article-add.html"><i class="Hui-iconfont">&#xe600;</i> 存入考卷</span>
 
-				</span><input type="hidden" value="{{$_GET['paper_id']}}" id="paper_id">
+				</span>
+				<input type="hidden" value="{{$_GET['exam_id']==''?0:$_GET['exam_id']}}" id="exam_id">
 				<span class="r">共有数据：<strong>54</strong> 条</span>
 			</div>
 			<div class="mt-20">
@@ -82,7 +83,7 @@
                             <input type="checkbox" value="{{$v['bank_id']}}" class="box" name=""  checked>
                             @else
 							<input type="checkbox" value="{{$v['bank_id']}}" class="box" name="" >
-                                @endif
+                            @endif
 						</td>
 						<td>{{$v['bank_id']}}</td>
 						<td>{{$v['bank_title']}}</td>
@@ -255,7 +256,8 @@ function article_shenqing(obj,id){
 <script>
     $(function(){
         $('#but').bind('click',function(){
-            var paper_id=$("#paper_id").val();
+            var exam_id=$("#exam_id").val();
+            // alert(exam_id);
             var str='';
             $(".box").each(function(){
                 if($(this).prop("checked")==true){
@@ -263,7 +265,7 @@ function article_shenqing(obj,id){
                 }
             })
             var bank_id=str.substr(0,str.length-1);
-               alert(bank_id);
+               // alert(bank_id);
             if(bank_id=='')
                 return false;
 
@@ -271,7 +273,7 @@ function article_shenqing(obj,id){
                 url:"/admin/bank/exam_add",
                 type:'post',
                 dataType:'json',
-                data:{'paper_id':paper_id,'bank_id':bank_id},
+                data:{'exam_id':exam_id,'bank_id':bank_id},
                 success:function(res){
                     if(res.error==200){
                         alert(res.msg);

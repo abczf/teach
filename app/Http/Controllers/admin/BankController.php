@@ -16,6 +16,7 @@ class BankController extends Controller
     //题库展示
     public function show(Request $request)
     {
+        // echo 123;
         //搜索
         $bank_title = request()->bank_title ? request()->bank_title : '';
         $where = [
@@ -25,7 +26,6 @@ class BankController extends Controller
             $where[] = ['bank_title', 'like', "%$bank_title%"];
         }
         // dd($bank_title);
-
         $bank = BankModel::where($where)->paginate(10);
         foreach ($bank as $v) {
             $bank = BankModel::select('teach_bank.*', 'cou_name', 'bank_cate_name')
@@ -43,7 +43,7 @@ class BankController extends Controller
             //查询关联表中的权限id
             $bank_ids=$paper['bank_id'];
             $bank_ids=explode(',',$bank_ids);
-
+            // $exam_id='';
             // ajax分页
             if (request()->ajax()) {
                 return view('admin.bank.ajaxindex', ['bank' => $bank, 'bank_title' => $bank_title,'bank_ids'=>$bank_ids]);
@@ -52,8 +52,6 @@ class BankController extends Controller
         }
 
     }
-
-
     //题库添加
     public function add()
     {
@@ -140,20 +138,20 @@ class BankController extends Controller
 
     public function exam_add(Request $request)
     {
-        $paper_id = $request->post('paper_id');
+        $exam_id = $request->post('exam_id');
         $bank_id = $request->post('bank_id');
 
-        if (empty($paper_id) || empty($bank_id)) {
+        if (empty($exam_id) || empty($bank_id)) {
             echo json_encode(['error' => 100003, 'msg' => '参数缺失']);
             exit;
         }
         $data = [
-//            'paper_id' => $paper_id,
+           'exam_id' => $exam_id,
             'bank_id' => $bank_id
         ];
-        $paper = PaperModel::where('paper_id', $paper_id)->first();
+        $paper = PaperModel::where('exam_id', $exam_id)->first();
         if ($paper) {
-            $res = PaperModel::where('paper_id', $paper_id)->update($data);
+            $res = PaperModel::where('exam_id', $exam_id)->update($data);
             if ($res) {
                 return json_encode(['error' => 200, 'msg' => '修改成功']);
 

@@ -10,5 +10,5 @@ class PersonalinfoController extends Controller
     public function show(){
         return view('index.personal.userinfo.show');
     }
-    
+
 }
