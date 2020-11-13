@@ -26,8 +26,6 @@ Route::get('/', function () {
     Route::any('admin/login','admin\LoginController@login');
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
-
-
     Route::any('/admin/lect/img', 'admin\LectController@img');//图片处理
     Route::prefix('admin')->middleware('checklogin')->group(function () {
         # 首页

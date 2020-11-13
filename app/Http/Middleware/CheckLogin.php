@@ -19,7 +19,7 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        $user = session('admin_id');
+        $user = session('login');
         if (empty($user)) {
             return redirect('/admin/login');
         }
