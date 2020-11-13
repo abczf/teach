@@ -29,8 +29,16 @@ class LectController extends Controller
     }
     //展示
     public function show(){
+        $lect_name=request()->lect_name;
+        $where=[];
+        if(!empty($lect_name)){
+            $where[]=['lect_name','like',"%$lect_name%"];
+        }
         $lect = LectModel::where("is_del","1")->paginate(3);
-        return view('admin.lect.show',["lect"=>$lect]);
+        if(request()->ajax()){
+            return view("admin.lect.showajax",["lect"=>$lect,"lect_name"=>$lect_name]);
+        }
+        return view('admin.lect.show',["lect"=>$lect,"lect_name"=>$lect_name]);
     }
     //渲染
     public function add(){

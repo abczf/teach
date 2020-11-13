@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//->middleware('checklogin')
 
 /**
  * 后台
@@ -27,7 +27,7 @@ Route::get('/', function () {
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
 
-Route::prefix('admin')->middleware('checklogin')->group(function(){
+Route::prefix('admin')->group(function(){
     # 首页
     Route::view('','admin.admin');
     # 咨询模块
@@ -268,5 +268,11 @@ Route::prefix('index')->group(function(){
              Route::any('show','index\personal\CourseController@show');
         });
     });
+
+    # 题库
+    Route::prefix('bank')->group(function(){
+        Route::any('show','index\BankController@show');
+    });
+
 });
 ?>
