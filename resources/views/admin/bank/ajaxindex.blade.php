@@ -1,7 +1,11 @@
  					@foreach($bank as $k=>$v)
 					<tr class="text-c">
 						<td>
-							<input type="checkbox" value="1" name="">
+                            @if(in_array($v['bank_id'],$bank_ids))
+                                <input type="checkbox" value="{{$v['bank_id']}}" class="box" name=""  checked>
+                            @else
+                                <input type="checkbox" value="{{$v['bank_id']}}" class="box" name="" >
+                            @endif
 						</td>
 						<td>{{$v['bank_id']}}</td>
 						<td>{{$v['bank_title']}}</td>
@@ -24,8 +28,7 @@
 					</tr>
 					 @endforeach
 					 <tr><td colspan=17 align="center">{{$bank->appends(['bank_title'=>$bank_title])->links()}}</td></tr>
-					
 
 
 
-					
+

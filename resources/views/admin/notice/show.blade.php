@@ -116,6 +116,7 @@
                         <td align="center" colspan="6">{{$data->appends([$name => 'name'])->links()}}</td>
                     </tr>
 				</table>
+				
 			</div>
 		</article>
 	</div>
@@ -124,8 +125,8 @@
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
-{{--<script type="text/javascript" src="/admin/static/h-ui/js/H-ui.js"></script>--}}
-{{--<script type="text/javascript" src="/admin/static/h-ui.admin/js/H-ui.admin.page.js"></script>--}}
+<script type="text/javascript" src="/admin/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="/admin/static/h-ui.admin/js/H-ui.admin.page.js"></script>
 <!--/_footer /作为公共模版分离出去-->
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -143,6 +144,7 @@
 
         // 软删除  + 弹框提示 + 页面刷新
         $(".del").click(function(){
+            alert(1234567890)
             var id   = $(this).attr("id");
             var data = {notice_id : id};
             var url  = "{{url('/admin/notice/del')}}";
@@ -164,7 +166,7 @@
             }
         });
 
-    });
+
 
     //ajax 分页
     $(document).on("click",'.page-item a',function(){
@@ -193,6 +195,8 @@ function showContent(notice_desc){
     
     layer.alert(notice_desc);
  }
+    });
+    });
 </script>
 
 

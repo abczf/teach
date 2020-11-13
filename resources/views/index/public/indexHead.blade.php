@@ -2,7 +2,7 @@
     <div class="nav">
         <span class="navimg"><a href="index.html"><img border="0" src="/index/images/logo.png"></a></span>
         <ul class="nag">
-            <li><a href="courselist.html" class="link1">课程</a></li>
+            <li><a href="{{url('index/consult/list')}}" class="link1">课程</a></li>
             <li><a href="{{url('index/consult/show')}}" class="link1">资讯</a></li>
             <li><a href="{{url('index/teacher/show')}}" class="link1">讲师</a></li>
             <li><a href="exam_index.html" class="link1" target="_blank">题库</a></li>
@@ -19,10 +19,10 @@
                 <p>讲师</p>
             </span>
         </span>-->
-            <a href="mycourse.html"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">sherley</a>
+            <a href="{{url('index/personal/course/show')}}"  onMouseOver="logmine()" style="width:70px" class="link2 he ico" target="_blank">sherley</a>
             <span id="lne" style="display:none" onMouseOut="logclose()" onMouseOver="logmine()">
                 <span style="background:#fff;">
-                	<a href="mycourse.html" style="width:70px; display:block;" class="link2 he ico" target="_blank">sherley</a>
+                	<a href="{{url('index/personal/course/show')}}" style="width:70px; display:block;" class="link2 he ico" target="_blank">sherley</a>
                 </span>
                 <div class="clearh"></div>
                 <ul class="logmine" >

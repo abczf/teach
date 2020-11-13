@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 */
 class BankModel extends Model
 {
-    //
-     //
-    protected $table="teach_bank";
-	protected $primarykey='bank_id';
-    public $timestamps=false;
+    // 表名
+    public $table = 'teach_bank';
+
+    // 主键
+    public  $primaryKey = 'bank_id';
+
+    // 关闭时间补全
+    public  $timestamps = false;
 
      //黑名单
     protected $guarded=[];

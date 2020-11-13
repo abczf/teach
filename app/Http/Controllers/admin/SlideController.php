@@ -26,7 +26,7 @@ class SlideController extends Controller
     }
     //展示
     public function slide(){
-        $slide = SlideModel::where("is_del","1")->paginate(3);
+        $slide = SlideModel::where("is_del","1")->paginate(2);
         if(request()->ajax()){
             return view("admin.slide.showajax",["slide"=>$slide]);
         }
