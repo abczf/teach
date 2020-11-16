@@ -27,7 +27,7 @@ Route::get('/', function () {
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
     Route::any('/admin/lect/img', 'admin\LectController@img');//图片处理
-    Route::prefix('admin')->middleware('checklogin')->group(function () {
+    Route::prefix('admin')->group(function () {
         # 首页
         Route::view('', 'admin.admin');
         # 咨询模块
@@ -292,6 +292,11 @@ Route::prefix('index')->group(function(){
         });
         Route::prefix('personalinfo')->group(function(){
             Route::any('show','index\PersonalinfoController@show');
+            Route::any('add','index\PersonalinfoController@add');
+            Route::any('add_do','index\PersonalinfoController@add_do');
+            Route::any('addimg','index\PersonalinfoController@addimg');
+            Route::any('update','index\PersonalinfoController@update');
+            Route::any('doupdate','index\PersonalinfoController@doupdate');
         });
     });
 

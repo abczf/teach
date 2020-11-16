@@ -3,7 +3,7 @@
     <div style="text-align:center;"><img src="/index/images/0-0.JPG" width="80" ></div>
     <div style="width:220px;text-align:center;">
     <p class="membUpdate mine">某某某</p>
-    <p class="membUpdate mine"><a href="{{url('index/personal/personalinfo/show')}}">修改信息</a></p>
+    <p class="membUpdate mine"><a href="{{url('index/personal/personalinfo/add')}}">修改信息</a></p>
     <div class="clearh"></div>
     </div>
     </div>
