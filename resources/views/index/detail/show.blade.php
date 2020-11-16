@@ -107,10 +107,9 @@ $(function(){
     <h3 class="righttit" onclick="reglog_open();">最新学员</h3>
         <div class="teacher zxxy">
         <ul class="stuul">
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+            @foreach($userinfo as $v)
+                <li><img src="/{{$v->details_head}}" width="60px"><p class="stuname">{{$v->details_name}}</p></li>
+            @endforeach
         </ul>
         <div class="clearh"></div>
         </div>
@@ -250,9 +249,7 @@ $(function(){
                 data:{q_id:q_id,r_content:r_content},
                 dataType:"json",
                 success:function(res){
-                    if(res.status == 200){
-                        window.location.href="{{url('index/detail/show')}}";
-                    }
+
                 }
             })
         })

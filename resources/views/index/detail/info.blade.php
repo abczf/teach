@@ -66,12 +66,14 @@ $(function(){
 				</div>
 				<div class="hide">
 					<div>
-                    <div class="c_eform">                      
+                    <div class="c_eform">
+                        <input type="hidden" value="{{$course->cou_id}}" id="cou_id">
                         <textarea rows="7" class="pingjia_con" name="e_desc" placeholder="评价详细内容..."></textarea>
                        <a class="issue">发布评论</a>
                        <div class="clearh"></div>
                     </div>
 					<ul class="evalucourse">
+
                         @foreach($access as $v)
                             <li>
                                 <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
@@ -141,10 +143,9 @@ $(function(){
     <h3 class="righttit" onclick="reglog_open();">最新学员</h3>
         <div class="teacher zxxy">
         <ul class="stuul">
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+            @foreach($userinfo as $v)
+                <li><img src="/{{$v->details_head}}" width="60px"><p class="stuname">{{$v->details_name}}</p></li>
+            @endforeach
         </ul>
         <div class="clearh"></div>
         </div>
@@ -276,17 +277,16 @@ $(function(){
     $(document).ready(function(){
         // 评论
         $(document).on('click','.issue',function(){
+            var cou_id = $("#cou_id").val();
             var e_desc = $("textarea[name='e_desc']").val();
 
             $.ajax({
                 url:"{{url('index/detail/save')}}",
                 type:"post",
-                data:{e_desc:e_desc},
+                data:{cou_id:cou_id,e_desc:e_desc},
                 dataType:"json",
                 success:function(res){
-                    if(res.status == 200){
-                        window.location.href="{{url('index/detail/info')}}";
-                    }
+
                 }
             })
         })

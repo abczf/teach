@@ -221,9 +221,6 @@ Route::get('/', function () {
 
 
 
-
-
-
 // 前台
 Route::prefix('index')->group(function(){
     // 问答
@@ -249,6 +246,7 @@ Route::prefix('index')->group(function(){
     // 课程详情
     Route::prefix('courseinfo')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
+        Route::any('collect','index\CoursecontController@collect');
     });
     # 资讯
     Route::prefix('consult')->group(function(){

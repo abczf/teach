@@ -42,7 +42,7 @@
 					</a>
 				</h4>
 				<p class="teadec">{{$v->catalog_desc}}</p>
-				<p class="courselabel clock">{{date('Y-m-d H:i:s',$v->add_time)}}<span class="courselabel student">2555人学习</span><span class="courselabel pingjia">评价：<img width="71" height="14" src="/index/images/evaluate.png" data-bd-imgshare-binded="1"></span></p>
+				<p class="courselabel clock">{{date('Y-m-d H:i:s',$v->add_time)}}<span class="courselabel student">2555人学习</span></p>
 			 </span>
 			 <div style="height:0" class="clearh"></div>
 		</li>
