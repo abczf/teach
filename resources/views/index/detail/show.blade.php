@@ -43,69 +43,35 @@ $(function(){
 <div class="clearh"></div>
 <div class="coursetext">
 	<div class="box demo2" style="position:relative">
+        <input type="hidden" value="{{$q_id}}" name="q_id">
 			<ul class="tab_menu">
-				<li class="current course1">章节</li>
-				<li class="course1">评价</li>
-				<li class="course1">问答</li>
+				<li class="course1">回答</li>
 			</ul>
-			<!--<a class="fombtn" style=" position:absolute; z-index:3; top:-10px; width:80px; text-align:center;right:0px;" href="#">下载资料包</a>-->
-			<div class="tab_box">
-				<div>
-					<dl class="mulu noo">
-                        @foreach($count as $v)
-					<div>
-                        <dt class="mulu_title"><span class="mulu_img"></span>&nbsp;&nbsp;{{$v['catalog_name']}}
-						<span class="mulu_zd">+</span></dt>
-						<div class="mulu_con">
-							<dd class="smalltitle"><strong>&nbsp;&nbsp;{{$v['info_name']}}</strong></dd>
-							<a href="video.html"><dd><strong class="cataloglink">{{$v['info_name']}}</strong><i class="fini nn"></i></dd></a>
-						</div>
-					</div>
-                            @endforeach
-                   </dl>
-				</div>
-				<div class="hide">
-					<div>
-                    <div class="c_eform">                      
-                        <textarea rows="7" class="pingjia_con" name="e_desc" placeholder="评价详细内容..."></textarea>
-                       <a class="issue">发布评论</a>
-                       <div class="clearh"></div>
-                    </div>
-					<ul class="evalucourse">
-                        @foreach($access as $v)
-                            <li>
-                                <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
-                                <p class="pepname">候候15kpiii</p>
-                                </span>
-                                <span class="pepcont"><p>{{$v->e_desc}}</p>
-                                <p class="peptime pswer">{{date('Y-m-d H:i:s',$v->add_time)}}</p></span>
-                            </li>
-                        @endforeach
-                    </ul>
-				</div>
-				</div>
+
                 <div class="hide">
 					<div>
-                     <h3 class="pingjia">提问题</h3>
                     <div class="c_eform">
-                        <input type="text" name="q_title" class="pingjia_con" placeholder="请输入问题标题"><br/>
-                        <a href="#" class="fombtn">发布</a>
+
+                        <textarea rows="7" name="r_content" class="pingjia_con" placeholder="请输入问题的详细内容"></textarea>
+                       <a href="#" class="fombtn">发布</a>
                        <div class="clearh"></div>
                     </div>
 					<ul class="evalucourse">
-                        @foreach($response as $v)
+
                             <li>
+                                @foreach($res as $v)
                                 <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
                                 <p class="pepname">候候</p>
                                 </span>
                                 <span class="pepcont">
-                                <p><a href="{{url('index/detail/show/'.$v->q_id)}}" class="peptitle" target="_blank">{{$v->q_title}}</a></p>
-                                <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">{{$quecount}}</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong><a class="bluelink" href="#">10</a></strong>)</span>2015-01-02</p>
+                                <p><a href="" class="peptitle" target="_blank">{{$v->r_content}}</a></p>
+                                <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">{{$quecount}}</a></strong>)</span>
+                                    {{date('y-m-d H:i:s',$v->add_time)}}</p>
                                 </span>
+                                @endforeach
                             </li>
-                        @endforeach
+
                     </ul>
-                    
 				</div>
 				</div>
 				<div class="hide">
@@ -165,7 +131,7 @@ $(function(){
     </div>
     </div>
 </div>
-   
+
 </div>
 
 <div id="reglog">
@@ -274,35 +240,18 @@ $(function(){
 @endsection
 <script>
     $(document).ready(function(){
-        // 评论
-        $(document).on('click','.issue',function(){
-            var e_desc = $("textarea[name='e_desc']").val();
-
-            $.ajax({
-                url:"{{url('index/detail/save')}}",
-                type:"post",
-                data:{e_desc:e_desc},
-                dataType:"json",
-                success:function(res){
-                    if(res.status == 200){
-                        window.location.href="{{url('index/detail/info')}}";
-                    }
-                }
-            })
-        })
-
-        // 问题
+        // 回答
         $(document).on('click','.fombtn',function(){
-            var q_title = $("input[name='q_title']").val();
-
+            var q_id = $("input[name='q_id']").val();
+            var r_content = $("textarea[name='r_content']").val();
             $.ajax({
-                url:"{{url('index/detail/ask')}}",
+                url:"{{url('index/detail/answer')}}",
                 type:"post",
-                data:{q_title:q_title},
+                data:{q_id:q_id,r_content:r_content},
                 dataType:"json",
                 success:function(res){
                     if(res.status == 200){
-                        window.location.href="{{url('index/detail/info')}}";
+                        window.location.href="{{url('index/detail/show')}}";
                     }
                 }
             })

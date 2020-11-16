@@ -43,7 +43,7 @@
     <div class="teacher">
         @foreach($desc as $v)
             <div class="teapic">
-                <a href="{{url('index/course/cont')}}?cou_id={{$v->cou_id}}"  target="_blank"><img src="/{{$v->cou_img}}" width="150px"></a>
+                <a href="{{url('index/courseinfo/cont')}}?cou_id={{$v->cou_id}}"  target="_blank"><img src="/{{$v->cou_img}}" width="150px"></a>
                 <h3 class="courh3"><a href="#" class="ask_link" target="_blank">{{$v->cou_name}}</a></h3>
             </div>
             <div class="clearh"></div>

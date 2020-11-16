@@ -267,6 +267,10 @@ Route::prefix('index')->group(function(){
     # 目录详情
     Route::prefix('detail')->group(function(){
         Route::any('info','index\DetailController@info');
+        Route::any('save','index\DetailController@save');
+        Route::any('ask','index\DetailController@ask');
+        Route::any('answer','index\DetailController@answer');
+        Route::any('show/{id}','index\DetailController@show');
     });
 
      # 视频
