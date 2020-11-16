@@ -23,7 +23,7 @@ class ConsultController extends Controller
           $where[]=['infor_title','like',"%$infor_title%"];
         }
 
-        $consult = ConsultModel::where($where)->paginate(3);
+        $consult = ConsultModel::where($where)->paginate(8);
         // dd($consult);
         // ajax分页
         if(request()->ajax()){

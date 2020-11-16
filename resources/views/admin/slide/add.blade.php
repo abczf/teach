@@ -38,22 +38,22 @@
     </form>
 </article>
 
-<script src="/uploadify/jquery.js"></script>
+<script src="/jquery.js"></script>
 <link rel="stylesheet" href="/uploadify/uploadify.css">
 <script src="/uploadify/jquery.uploadify.js"></script>
 <script>
     $(document).ready(function() {
         $("#slide_img").uploadify({
-            uploader: "/admin/slide/img",
-            swf: "/uploadify/uploadify.swf",
-            onUploadSuccess: function (res, data, msg) {
+            uploader : "/admin/slide/img",
+            swf : "/uploadify/uploadify.swf",
+            onUploadSuccess:function(res, data, msg){
                 var imgPsth = data;
                 $("#img_paths").val(imgPsth);
                 var imgstr = "<img src='/"+imgPsth+"' width='200px'>";
                 $("#imgs_desc").append(imgstr);
             }
         });
-    })
+    });
     $("#submit").click(function(){
         var _this = $(this);
         var slide_url = $("input[name='slide_url']").val();
@@ -79,6 +79,7 @@
             }
         })
     });
+
 </script>
 <!--_footer 作为公共模版分离出去-->
 {{--<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>--}}

@@ -15,134 +15,38 @@
     </span>
             <ul class="courseul">
                 <li class="curr" style="border-radius:3px 3px 0 0;background:#fb5e55;"><h3 style="color:#fff;"><a href="#" class="whitea">全部课程</a></h3>
+                @foreach($cateInfo as $k=>$v)
                 <li>
-                    <h4>财会金融</h4>
+
+
                     <ul class="sortul">
-                        <li class="course_curr"><a href="#">会计从业证</a></li>
-                        <li><a href="#">初级会计职称</a></li>
-                        <li><a href="#">中级会计职称</a></li>
-                        <li><a href="#">会计高级职称</a></li>
-                        <li><a href="#">注册会计师</a></li>
-                        <li><a href="#">经济师</a></li>
-                    </ul>
-                    <div class="clearh"></div>
-                </li>
-                <li>
-                    <h4>计算机</h4>
-                    <ul class="sortul">
-                        <li><a href="#">C语言</a></li>
-                        <li><a href="#">JAVA</a></li>
-                        <li><a href="#">.NET</a></li>
-                        <li><a href="#">PHP</a></li>
+{{--                        <li class="course_curr"><a href="#"></a></li>--}}
+                        <a href="#"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</a>
 
                     </ul>
+
                     <div class="clearh"></div>
                 </li>
+                @endforeach
             </ul>
             <div style="height:20px;border-radius:0 0 5px 5px; background:#fff;box-shadow:0 2px 4px rgba(0, 0, 0, 0.1)"></div>
         </div>
         <div class="courseright">
             <div class="clearh"></div>
             <ul class="courseulr">
+                @foreach($data as $v)
                 <li>
                     <div class="courselist">
-                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c1.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="{{url("index/coursecont")}}" >会计基础</a></p>
+                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/{{$v->cou_img}}" title="{{$v->cou_name}}"></a>
+                        <p class="courTit"><a href="{{url("index/coursecont")}}" >{{$v->cou_name}}</a></p>
                         <div class="gray">
-                            <span>30课时 600分钟</span>
-                            <span class="sp1">1255555人学习</span>
+                            <span>{{date("Y-m-d H:i:s",$v->add_time)}}</span>
+
                             <div style="clear:both"></div>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="courselist">
-                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c2.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="{{url("index/coursecont")}}" >HTTP下载课程</a></p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c3.jpg" title="会计基础"></a>
-                        <p class="courTit"><a href="{{url("index/coursecont")}}" >HTTP下载课程</a></p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c4.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c5.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c6.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c7.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c8.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="courselist">
-                        <img style="border-radius:3px 3px 0 0;" width="240" src="/index/images/c9.jpg" >
-                        <p class="courTit">HTTP下载课程</p>
-                        <div class="gray">
-                            <span>5课时 60分钟</span>
-                            <span class="sp1">1255555人学习</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
         <div class="clearh"></div>

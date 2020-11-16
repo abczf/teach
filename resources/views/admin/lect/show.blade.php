@@ -41,8 +41,8 @@
     <div class="Hui-article">
         <article class="cl pd-20">
             <div class="text-c">
-                <input type="text" name="" id="" placeholder=" 讲师名称" style="width:250px" class="input-text">
-                <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜讲师</button>
+                <input type="text" name="lect_name" id="" placeholder=" 讲师名称" style="width:250px" class="input-text">
+                <button name="submit" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜讲师</button>
             </div>
             <div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
@@ -81,7 +81,7 @@
                     @endforeach
                     </tbody>
                     <tr>
-                        <td colspan="8" align="center">{{$lect->links()}}</td>
+                        <td colspan="8" align="center">{{$lect->appends(['lect_name'=>$lect_name])->links()}}</td>
                     </tr>
                 </table>
             </div>
@@ -90,6 +90,7 @@
 </section>
 <script src="/jquery.js"></script>
 <script>
+    //删除
     $(function(){
         $("#del").click(function(){
             var _this = $(this);
@@ -100,6 +101,27 @@
             }
         });
     });
+    //ajax 分页
+    $(document).on("click",'.page-item a',function(){
+        var url = $(this).attr('href');
+        $.get(url,function(res){
+            $('table').html(res);
+        });
+        return false;
+    });
+    //ajax搜索
+    $(document).on('click','#submit',function(){
+        var lect_name=$("input[name='lect_name']").val();
+        $.ajax({
+            url:"{{url('/admin/lect/show')}}",
+            type:'get',
+            data:{lect_name:lect_name},
+            success:function(res){
+                $("table").html(res);
+            }
+        })
+        return;
+    })
 </script>
 
 <!--_footer 作为公共模版分离出去-->
