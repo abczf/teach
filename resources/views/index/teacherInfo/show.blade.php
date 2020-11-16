@@ -30,7 +30,7 @@
 		<li>
 			 <span class="courseimg tcourseimg"><a href="{{url('index/courseinfo/cont')}}?cou_id={{$v->cou_id}}" target="_blank"><img src="/{{$v->cou_img}}" width="150px"></a></span>
 			 <span class="tcoursetext">
-				<h4><a href="{{url('index/course/cont')}}?cou_id={{$v->cou_id}}" target="_blank" class="teatt">{{$v->cou_name}}</a>
+				<h4><a href="{{url('index/courseinfo/cont')}}?cou_id={{$v->cou_id}}" target="_blank" class="teatt">{{$v->cou_name}}</a>
 					<a class="state end">
 						@if($v->cou_status==1)
 						未学习

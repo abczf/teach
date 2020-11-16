@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\index;
 
 use App\Http\Controllers\Controller;
-use App\models\AreaModel;
 use App\models\UserinfoModel;
 use App\models\UserModel;
 use Illuminate\Http\Request;
@@ -34,7 +33,7 @@ class PersonalinfoController extends Controller
         ];
         $res = UserinfoModel::insert($data);
         if ($res) {
-            return "/index/personal/personalinfo/show";
+            return "/index/personal/personalinfo/add";
         }
     }
 
@@ -63,8 +62,9 @@ class PersonalinfoController extends Controller
 //         echo 123;die;
         $redis=new Redis();
         $user_id = $redis::get('user_id');
+        $a = $redis::flushall();
 //        dd($user_id);
-        $myinfo = UserinfoModel::where(['user_id'=>$user_id])->first();
+        $myinfo = UserinfoModel::where(['user_id'=>$a])->first();
         if(!empty($myinfo)){
             return view('index.personal.userinfo.update',['myinfo'=>$myinfo]);
         }
