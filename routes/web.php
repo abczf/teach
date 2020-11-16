@@ -213,10 +213,7 @@ Route::get('/', function () {
             Route::any('upd', 'admin\NavController@upd');
         });
 
-        #问答展示
-        Route::prefix('question')->group(function () {
-            Route::any('show', 'admin\QuestionController@show');
-        });
+
     });
 
 
@@ -228,6 +225,8 @@ Route::get('/', function () {
 Route::prefix('index')->group(function(){
     // 问答
     Route::any('question/add','index\QuestionController@add');
+    Route::any('question/response','index\QuestionController@response');
+    Route::any('question/que','index\QuestionController@que');
 
     // 首页
     Route::any('','index\IndexController@index');
