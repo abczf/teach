@@ -1,6 +1,6 @@
 <div class="head" id="fixed">
     <div class="nav">
-        <span class="navimg"><a href="index.html"><img border="0" src="/index/images/logo.png"></a></span>
+        <span class="navimg"><a href="{{'/index'}}"><img border="0" src="/index/images/logo.png"></a></span>
         <ul class="nag">
             <li><a href="{{url('index/course/list')}}" class="link1">课程</a></li>
             <li><a href="{{url('index/consult/show')}}" class="link1">资讯</a></li>
@@ -26,7 +26,7 @@
                 </span>
                 <div class="clearh"></div>
                 <ul class="logmine" >
-                    <li><a class="link1" href="#">我的课程</a></li>
+                    <li><a class="link1" href="{{'/index/course/list'}}">我的课程</a></li>
                     <li><a class="link1" href="#">我的题库</a></li>
                     <li><a class="link1" href="#">我的问答</a></li>
                     <li><a class="link1" href="#">退出</a></li>

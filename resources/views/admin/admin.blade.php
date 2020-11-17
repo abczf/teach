@@ -17,7 +17,12 @@
                 <span class="f-14"></span>
                 进入后台</p>
         </article>
-        <img src="{{url('/images/123.jpg')}}" width="800px" height="700px">
+        <div>
+{{--            <img src="{{url('/images/321.jpg')}}" width="870px" height="849.3px">--}}
+            <img src="{{url('/images/456.jpg')}}" width="870px" height="849.3px">
+        </div>
+
+
 
     </div>
 </section>

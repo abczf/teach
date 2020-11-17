@@ -144,7 +144,7 @@
 
         // 软删除  + 弹框提示 + 页面刷新
         $(".del").click(function(){
-            alert(1234567890)
+            // alert(1234567890)
             var id   = $(this).attr("id");
             var data = {notice_id : id};
             var url  = "{{url('/admin/notice/del')}}";
