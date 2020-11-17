@@ -245,7 +245,6 @@ Route::prefix('index')->group(function(){
     // 课程详情
     Route::prefix('courseinfo')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
-        Route::any('collect','index\CoursecontController@collect');
     });
     # 资讯
     Route::prefix('consult')->group(function(){
@@ -291,6 +290,7 @@ Route::prefix('index')->group(function(){
         Route::prefix('course')->group(function(){
              Route::any('show','index\personal\CourseController@show');
         });
+        # 个人详情
         Route::prefix('personalinfo')->group(function(){
             Route::any('show','index\PersonalinfoController@show');
             Route::any('add','index\PersonalinfoController@add');

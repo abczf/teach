@@ -27,7 +27,8 @@
                 <p class="courstime">讲师：{{$course->lect_name}}</p>
                 <!--<p><a class="state end">完结</a></p>-->
                 <span class="coursebtn"><a cou_id="{{$course->cou_id}}" class="btnlink" href="{{'/index/detail/info?cou_id='.$course->cou_id}}">加入学习</a>
-                    <a cou_id="{{$course->cou_id}}" class="codol sc" href="#">收藏课程</a></span>
+                    {{--<a cou_id="{{$course->cou_id}}" class="codol sc" href="#">收藏课程</a>--}}
+                </span>
                 <div style="clear:both;"></div>
             </div>
             <div class="clearh"></div>
@@ -39,7 +40,7 @@
             <h3 class="leftit">课程目录</h3>
             <dl class="mulu">
                 @foreach($catalog as $v)
-                    <dt><a href="coursecont1.html" class="graylink">{{$v->catalog_name}}</a></dt>
+                    <dt><a href="{{url('index/detail/info')}}?cou_id={{$v->cou_id}}" class="graylink">{{$v->catalog_name}}</a></dt>
                     <dd>{{$v->catalog_desc}}</dd>
                 @endforeach
             </dl>

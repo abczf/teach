@@ -76,8 +76,8 @@ $(function(){
 
                         @foreach($access as $v)
                             <li>
-                                <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
-                                <p class="pepname">候候15kpiii</p>
+                                <span class="pephead"><img src="/{{$v->details_head}}" width="50px">
+                                <p class="pepname">{{$v->details_name}}</p>
                                 </span>
                                 <span class="pepcont"><p>{{$v->e_desc}}</p>
                                 <p class="peptime pswer">{{date('Y-m-d H:i:s',$v->add_time)}}</p></span>
@@ -97,12 +97,12 @@ $(function(){
 					<ul class="evalucourse">
                         @foreach($response as $v)
                             <li>
-                                <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
-                                <p class="pepname">候候</p>
+                                <span class="pephead"><img src="/{{$v->details_head}}" width="50px">
+                                <p class="pepname">{{$v->details_name}}</p>
                                 </span>
                                 <span class="pepcont">
                                 <p><a href="{{url('index/detail/show/'.$v->q_id)}}" class="peptitle" target="_blank">{{$v->q_title}}</a></p>
-                                <p class="peptime pswer"><span class="pepask">回答(<strong><a class="bluelink" href="#">{{$quecount}}</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong><a class="bluelink" href="#">10</a></strong>)</span>2015-01-02</p>
+                                <p class="peptime pswer">{{date('Y-m-d H:i:s',$v->add_time)}}</p>
                                 </span>
                             </li>
                         @endforeach

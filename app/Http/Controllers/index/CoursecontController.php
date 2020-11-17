@@ -20,6 +20,7 @@ class CoursecontController extends Controller
      */
     public function coursecont(Request $request){
         $cou_id = $request -> cou_id;
+//        dd($cou_id);
         $course = CourseModel::leftjoin('teach_lect','teach_course.lect_id','=','teach_lect.lect_id')
             ->where('cou_id',$cou_id)
             ->first();
@@ -41,7 +42,7 @@ class CoursecontController extends Controller
         $notice = NoticeModel::leftjoin('teach_course','teach_notice.cou_id','=','teach_course.cou_id')
             ->where(['teach_notice.is_del'=>1,'teach_notice.cou_id'=>$cou_id])
             ->first();
-
+//dd($notice);
         // 推荐课程
         $desc = CourseModel::where(['is_del'=>1])->orderby('cou_id','desc')->limit(3)->get();
 

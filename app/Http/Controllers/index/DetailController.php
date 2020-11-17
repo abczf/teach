@@ -46,10 +46,14 @@ class DetailController extends Controller
 //        print_r($count1);die;
 
         # 评价
-        $access = AccessModel::get();
-
+        $access = AccessModel::leftjoin('teach_user_details','teach_evaluate.user_id','=','teach_user_details.user_id')
+            ->get();
+//dd($access);
         # 问答
-        $response = QuesTionsModel::get();
+        $response = QuesTionsModel::leftjoin('teach_user','teach_questions.user_id','=','teach_user.user_id')
+            -> leftjoin('teach_user_details','teach_questions.user_id','=','teach_user_details.user_id')
+            ->get();
+//        dd($response);
         $q_id=[];
         foreach($response as $kk=>$vv){
             $q_id[] = $vv['q_id'];
@@ -168,14 +172,21 @@ class DetailController extends Controller
         }
 
         $res = ResponseModel::leftjoin('teach_questions','teach_response.q_id','=','teach_questions.q_id')
-            ->where("teach_response.q_id",$q_id)
+            -> leftjoin('teach_user_details','teach_response.user_id','=','teach_user_details.user_id')
+            -> where("teach_response.q_id",$q_id)
             -> get();
+//        dd($res);
         $quecount = ResponseModel::leftjoin('teach_questions','teach_response.q_id','=','teach_questions.q_id')
-            ->where("teach_response.q_id",$q_id)
+            -> where("teach_response.q_id",$q_id)
             -> count();
+
+        $quecount1 = ResponseModel::leftjoin('teach_user','teach_response.user_id','=','teach_user.user_id')
+            -> leftjoin('teach_user_details','teach_response.user_id','=','teach_user_details.user_id')
+            ->get();
+//        dd($quecount1);
         # 最新学员
         $userinfo = UserinfoModel::leftjoin('teach_user','teach_user_details.user_id','=','teach_user.user_id')
             ->get();
-        return view('index.detail.show',['course'=>$course,'count2'=>$count2,'related'=>$related,'res'=>$res,'q_id'=>$q_id,'quecount'=>$quecount,'userinfo'=>$userinfo]);
+        return view('index.detail.show',['course'=>$course,'count2'=>$count2,'related'=>$related,'res'=>$res,'q_id'=>$q_id,'quecount'=>$quecount,'userinfo'=>$userinfo,'quecount1'=>$quecount1]);
     }
 }
