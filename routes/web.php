@@ -28,8 +28,10 @@ Route::get('/', function () {
     Route::any('admin/login/Do','admin\LoginController@Do');
 
 
+
+
     Route::any('/admin/lect/img', 'admin\LectController@img');//图片处理
-    Route::prefix('admin')->middleware('checklogin')->group(function () {
+    Route::prefix('admin')->group(function () {
         # 首页
         Route::view('', 'admin.admin');
         # 咨询模块
@@ -230,12 +232,15 @@ Route::get('/', function () {
 Route::prefix('index')->group(function(){
     // 问答
     Route::any('question/add','index\QuestionController@add');
+    Route::any('question/response','index\QuestionController@response');
+    Route::any('question/que','index\QuestionController@que');
 
     // 首页
     Route::any('','index\IndexController@index');
     // 登录
     Route::prefix('login')->group(function(){
         Route::any('','index\LoginController@login');
+        Route::any('Do','index\LoginController@LoginDo');
     });
     // 注册
     Route::any('register','index\RegisterController@register');
@@ -250,6 +255,7 @@ Route::prefix('index')->group(function(){
     // 课程详情
     Route::prefix('courseinfo')->group(function(){
         Route::any('cont','index\CoursecontController@coursecont');
+        Route::any('collect','index\CoursecontController@collect');
     });
     # 资讯
     Route::prefix('consult')->group(function(){
@@ -278,6 +284,10 @@ Route::prefix('index')->group(function(){
     # 目录详情
     Route::prefix('detail')->group(function(){
         Route::any('info','index\DetailController@info');
+        Route::any('save','index\DetailController@save');
+        Route::any('ask','index\DetailController@ask');
+        Route::any('answer','index\DetailController@answer');
+        Route::any('show/{id}','index\DetailController@show');
     });
 
      # 视频
@@ -290,6 +300,14 @@ Route::prefix('index')->group(function(){
         # 课程
         Route::prefix('course')->group(function(){
              Route::any('show','index\personal\CourseController@show');
+        });
+        Route::prefix('personalinfo')->group(function(){
+            Route::any('show','index\PersonalinfoController@show');
+            Route::any('add','index\PersonalinfoController@add');
+            Route::any('add_do','index\PersonalinfoController@add_do');
+            Route::any('addimg','index\PersonalinfoController@addimg');
+            Route::any('update','index\PersonalinfoController@update');
+            Route::any('doupdate','index\PersonalinfoController@doupdate');
         });
     });
 

@@ -14,7 +14,7 @@ class CourseModel extends Model
 
     // 关闭时间补全
     public  $timestamps = false;
-    
+
      //黑名单
     protected $guarded=[];
 }

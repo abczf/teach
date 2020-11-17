@@ -1,3 +1,28 @@
+<style>
+    ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {display: inline;}
+
+    ul.pagination li {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+    }
+
+    ul.pagination li.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 <link rel="stylesheet" href="/index/css/course.css"/>
 <link rel="stylesheet" href="/index/css/tab.css" media="screen">
     <link rel="stylesheet" href="/index/css/article.css">
@@ -21,101 +46,52 @@
             <!--<a class="fombtn" href="articlelist.html">考试指导</a>-->
             <!--<a class="fombtn" href="articlelist.html">精彩活动</a>-->
             <!--</span>-->
-            <div class="coursecont">
-                <div class="courseleft">
-        <span class="select">
-          <input type="text" value="请输入关键字" class="pingjia_con"/>
-          <a href="#" class="sellink"></a>
-        </span>
-                </div>
-            </div>
+{{--            <div class="coursecont">--}}
+{{--                <div class="courseleft">--}}
+{{--        <span class="select">--}}
+{{--          <input type="text" value="请输入关键字" class="pingjia_con"/>--}}
+{{--          <a href="#" class="sellink"></a>--}}
+{{--        </span>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!--</div>-->
             <div class="clearh"></div>
             <div class="coursetext">
                 <div class="articlelist">
-                    <h3><a class="artlink" href="article.html">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-                    <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-                    <p class="artilabel">
-                        <span class="ask_label">热门资讯</span>
-                        <b class="labtime">2015-02-02</b>
-                    </p>
-                    <div class="clearh"></div>
+                    @foreach($question as $k1=>$v1)
+                    <h3><a class="artlink" href="{{url('index/question/response')}}?q_id={{$v1->q_id}}">{{$v1->q_title}}</a></h3>
+                    @endforeach
                 </div>
-                <div class="articlelist">
-                    <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-                    <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-                    <p class="artilabel">
-                        <span class="ask_label">热门资讯</span>
-                        <b class="labtime">2015-02-02</b>
-                    </p>
-                    <div class="clearh"></div>
-                </div>
-                <div class="articlelist">
-                    <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-                    <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-                    <p class="artilabel">
-                        <span class="ask_label">热门资讯</span>
-                        <b class="labtime">2015-02-02</b>
-                    </p>
-                    <div class="clearh"></div>
-                </div>
-                <div class="articlelist">
-                    <h3><a class="artlink" href="#">2015年第一季度山西省会计从业资格考务日程安排</a></h3>
-                    <p>2015年第一季度山西省会计从业资格考务日程安排已公布，望各位同学周知。 按照《山西省财政厅关于印发会计从业资格无纸化考试管理规定的通知》(晋财会【2014】5号)，现将我省2015年一季度会计从业资格考试考务安排如下。 一、考试时间： 1、网上报名时间：3月2...</p>
-                    <p class="artilabel">
-                        <span class="ask_label">热门资讯</span>
-                        <b class="labtime">2015-02-02</b>
-                    </p>
-                    <div class="clearh"></div>
-                </div>
-
-
                 <div class="clearh" style="height:20px;"></div>
                 <span class="pagejump">
-    	<p class="userpager-list">
-            <a href="#" class="page-number">首页</a>
-            <a href="#" class="page-number">上一页</a>
-            <a href="#" class="page-number">1</a>
-            <a href="#" class="page-number pageractive">2</a>
-            <a href="#" class="page-number">3</a>
-            <a href="#" class="page-number">...</a>
-            <a href="#" class="page-number">10</a>
-            <a href="#" class="page-number">下一页</a>
-            <a href="#" class="page-number">末页</a>
-        </p>
-    </span>
-                <div class="clearh" style="height:10px;"></div>
-            </div>
+    	  {{$question->links()}}
 
+    </span>
+
+            </div>
             <div class="courightext">
                 <div class="ctext">
                     <div class="cr1">
                         <h3 class="righttit">热门问题</h3>
                         <div class="gonggao">
+                            @foreach($que as $k=>$v)
                             <ul class="hotask">
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
-                                <li><a class="ask_link" href="#"><strong>●</strong>nginx负载均衡怎么做?</a></li>
+                                <li><a class="ask_link" href="#"><strong>●</strong>{{$v->q_title}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
 
-
-
             </div>
-
-
-
             <div class="clearh"></div>
-
             <!-- InstanceEndEditable -->
-
-
             <div class="clearh"></div>
-
     @endsection
+            <style>
+                page-item {
+                    border-radius: 5px;
+                }
+                /*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
+            </style>
