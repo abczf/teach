@@ -26,6 +26,10 @@ Route::get('/', function () {
     Route::any('admin/login','admin\LoginController@login');
     // 执行登录
     Route::any('admin/login/Do','admin\LoginController@Do');
+
+
+
+
     Route::any('/admin/lect/img', 'admin\LectController@img');//图片处理
     Route::prefix('admin')->group(function () {
         # 首页
@@ -213,7 +217,10 @@ Route::get('/', function () {
             Route::any('upd', 'admin\NavController@upd');
         });
 
-
+        #问答展示
+        Route::prefix('question')->group(function () {
+            Route::any('show', 'admin\QuestionController@show');
+        });
     });
 
 
@@ -293,6 +300,7 @@ Route::prefix('index')->group(function(){
         Route::prefix('course')->group(function(){
              Route::any('show','index\personal\CourseController@show');
         });
+        # 个人详情
         Route::prefix('personalinfo')->group(function(){
             Route::any('show','index\PersonalinfoController@show');
             Route::any('add','index\PersonalinfoController@add');

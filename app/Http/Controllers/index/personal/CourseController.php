@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\index\personal;
 
 use App\Http\Controllers\Controller;
-use App\models\Usercoursemodel;
+use App\models\UserCourseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -18,7 +18,7 @@ class CourseController extends Controller
         $user_id = $redis::get('user_id');
         $a = $redis::flushall();
         # 查询此用户学习中的课程
-        $data =Usercoursemodel::leftjoin('teach_course', 'teach_user_course.cou_id', '=', 'teach_course.cou_id')
+        $data =UserCourseModel::leftjoin('teach_course', 'teach_user_course.cou_id', '=', 'teach_course.cou_id')
             ->leftjoin('teach_user', 'teach_user_course.user_id', '=', 'teach_user.user_id')
             ->where(['teach_user_course.user_id'=>$a,'teach_course.cou_status'=>2])
             ->paginate(6);

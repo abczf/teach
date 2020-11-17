@@ -22,24 +22,6 @@ $(function(){
 
 
 <div class="coursecont">
-<div class="coursepic1">
-   <div class="coursetitle1">
-    	<h2 class="courseh21">{{$course->cou_name}}</h2>
-   </div>
-   <div class="course_img1">
-       <img src="/{{$course->cou_img}}" width="140px">
-   </div>
-   <div class="course_xq">
-       <span class="courstime1"><p>课时<br/><span class="coursxq_num">{{$count2}}课时</span></p></span>
-	   <span class="courstime1"><p>学习人数<br/><span class="coursxq_num">25987人</span></p></span>
-	   <span class="courstime1"><p style="border:none;">课程录入时间<br/><span class="coursxq_num">{{date('Y-m-d H:i:s',$course->add_time)}}</span></p></span>
-   </div>
-   <div class="course_xq2">
-      <a class="course_learn" href="{{url('index/video/show')}}">开始学习</a>
-   </div> 
-    <div class="clearh"></div>
-</div>
-
 <div class="clearh"></div>
 <div class="coursetext">
 	<div class="box demo2" style="position:relative">
@@ -60,8 +42,8 @@ $(function(){
 
                             <li>
                                 @foreach($res as $v)
-                                <span class="pephead"><img src="/index/images/0-0.JPG" width="50" title="候候">
-                                <p class="pepname">候候</p>
+                                <span class="pephead"><img src="/{{$v->details_head}}" width="50px">
+                                <p class="pepname">{{$v->details_name}}</p>
                                 </span>
                                 <span class="pepcont">
                                 <p><a href="" class="peptitle" target="_blank">{{$v->r_content}}</a></p>
@@ -107,10 +89,9 @@ $(function(){
     <h3 class="righttit" onclick="reglog_open();">最新学员</h3>
         <div class="teacher zxxy">
         <ul class="stuul">
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
-            <li><img src="/index/images/0-0.JPG" width="60" title="张三李四"><p class="stuname">张三李四</p></li>
+            @foreach($userinfo as $v)
+                <li><img src="/{{$v->details_head}}" width="60px"><p class="stuname">{{$v->details_name}}</p></li>
+            @endforeach
         </ul>
         <div class="clearh"></div>
         </div>
@@ -250,9 +231,7 @@ $(function(){
                 data:{q_id:q_id,r_content:r_content},
                 dataType:"json",
                 success:function(res){
-                    if(res.status == 200){
-                        window.location.href="{{url('index/detail/show')}}";
-                    }
+
                 }
             })
         })

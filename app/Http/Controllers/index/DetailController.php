@@ -5,22 +5,25 @@ namespace App\Http\Controllers\index;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\models\CourseModel;
-use App\models\CateLogModel;
-use App\models\CateLogInfoModel;
 use App\models\AccessModel;
 use App\models\QuesTionsModel;
 use App\models\ResponseModel;
+use App\models\UserinfoModel;
+use Illuminate\Support\Facades\Redis;
+
+
 /*
  * 目录详情
  */
 class DetailController extends Controller
 {
     # 详情 评价展示
-    public function info(){
-        $cou_id = 2;
+    public function info(Request $request){
+        $cou_id = $request -> cou_id;
         $course = CourseModel::leftjoin('teach_lect','teach_course.lect_id','=','teach_lect.lect_id')
             -> where('cou_id',$cou_id)
             ->first();
+//        dd($course);
         //课程
         $related = CourseModel::where(['is_del'=>1])->orderby('cou_id','desc')->limit(3)->get()->toArray();
 
@@ -43,10 +46,14 @@ class DetailController extends Controller
 //        print_r($count1);die;
 
         # 评价
-        $access = AccessModel::get();
-
+        $access = AccessModel::leftjoin('teach_user_details','teach_evaluate.user_id','=','teach_user_details.user_id')
+            ->get();
+//dd($access);
         # 问答
-        $response = QuesTionsModel::get();
+        $response = QuesTionsModel::leftjoin('teach_user','teach_questions.user_id','=','teach_user.user_id')
+            -> leftjoin('teach_user_details','teach_questions.user_id','=','teach_user_details.user_id')
+            ->get();
+//        dd($response);
         $q_id=[];
         foreach($response as $kk=>$vv){
             $q_id[] = $vv['q_id'];
@@ -54,7 +61,11 @@ class DetailController extends Controller
                 ->whereIn("teach_response.q_id",$q_id)
                 ->count();
         }
-        return view('index.detail.info',['course'=>$course,'count'=>$count,'related'=>$related,"count1"=>$count1,"count2"=>$count2,'access'=>$access,'response'=>$response,"quecount"=>$quecount]);
+
+        # 最新学员
+        $userinfo = UserinfoModel::leftjoin('teach_user','teach_user_details.user_id','=','teach_user.user_id')
+            ->get();
+        return view('index.detail.info',['course'=>$course,'count'=>$count,'related'=>$related,"count1"=>$count1,"count2"=>$count2,'access'=>$access,'response'=>$response,"quecount"=>$quecount,'userinfo'=>$userinfo]);
     }
 
     /**
@@ -76,8 +87,11 @@ class DetailController extends Controller
      * 评价的添加
      */
     public function save(Request $request){
-        $cou_id = 2;
-        $user_id = 1;
+        $cou_id = $request -> cou_id;
+//        $cou_id = 2;
+        $redis=new Redis();
+        $user_id = $redis::get('user_id');
+//        $user_id = 1;
         $post = $request -> all();
 
         $data = [
@@ -87,17 +101,17 @@ class DetailController extends Controller
             'add_time' => time()
         ];
         $access = AccessModel::insert($data);
-        if($access){
-            return json_encode(['status'=>200,'msg'=>'OK']);
-        }
     }
 
     /**
      * 问题的添加
      */
     public function ask(Request $request){
-        $cou_id = 2;
-        $user_id = 1;
+        $cou_id = $request -> cou_id;
+//        $cou_id = 2;
+//        $user_id = 1;
+        $redis=new Redis();
+        $user_id = $redis::get('user_id');
         $post = $request -> all();
         if(empty($post['q_title'])){
             return json_encode(['status'=>000001,'msg'=>'数据不能为空']);
@@ -118,8 +132,11 @@ class DetailController extends Controller
      * 回答
      */
     public function answer(Request $request){
-        $user_id = 1;
-        $cou_id = 2;
+        $cou_id = $request -> cou_id;
+//        $user_id = 1;
+//        $cou_id = 2;
+        $redis=new Redis();
+        $user_id = $redis::get('user_id');
         $post = $request -> all();
         $data = [
             'user_id' => $user_id,
@@ -129,25 +146,23 @@ class DetailController extends Controller
             'add_time' => time()
         ];
         $res = ResponseModel::insert($data);
-        if($res){
-            return json_encode(['status'=>200,'msg'=>'ok']);
-        }
     }
 
     /**
      * 回答
      */
-    public function show($q_id){
-        $cou_id = 2;
+    public function show(Request $request,$q_id){
+//        $cou_id = $request -> cou_id;
+//        dd($cou_id);
+//        $cou_id = 2;
         $course = CourseModel::leftjoin('teach_lect','teach_course.lect_id','=','teach_lect.lect_id')
-            -> where('cou_id',$cou_id)
             ->first();
         $related = CourseModel::where(['is_del'=>1])->orderby('cou_id','desc')->limit(3)->get()->toArray();
 
         //条数
         $count = CourseModel::leftjoin('teach_catalog','teach_course.catalog_id','=','teach_catalog.catalog_id')
             -> leftjoin('teach_cataloginfo','teach_catalog.catalog_id','=','teach_cataloginfo.catalog_id')
-            -> where(['teach_cataloginfo.is_del'=>1,'teach_course.cou_id'=>$cou_id])
+            -> where(['teach_cataloginfo.is_del'=>1])
             -> where(['teach_cataloginfo.pid'=>0])
             -> get()->toArray();
         $count2=count($count);
@@ -157,11 +172,21 @@ class DetailController extends Controller
         }
 
         $res = ResponseModel::leftjoin('teach_questions','teach_response.q_id','=','teach_questions.q_id')
-            ->where("teach_response.q_id",$q_id)
+            -> leftjoin('teach_user_details','teach_response.user_id','=','teach_user_details.user_id')
+            -> where("teach_response.q_id",$q_id)
             -> get();
+//        dd($res);
         $quecount = ResponseModel::leftjoin('teach_questions','teach_response.q_id','=','teach_questions.q_id')
-            ->where("teach_response.q_id",$q_id)
+            -> where("teach_response.q_id",$q_id)
             -> count();
-        return view('index.detail.show',['course'=>$course,'count2'=>$count2,'related'=>$related,'res'=>$res,'q_id'=>$q_id,'quecount'=>$quecount]);
+
+        $quecount1 = ResponseModel::leftjoin('teach_user','teach_response.user_id','=','teach_user.user_id')
+            -> leftjoin('teach_user_details','teach_response.user_id','=','teach_user_details.user_id')
+            ->get();
+//        dd($quecount1);
+        # 最新学员
+        $userinfo = UserinfoModel::leftjoin('teach_user','teach_user_details.user_id','=','teach_user.user_id')
+            ->get();
+        return view('index.detail.show',['course'=>$course,'count2'=>$count2,'related'=>$related,'res'=>$res,'q_id'=>$q_id,'quecount'=>$quecount,'userinfo'=>$userinfo,'quecount1'=>$quecount1]);
     }
 }

@@ -44,7 +44,11 @@
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
                     @php
+
+                    $user =session('login');
+
                         $user=session('login');
+
                     @endphp
                     <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">{{$user['admin_name']}} <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
