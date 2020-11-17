@@ -28,7 +28,6 @@ Route::get('/', function () {
     Route::any('admin/login/Do','admin\LoginController@Do');
 
 
-Route::prefix('admin')->group(function() {
     Route::any('/admin/lect/img', 'admin\LectController@img');//图片处理
     Route::prefix('admin')->middleware('checklogin')->group(function () {
         # 首页
@@ -221,7 +220,6 @@ Route::prefix('admin')->group(function() {
             Route::any('show', 'admin\QuestionController@show');
         });
     });
-});
 
 
 

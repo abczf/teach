@@ -18,10 +18,9 @@
                 @foreach($cateInfo as $k=>$v)
                 <li>
 
-
                     <ul class="sortul">
 {{--                        <li class="course_curr"><a href="#"></a></li>--}}
-                        <a href="#"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</a>
+                        <li><a href="#"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</a></li>
 
                     </ul>
 
