@@ -17,8 +17,8 @@
             <td>{{$v->notice_id}}</td>
             <td><input type="text" class="input-text text-c" value="1"></td>
             <td>{{$v['cou_id']}}</td>
-            <!-- <td>{{$v->notice_desc}}</td> -->
-            <td><a href="javascript:;" onclick="showContent('{{$v->notice_desc}} ')">查看资讯内容</a></td>
+            <td>{{$v->notice_desc}}</td>
+            <!-- <td><a href="javascript:;" onclick="showContent('{{$v->notice_desc}} ')">查看资讯内容</a></td> -->
             <td>{{date("Y-m-d H:i:s",$v['add_time'])}}</td>
             <td class="f-14 product-brand-manage">
                 <a style="text-decoration:none" href="{{url('/admin/notice/upd')}}?id={{$v['notice_id']}}" title="编辑">

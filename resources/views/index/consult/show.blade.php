@@ -45,6 +45,7 @@
     
 </div>
 <div class="clearh"></div>
+<!-- 右边 -->
 <div class="coursetext">
     @foreach($consult as $v)
     <div class="articlelist">

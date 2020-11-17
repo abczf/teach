@@ -35,7 +35,7 @@
             <dt><i class="Hui-iconfont">&#xe6b6;</i> 题库管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="{{url('admin/bank/show/?exam_id=1')}}" title="题库管理">题库管理</a></li>
+                    <li><a href="{{url('admin/bank/show')}}" title="题库管理">题库管理</a></li>
                     <li><a href="{{url('admin/anwsercate/show')}}" title="题库分类">题库分类</a></li>
                 </ul>
             </dd>

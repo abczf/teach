@@ -38,12 +38,12 @@
                         <td class="f-14">
                             <a title="编辑" href="{{url('admin/exam/edit/')}}?paper_id={{$v->paper_id}}"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                             <a title="删除" href="javascript:;" paper_id="{{$v->paper_id}}" class="del" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-                            <a href="{{url('/admin/bank/show')}}?exam_id={{$v->exam_id}}">题库</a></td>
+                            <a href="{{url('/admin/exam/info/'.$v->exam_id)}}">题库</a></td>
                     </tr>
                 @endforeach
                     </tbody>
                 </table>
-            </div>、
+            </div>
 
         </article>
     </div>

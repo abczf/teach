@@ -51,7 +51,6 @@
 				<span class="btn btn-primary radius" id="but" data-title="存入考卷" _href="article-add.html"><i class="Hui-iconfont">&#xe600;</i> 存入考卷</span>
 
 				</span>
-				<input type="hidden" value="{{$_GET['exam_id']==''?0:$_GET['exam_id']}}" id="exam_id">
 				<span class="r">共有数据：<strong>54</strong> 条</span>
 			</div>
 			<div class="mt-20">

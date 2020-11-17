@@ -6,7 +6,7 @@
             <li><a href="{{url('index/consult/list')}}" class="link1">课程</a></li>
             <li><a href="{{url('index/consult/show')}}" class="link1 ">资讯</a></li>
             <li><a href="{{url('index/teacher/show')}}" class="link1">讲师</a></li>
-            <li><a href="exam_index.html" class="link1" target="_blank">题库</a></li>
+            <li><a href="{{url('index/bank/show')}}" class="link1">题库</a></li>
             <li><a href="{{url('index/question/add')}}" class="link1" target="_blank">问答</a></li>
 
         </ul>

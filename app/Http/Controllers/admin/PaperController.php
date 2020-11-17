@@ -15,6 +15,21 @@ class PaperController extends Controller
         $exam = PaperModel::leftjoin('teach_exam','teach_paper.exam_id','=','teach_exam.exam_id')->where(['teach_paper.is_del'=>1])->get();
         return view('admin.exam.show',['exam'=>$exam]);
     }
+
+    //考试的题库
+    public function info($id){
+        $exam_info=PaperModel::where(['exam_id'=>$id,'is_del'=>1])->first();
+        $bank_id=explode(',',$exam_info->bank_id);
+        //空数组 存储题库数据
+        $bank_info=[];
+        //查询当前考试的题库
+        foreach($bank_id as $k=>$v){
+            $bank_info[]=BankModel::where(['bank_id'=>$v,'is_del'=>1])->value('bank_id');
+        }
+        $bank=BankModel::where('is_del','1')->paginate(10);
+        //渲染视图
+        return view('admin/exam/info',compact('bank','bank_info','id'));
+    }
     public function exam_add(){
         return view('admin.exam.examadd');
     }

@@ -193,6 +193,7 @@ Route::get('/', function () {
         #考试模块
         Route::prefix('exam')->group(function () {
             Route::any('show', 'admin\PaperController@show');//考卷展示
+            Route::any('info/{id}', 'admin\PaperController@info');//考卷的题库
             Route::any('exam_add', 'admin\PaperController@exam_add');//考试的添加
             Route::any('exam_add_do', 'admin\PaperController@exam_add_do');//考试的执行添加
             Route::any('add', 'admin\PaperController@add');//考卷添加
@@ -256,6 +257,16 @@ Route::prefix('index')->group(function(){
         Route::any('hot','index\ConsultController@hot');
         Route::any('move','index\ConsultController@move');
         Route::any('exam','index\ConsultController@exam');
+    });
+    # 题库
+    Route::prefix('bank')->group(function(){
+        Route::any('show','index\BankController@show');
+        Route::any('php','index\BankController@php');
+        Route::any('java','index\BankController@java');
+        Route::any('bankinfo','index\BankController@bankinfo');
+        Route::any('python','index\BankController@python');
+        Route::any('c','index\BankController@c');
+        Route::any('c++','index\BankController@cc');
     });
 
     # 资讯详情
