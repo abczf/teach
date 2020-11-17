@@ -39,31 +39,32 @@
 </nav>
 <article class="page-container">
     <form class="form form-horizontal" id="form-article-add" action="javascript:;">
+{{--        <input type="hidden" value="{{session('user_id')}}" id="user_id">--}}
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户头像：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="file" name="detail_head" id="detail_head">
-                <input type="hidden" name="detail_head" value="" id="img_paths">
+                <input type="file" name="details_head" id="details_heads">
+                <input type="hidden" name="details_head" value="" id="details_head">
                 <div  class="input-group" id="imgs_desc"></div>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="detail_name">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="details_name">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户年龄：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="detail_age">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="details_age">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户性别：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="radio" value="1" placeholder="" id="" name="detail_sex">男
-                <input type="radio" value="2" placeholder="" id="" name="detail_sex">女
+                <input type="radio" value="1" placeholder="" id="" name="details_sex">男
+                <input type="radio" value="2" placeholder="" id="" name="details_sex">女
             </div>
         </div>
         <div class="row cl">
@@ -73,46 +74,49 @@
             </div>
         </div>
     </form>
+    <a href="{{url('/index/personal/personalinfo/update')}}"><h1>去修改</h1></a>
 </article>
-
+<input type="hidden" id="sessionId" value="{{  Session::getId() }}" />
 <script src="/jquery.js"></script>
 <link rel="stylesheet" href="/uploadify/uploadify.css">
 <script src="/uploadify/jquery.uploadify.js"></script>
 <script>
     $(document).ready(function() {
-        $("#slide_img").uploadify({
-            uploader : "/admin/slide/img",
+        $("#details_heads").uploadify({
+            uploader : '/index/personal/personalinfo/addimg',
             swf : "/uploadify/uploadify.swf",
             onUploadSuccess:function(res, data, msg){
                 var imgPsth = data;
-                $("#img_paths").val(imgPsth);
+                $("#details_head").val(imgPsth);
                 var imgstr = "<img src='/"+imgPsth+"' width='200px'>";
                 $("#imgs_desc").append(imgstr);
             }
         });
     });
     $("#submit").click(function(){
-        var _this = $(this);
-        var slide_url = $("input[name='slide_url']").val();
-        var slide_weight = $("input[name='slide_weight']").val();
-        var slide_img = $("input[name='slide_img']").val();
+     // alert(123);
+        var details_name = $("input[name='details_name']").val();
+        var details_age = $("input[name='details_age']").val();
+        var details_head = $("input[name='details_head']").val();
+        var details_sex = $("input[name='details_sex']").val();
+        var user_id = $("#user_id").val();
 //        if(window.confirm("数据不能为空")){
 //            slide_url == ""||slide_weight==""||slide_img=="";
 //            return false;
 //        }
-        var	url = "/admin/slide/addDo";
+        var	url = "/index/personal/personalinfo/add_do";
         $.ajax({
             //提交地址
             url:url,
             //提交方式
             type:"post",
             //提交数据
-            data:{slide_url:slide_url,slide_weight:slide_weight,slide_img:slide_img},
+            data:{details_name:details_name,details_age:details_age,details_sex:details_sex,details_head:details_head,user_id:user_id},
             //是否为同步
             adync:true,
             //回调函数
             success:function(res){
-                location.href=res;
+                location.href='/index/personal/personalinfo/show';
             }
         })
     });

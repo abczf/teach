@@ -7,23 +7,22 @@
 <script src="/index/js/mine.js"></script>
 <script src="/index/js/jquery.tabs.js"></script>
   		<!-- video.js must be in the <head> for older IEs to work. -->
-<link rel="stylesheet" href="video-js.css" >
+{{--<link rel="stylesheet" href="video-js.css" >--}}
 <link rel="stylesheet" href="/index/css/course.css"/>
 <link rel="stylesheet" href="/index/css/tab.css" media="screen">
-<script src="video.js"></script>
-    
-      <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
-      <script>
-        videojs.options.flash.swf = "video-js.swf";
-		
-      </script>
-      <script type="text/javascript">
-$(function(){
+{{--<script src="video.js"></script>--}}
 
-	$('.demo2').Tabs({
-		event:'click'
-	});
-});
+      <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+{{--      <script>--}}
+{{--        videojs.options.flash.swf = "video-js.swf";--}}
+
+{{--      </script>--}}
+{{--<script type="text/javascript">--}}
+{{--    $(function(){--}}
+{{--        $(document).on('click','.note_fombtn',function(){--}}
+{{--            alert(123456)--}}
+{{--        });--}}
+{{--    });--}}
 </script>
       <style>
       body { overflow:hidden;
@@ -35,9 +34,9 @@ $(function(){
 			 scrollbar-shadow-color: #fff; /*立体滚动条阴影的颜色*/
 			 scrollbar-darkshadow-color:#fff; /*立体滚动条外阴影的颜色*/
 			 scrollbar-track-color: #fff; /*立体滚动条背景颜色*/
-			 
-			 
-			
+
+
+
 	  }
 	   /* 设置滚动条的样式 */
 			::-webkit-scrollbar {
@@ -50,7 +49,7 @@ $(function(){
 			/* 滚动条滑块 */
 			::-webkit-scrollbar-thumb {
 				background: #333;
-				
+
 			}
 			::-webkit-scrollbar-thumb:window-inactive {
 				background: rgba(255,0,0,0.4);
@@ -59,23 +58,28 @@ $(function(){
 </head>
 
 <body>
+
    <div class="linevideo" style="overflow-x:hidden">
-    	<span class="returnindex"><a class="gray" href="coursecont1.html" style="font-size:14px;">返回课程</a></span>   
-        <span class="taskspan"><span class="ts">课时100</span>&nbsp;&nbsp;<b class="tasktit">会计的概念与目标1</b></span> 
+    	<span class="returnindex"><a class="gray" href="{{url('/index/personal/course/show')}}" style="font-size:14px;">返回课程</a></span>
+        <span class="taskspan"><span class="ts">课时100</span>&nbsp;&nbsp;<b class="tasktit">会计的概念与目标1</b></span>
+       @foreach($data as $k=>$v)
         <div style="width:100%;margin-top:20px;">
-			<video width="auto" id="example_video_1" class="video-js vjs-default-skin  vjs-big-play-centered vvi " controls preload="none"  poster="/index/images/c8.jpg" data-setup="{}"><!--poster是视频未播放前的展示图片-->
-			<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-			<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-			<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />    
+			<video width="auto" id="example_video_1" class="video-js vjs-default-skin  vjs-big-play-centered vvi "
+                   controls preload="none"  poster="http://www.teach.com/uploads/3eb61b6dde9f5608641944225a87b25a.jpg" data-setup="{}"><!--poster是视频未播放前的展示图片-->
+			<source src="http://www.teach.com/uploads/4d4df30acb2747b18cc3747b3cdda05f.mp4" type='video/mp4' />
+{{--			<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />--}}
+{{--			<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />    --}}
 			</video>
 			<p class="signp"><span class="sign">学过了</span><span class="nextcourse" title="下一课时">∨</span></p>
-        </div>       
-    </div>    
+        </div>
+       @endforeach
+    </div>
+
   <div class="interact">
    		<span class="ii" title="展开或收起">></span>
         <div class="clearh"></div>
         <!--<div class="coursmall">
-        
+
         <img class="csimg" src="/index/images/121.png" width="153" height="75">
         <span class="lineevalue">
         <p>计算机等级考试二级C语言</p>
@@ -85,7 +89,7 @@ $(function(){
          </span>
          <div class="clearh"></div>
         </div>-->
-  
+
           <div class="box1 demo2">
 			<ul class="tab_menu vmulu">
 				<li class="current">目录</li>
@@ -120,40 +124,65 @@ $(function(){
 						<dd class="smalltitle"><strong>第一节&nbsp;&nbsp;会计的概念与目标</strong></dd>
                         <a href="#"><dd><i class="forwa nn"></i><strong class="cataloglink">课时1：会计的概念与目标1</strong></dd></a>
                         <dd><i class="forwa nn"></i><strong class="cataloglink">课时2：会计的概念与目标2</strong></dd>
-                   </dl>	
+                   </dl>
 				   <div class="clearh"></div>
 				</div>
-				
+
 				<div class="hide">
 					<div style="padding-left:25px;">
                     <div class="c_eform" style="width:280px;margin-left:10px;">
                         <div class="clearh" ></div>
-                        <textarea rows="7" class="pingjia_con" style="width:100%;height:500px;" onblur="if (this.value =='') this.value='记下课程笔记';this.className='pingjia_con'" onclick="if (this.value=='记下课程笔记') this.value='';this.className='pingjia_con_on'">记下课程笔记</textarea>
-                       <a href="#" class="fombtn">提交</a>
+                        <textarea rows="7" id="note_name" class="courseNote" style="width:100%;height:500px;" onblur="if (this.value =='')
+                            this.value='记下课程笔记';this.className='pingjia_con'" onclick="if (this.value=='记下课程笔记')
+                                this.value='';this.className='pingjia_con_on'" placeholder="记下课程笔记"></textarea>
+                       <a href="" class="note_fombtn fombtn">提交</a>
                        <div class="clearh"></div>
-                    </div>					
+                    </div>
 				</div>
 				</div>
                 <div class="hide">
-					<div style="padding-left:15px;">                   
+					<div style="padding-left:15px;">
                     <div class="c_eform veform">
                     <div class="clearh" ></div>
-                        <input class="inputitle pingjia_con" type="text"  value="请输入问题标题" onblur="if (this.value =='') this.value='请输入问题标题';this.className='inputitle pingjia_con'" onclick="if (this.value=='请输入问题标题') this.value='';this.className='inputitle pingjia_con_on'"/>
-                        <textarea rows="7" class="pingjia_con" style="width:90%;"  onblur="if (this.value =='') this.value='请输入问题的详细内容';this.className='pingjia_con'" onclick="if (this.value=='请输入问题的详细内容') this.value='';this.className='pingjia_con_on'"></textarea><br/>
-                       <a href="#" class="fombtn" style="margin-right:30px;">发布</a>
+                        <input class="wen inputitle pingjia_con" type="text"  value="请输入问题标题" onblur="if (this.value =='')
+                            this.value='请输入问题标题';this.className='inputitle pingjia_con'" onclick="if (this.value=='请输入问题标题')
+                                this.value='';this.className='inputitle pingjia_con_on'"/>
+                        <textarea rows="7" class="da pingjia_con" style="width:90%;"  onblur="if (this.value =='')
+                            this.value='请输入问题的详细内容';this.className='pingjia_con'" onclick="if (this.value=='请输入问题的详细内容')
+                                this.value='';this.className='pingjia_con_on'"></textarea><br/>
+                       <a href="" class="fombtn" style="margin-right:30px;">发布</a>
                        <div class="clearh"></div>
                     </div>
 					<ul class="evalucourse" style="width:280px;">
                     	<li>
-                        	<p class="vptext"><a target="_blank" class="peptitle" href="#">2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?</a></p>         <p class="peptime pswer"><span style="float:left;"><b class="coclass">候候&nbsp;&nbsp;</b>发表于 2015-05-8 </span><span class="pepask" style="float:right;">回答(<strong style="color:#3eb0e0;"><a href="#" class="bluelink" target="_blank">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong style="color:#3eb0e0;"><a href="#" class="bluelink" target="_blank">10</a></strong>)</span>					
-                            </p>                           
+                        	<p class="vptext">
+                                <a target="_blank" class="peptitle" href="#">
+                                    2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?
+                                </a>
+                            </p>
+                            <p class="peptime pswer">
+                                <span style="float:left;"><b class="coclass">候候&nbsp;&nbsp;</b>发表于 2015-05-8 </span>
+                                <span class="pepask" style="float:right;">回答(<strong style="color:#3eb0e0;">
+                                        <a href="#" class="bluelink" target="_blank">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong style="color:#3eb0e0;">
+                                        <a href="#" class="bluelink" target="_blank">10</a></strong>)
+                                </span>
+                            </p>
                         </li>
                         <li>
-                        	<p class="vptext"><a target="_blank" class="peptitle" href="#">2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?</a></p>         <p class="peptime pswer"><span style="float:left;"><b class="coclass">候候&nbsp;&nbsp;</b>发表于 2015-05-8 </span><span class="pepask" style="float:right;">回答(<strong style="color:#3eb0e0;"><a href="#" class="bluelink" target="_blank">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong style="color:#3eb0e0;"><a href="#" class="bluelink" target="_blank">10</a></strong>)</span>					
-                            </p>                           
-                        </li>                       
+                        	<p class="vptext">
+                                <a target="_blank" class="peptitle" href="#">
+                                    2013年国家公务员考试真题2013年国家公务员考试真题2013年国家公务员考试真题2013年?
+                                </a>
+                            </p>
+                            <p class="peptime pswer">
+                                <span style="float:left;"><b class="coclass">候候&nbsp;&nbsp;</b>发表于 2015-05-8 </span>
+                                <span class="pepask" style="float:right;">回答(<strong style="color:#3eb0e0;">
+                                        <a href="#" class="bluelink" target="_blank">10</a></strong>)&nbsp;&nbsp;&nbsp;&nbsp;浏览(<strong style="color:#3eb0e0;">
+                                        <a href="#" class="bluelink" target="_blank">10</a></strong>)
+                                </span>
+                            </p>
+                        </li>
                     </ul>
-                    
 				</div>
 				</div>
 				<div class="hide">
@@ -162,11 +191,11 @@ $(function(){
 					   <p>此课时暂无作业</p>
 					   <p>共4道作业题<a href="homework.html" target="_blank"><span class="star_zy">继续做题</span></a></p>
 					   <p>共4道作业题<a href="homework_jiexi.html" target="_blank"><span class="star_zy">查看解析</span></a></p>
-					   <p>共4道作业题<a href="homework.html" target="_blank"><span class="star_zy">开始作业</span></a></p>                                 
+					   <p>共4道作业题<a href="homework.html" target="_blank"><span class="star_zy">开始作业</span></a></p>
 				</div>
-				</div>				
+				</div>
 			</div>
-		</div> 
+		</div>
     </div>
 </body>
 </html>

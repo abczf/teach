@@ -18,10 +18,9 @@
                 @foreach($cateInfo as $k=>$v)
                 <li>
 
-
                     <ul class="sortul">
 {{--                        <li class="course_curr"><a href="#"></a></li>--}}
-                        <a href="#"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</a>
+                        <li><a href="#"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</a></li>
 
                     </ul>
 
@@ -37,7 +36,7 @@
                 @foreach($data as $v)
                 <li>
                     <div class="courselist">
-                        <a href="{{url("index/coursecont")}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/{{$v->cou_img}}" title="{{$v->cou_name}}"></a>
+                        <a href="{{url("index/courseinfo/cont")}}?cou_id={{$v->cou_id}}" ><img style="border-radius:3px 3px 0 0;" width="240" src="/{{$v->cou_img}}" title="{{$v->cou_name}}"></a>
                         <p class="courTit"><a href="{{url("index/coursecont")}}" >{{$v->cou_name}}</a></p>
                         <div class="gray">
                             <span>{{date("Y-m-d H:i:s",$v->add_time)}}</span>
